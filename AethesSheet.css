@@ -1,17 +1,28 @@
 /*Configure the tab buttons*/
 .charsheet .sheet-overview,
 .charsheet .sheet-stats,
-.charsheet .sheet-attacks {
+.charsheet .sheet-attacks,
+.charsheet .sheet-perks,
+.charsheet .sheet-rune-spells,
+.charsheet .sheet-inventory {
     display: none;
 }
 
 /* show the selected tab */
 .charsheet .sheet-tabstoggle[value="overview"] ~ div.sheet-overview,
 .charsheet .sheet-tabstoggle[value="stats"] ~ div.sheet-stats,
-.charsheet .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks {
+.charsheet .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,
+.charsheet .sheet-tabstoggle[value="perks"] ~ div.sheet-perks,
+.charsheet .sheet-tabstoggle[value="rune-spells"] ~ div.sheet-rune-spells,
+.charsheet .sheet-tabstoggle[value="inventory"] ~ div.sheet-inventory {
     display: block;
 }
 
 h3 {
     display: inline-block;
+}
+
+div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
+div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_edit"] {
+    display: none;
 }
