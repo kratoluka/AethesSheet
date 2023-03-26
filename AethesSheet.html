@@ -463,6 +463,7 @@
 <div class="sheet-invocation">
     <hr>
     <h2>Invocation Caster</h2>
+        <strong>Template:</strong>
         <select name="attr_ic_template">
             <option value="touch" selected>Touch</option>
             <option value="bolt">Bolt</option>
@@ -480,31 +481,88 @@
             <option value="explosion">Explosion</option>
             <option value="glyph">Glyph</option>
         </select>
+        <strong>Tier:</strong>
+        <select name="attr_ic_tier">
+            <option selected>-</option>
+            <option value="1">I</option>
+            <option value="2">II</option>
+            <option value="3">III</option>
+            <option value="4">IV</option>
+            <option value="5">V</option>
+        </select>
+        <br>
+        <strong>Cast:</strong>
         <select name="attr_ic_type">
             <option value="arcane" selected>Arcane</option>
             <option value="faith">Faith</option>
             <option value="nature">Nature</option>
         </select>
         <input type="hidden" class="sheet-ic_type_toggle" name="attr_ic_type"  value="arcane"/> 
+        <strong>Effect:</strong>
         <div class="sheet-arcane">
         <select name="attr_ic_effect">
             <option selected>-</option>
-            <option value="fire">Fire</option>
+            <option value="fire_damage">Fire Damage</option>
+            <option value="ice_damage">Ice Damage</option>
+            <option value="shadow_damage">Shadow Damage</option>
+            <option value="force_damage">Force Damage</option>
+            <option value="dispel">Dispel</option>
+            <option value="slow">Slow</option>
+            <option value="haste">Haste</option>
             <option value="freeze">Freeze</option>
+            <option value="resist_fire">Resist Fire</option>
+            <option value="resist_frost">Resist Frost</option>
+            <option value="alarm">Alarm</option>
+            <option value="levitation">Levitation</option>
+            <option value="arcane_flight">Arcane Flight</option>
+            <option value="charm">Charm</option>
+            <option value="reveal">Reveal</option>
+            <option value="arcane_eye">Arcane Eye</option>
+            <option value="telekinesis">Telekinesis</option>
         </select>
         </div>
         <div class="sheet-faith">
         <select name="attr_ic_effect">
             <option selected>-</option>
-            <option value="fightning">Lightning</option>
-            <option value="shadow">Shadow</option>
+            <option value="fire_damage">Fire Damage</option>
+            <option value="lightning_damage">Lightning Damage</option>
+            <option value="shadow_damage">Shadow Damage</option>
+            <option value="poison_damage">Poison Damage</option>
+            <option value="water_damage">Water Damage</option>
+            <option value="healing_light">Healing Light</option>
+            <option value="terrify">Terrify</option>
+            <option value="truth">Truth</option>
+            <option value="light">Light</option>
+            <option value="darkness">Darkness</option>
+            <option value="resist_lightning">Resist Lightning</option>
+            <option value="destroy_undead">Destroy Undead</option>
+            <option value="silence">Silence</option>
+            <option value="celestial_flight">Celestial Flight</option>
+            <option value="become_incorporeal">Become Incorporeal</option>
+            <option value="invisibility">Invisibility</option>
+            <option value="ward">Ward</option>
+            <option value="divine_sense">Divine Sense</option>
         </select>
         </div>
         <div class="sheet-nature">
         <select name="attr_ic_effect">
             <option selected>-</option>
-            <option value="water">Water</option>
-            <option value="poison">Poison</option>
+            <option value="lightning_damage">Lightning Damage</option>
+            <option value="ice_damage">Ice Damage</option>
+            <option value="poison_damage">Poison Damage</option>
+            <option value="force_damage">Force Damage</option>
+            <option value="water_damage">Water Damage</option>
+            <option value="balm_of_nature">Balm of Nature</option>
+            <option value="pull">Pull</option>
+            <option value="resist_poison">Resist Poison</option>
+            <option value="feather_fall">Feather Fall</option>
+            <option value="entangle">Entangle</option>
+            <option value="water_breathing">Water Breathing</option>
+            <option value="bark_skin">Bark Skin</option>
+            <option value="reinforce_object">Reinforce Object</option>
+            <option value="mending">Mending</option>
+            <option value="eagle's_wings">Eagle's Wings</option>
+            <option value="petrify">Petrify</option>
         </select>
         </div>
     <hr>
@@ -535,6 +593,63 @@
             total += parseInt(args[i]) || 0;
         }
         return total;
+    }
+
+        function getSpellDetails(effectName) {
+        const spellEffects = {
+            "fire_damage": [1, 0, 1, "Disadvantage to Contests against Wet characters.\nContested with DEX.\n\n1D6 => 1 FP => 0AP\n2D6 => 2 FP => 1AP\n4D6 => 4 FP => 1AP\n6D6 => 6 FP => 2AP\n9D6 => 8 FP => 2AP"],
+            "ice_damage": [1, 0, 1, "Freezes wet Characters.\nContested with Endurance.\n\n1D8 => 1 FP => 0AP\n2D8 => 2 FP => 1AP\n3D8 => 4 FP => 1AP\n5D8 => 6 FP => 2AP\n7D8 => 8 FP => 2AP"],
+            "shadow_damage": [1, 0, 1, "Advantage to Attack Rolls and Contests against Characters in Darkness.\nContested with Vigour.\n\n1D12 => 1 FP => 0AP\n2D12 => 2 FP => 1AP\n3D12 => 4 FP => 1AP\n5D12 => 6 FP => 2AP\n7D12 => 8 FP => 2AP"],
+            "force_damage": [1, 0, 1, "Deals 2 x Damage to Structures.\nContested with Strength.\n\n1D8 => 1 FP => 0AP\n2D8 => 2 FP => 1AP\n3D8 => 4 FP => 1AP\n5D8 => 6 FP => 2AP\n7D8 => 8 FP => 2AP"],
+            "lightning_damage": [1, 0, 1, "Advantage to Attack Rolls and Contests against Wet characters. Contested with Dexterity.\n\n1D10 => 1 FP => 0AP\n2D10 => 2 FP => 1AP\n3D10 => 4 FP => 1AP\n5D10 => 6 FP => 2AP\n7D10 => 8 FP => 2AP"],
+            "poison_damage": [1, 0, 1, "Contest against Target to avoid Poisoning. Contested with Vigour.\n\n1D6 => 1 FP => 0AP\n2D6 => 2 FP => 1AP\n3D6 => 4 FP => 1AP\n5D6 => 6 FP => 2AP\n7D6 => 8 FP => 2AP"],
+            "water_damage": [1, 0, 1, "Allies are instead Healed equal to Damage Roll. Characters Damaged or Healed become Wet. Contested with Endurance.\n\n1D6 => 1 FP => 0AP\n2D6 => 2 FP => 1AP\n3D6 => 4 FP => 1AP\n5D6 => 6 FP => 2AP\n7D6 => 8 FP => 2AP"],
+            "dispel": [5, 1, 3, "This magic unravels all magic it touches.\nDispel 1 in AOE."],
+            "slow": [3, 1, 1, "Slows all in range > Halves Base Movement Speed.\n\nConcentration: Yes"],
+            "haste": [3, 1, 4, "Adds +10ft Base Movement Speed\n\nOvercharge 2: +5ft Base Movement Speed (Max 3)\n\nConcentration: Yes"],
+            "freeze": [5, 1, 3, "Freezes all Wet Characters.\n\nConcentration: Yes"],
+            "resist_fire": [5, 1, 4, "Resistance to Fire Damage.\n\nConcentration: Yes"],
+            "resist_frost": [5, 1, 4, "Resistance to Frost Damage + Cannot be Frozen.\n\nConcentration: Yes"],
+            "alarm": [4, 1, 4, "Caster becomes aware when objects within AoE are moved or touched by another Character.\n\nConcentration: Yes"],
+            "levitation": [5, 2, 6, "Allows the casters to levitate. \nLevitate – 5ft\n\nOvercharge 2: +5ft (Max 4)\n\nConcentration: Yes"],
+            "arcane_flight": [8, 2, 8, "Fly Speed equal to Movement Speed.\n\nConcentration: Yes"],
+            "charm": [5, 1, 6, "Enthrals the target with a mystical mist. \n\nConcentration: Yes"],
+            "reveal": [6, 1, 5, "Reveals and Dispels all illusions."],
+            "arcane_eye": [9, 1, 10, "30ft Magic Sight\n\nConcentration: Yes"],
+            "telekinesis": [8, 2, 10, "Allows the caster to move objects with their mind. \n\nConcentration: Yes",
+            "healing_light": [4, 1, 3, "A golden light cleanses the wounded. Restores 1D10 Hit Points.\n\nOvercharge 2: +1D10 Healing (Max 6)"],
+            "terrify": [5, 1, 5, "Scary shadows frighten those afflicted.\n\nConcentration: Yes"],
+            "truth": [8, 1, 5, "Characters within this effect cannot lie. If they attempt to lie, they are Silenced for 1 Minute. If they believe something to be true, then it is not considered a lie by this spell.\n\nConcentration: Yes"],
+            "light": [4, 1, 3, "A glowing light illuminates the area.\n\nConcentration: Yes"],
+            "darkness": [5, 1, 5, "Covers the area in thick shadow.\n\nConcentration: Yes"],
+            "resist_lightning": [6, 1, 4, "Resistance to Lightning Damage.\n\nConcentration: Yes"],
+            "destroy_undead": [5, 1, 2, "Destroys Level 1 Undead instantly.\n\nOvercharge 2: +1 Undead Level destroyed (Max 9) \n"],
+            "silence": [5, 1, 5, "All sounds is silenced.\n\nConcentration: Yes"],
+            "celestial_flight": [9, 2, 7, "Fly Speed equal to Movement Speed.\n\nConcentration: Yes"],
+            "become_incorporeal": [9, 2, 8, "Characters within the effect take on a ghostly visage, allowing them to move through solid objects.\n\nConcentration: Yes"],
+            "invisibility": [9, 2, 7, "Bends the light to grant invisibility.\n\nConcentration: Yes"],
+            "ward": [8, 2, 6, "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nTarget Creature Type takes 3D10 Lightning Damage in AoE. \n\nOvercharge 3: +1 Creature Type (Max 4)\n\nConcentration: Yes\n"],
+            "divine_sense": [6, 2, 5, "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nCaster is aware of all creatures of that type in range.\n\nOvercharge 3: +1 Creature Type (Max 4)\n\nConcentration: Yes"],
+            "balm_of_nature": [4, 1, 3, "Restores 1D6 Hit Points\n\nOverheal\n\nOvercharge 2: +1D6 Healing (Max 6)"],
+            "pull": [4, 1, 3, "Pulls 10ft toward Caster.\nOvercharge 1: +5ft Pull Distance (Max 6)"],
+            "resist_poison": [5, 1, 4, "Resistance to Poison Damage.\nCannot be Poisoned."],
+            "feather_fall": [5, 1, 4, "Nullifies all Fall Damage. "],
+            "entangle": [5, 1, 4, "Movement Speed reduced to 0."],
+            "water_breathing": [5, 1, 1, "Characters gain Water Breathing"],
+            "bark_skin": [5, 1, 1, "Characters gain: \n+5 Physical Armour\n-2 Magical Armour"],
+            "reinforce_object": [4, 1, 4, "Objects gains 20 + Nature Hit Points for the duration."],
+            "mending": [4, 1, 4, "Object Regains 20 + Nature Hit Points.\nOverheal."],
+            "eagle's_wings": [7, 2, 7, "Fly Speed equal to Movement Speed."],
+            "petrify": [9, 2, 12, "Petrifies characters with 0 Hit Points."],
+        };
+
+        const effectDetails = spellEffects[effectName];
+        return {
+            attr_required: effectDetails[0],
+            ap_cost: effectDetails[1],
+            fp_cost: effectDetails[2],
+            description: effectDetails[3] || ""
+        };
     }
 
     // Don't ask me, not my function -> https://wiki.roll20.net/RepeatingSum

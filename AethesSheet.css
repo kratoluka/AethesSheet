@@ -40,5 +40,5 @@ div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontr
 .charsheet .sheet-ic_type_toggle[value="arcane"] ~ div.sheet-arcane,
 .charsheet .sheet-ic_type_toggle[value="faith"] ~ div.sheet-faith,
 .charsheet .sheet-ic_type_toggle[value="nature"] ~ div.sheet-nature {
-    display: block;
+    display: inline-block;
 }
