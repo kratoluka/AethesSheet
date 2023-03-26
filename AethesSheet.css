@@ -1,0 +1,15 @@
+/*Configure the tab buttons*/
+.charsheet .sheet-overview,
+.charsheet .sheet-stats {
+    display: none;
+}
+
+/* show the selected tab */
+.charsheet .sheet-tabstoggle[value="overview"] ~ div.sheet-overview,
+.charsheet .sheet-tabstoggle[value="stats"] ~ div.sheet-stats {
+    display: block;
+}
+
+h3 {
+    display: inline-block;
+}
