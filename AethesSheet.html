@@ -653,6 +653,36 @@
         };
     }
 
+    function getTemplateDetails(templateName) {
+        const spellTemplates = {
+            "touch": [1, 1, 0, false, "The caster reaches out and touches the target. Range: Touch Duration: Instant"],
+            "dart": [2, 1, 1, false, "The caster shoots a small burst of magic toward the target. Range: 30ft Duration: Instant"],
+            "bolt": [4, 1, 3, false, "The caster shoots a bolt of magic toward their Target. Range: 60ft Duration: Instant"],
+            "orb": [5, 2, 4, false, "The caster hurls an orb of magic at a Target, which then bursts in the area around them. Range: 40ft Duration: Instant"],
+            "cone": [4, 2, 4, false, "The caster shoots a cone of magic from their hands and apply the chosen Spell Effect to the Target. Range: 10ft Cone Duration: Instant"],
+            "rebuttal": [5, 0, 3, false, "The caster retaliates with a blast of magic. Range: 60ft Duration: Instant"],
+            "cloud": [4, 2, 4, true, "The caster conjures a lingering cloud of magic. Range: 10ft x 10ft Duration: 10 Minutes"],
+            "buff": [4, 1, 3, true, "The caster empowers a character within range with a spell effect. Range: 30ft Duration: 10 Minutes Overcharge 2: +10ft Range (Max 3)"],
+            "enchantment": [4, 1, 3, true, "The caster empowers an object within range with a spell effect. Range: Touch Duration: 10 Minutes"],
+            "cloak": [5, 2, 5, true, "The caster surrounds themselves in a small aura of magic. Range: Self - 5ft Aura from Self Duration: 5 Minutes"],
+            "aura": [8, 2, 8, true, "The caster surrounds themselves in a large aura of magic. Range: Self - 15ft Aura from Self Duration: 5 Minutes"],
+            "beam": [8, 2, 8, false, "The caster shoots a beam from their hand. Range: 60ft Line Duration: Instant"],
+            "wall": [9, 2, 9, false, "The caster lifts a wall up from the floor, blocking access to an area. Choose 2 Points: 5ft thick Wall appears between those two points as a straight-Line effect. Range: 60ft Line Duration: Instant"],
+            "wave": [8, 2, 8, true, "The caster surrounds themselves in a large aura of magic which spreads for the duration. Each Replenish, the Wave expands 5ft, but doesn't move with the caster. Range: Self - 10ft Aura from Self Duration: 5 Minutes"],
+            "explosion": [9, 2, 9, false, "The caster chooses a location, and an enormous blast of magic bursts in that spot. Range: 60ft - 15ft Radius AoE around Target Space Duration: Instant"],
+            "glyph": [6, 2, 10, false, "The caster etches an invisible rune into a location as a trap ready to spring. Spell Effect is applied to that space as an Invisible Magical Effect, Triggered by a Character entering that space. * Contest is Rolled on Casting and noted down Range: Touch Duration: Instant"]
+        };
+
+        const spellTemplate = spellTemplates[templateName];
+        return {
+            int_required: spellTemplate[0],
+            ap_cost: spellTemplate[1],
+            fp_cost: spellTemplate[2],
+            concentration: effectDetails[3],
+            description: spellTemplate[4] || ""
+        };
+    }
+
     // Don't ask me, not my function -> https://wiki.roll20.net/RepeatingSum
     /* ===== PARAMETERS ==========
     destinations = the name of the attribute that stores the total quantity
