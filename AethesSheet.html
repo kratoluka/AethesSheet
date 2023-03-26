@@ -364,7 +364,7 @@
             const acc = jsSum(attributes[`${scaling}`], attributes[`${scaling}_bonus`], attributes[`${row}_attack_acc_bonus`])
             console.log(scaling)
             console.log(acc)
-            const rollString = `&{template:atk} {{mod=[[${acc}]]}} {{rname=${attributes[`${row}_attack_name`]}}} {{r1=[[1d20]]}} {{normal=1}}`
+            const rollString = `&{template:demo} {{name=${attributes[`${row}_attack_name`]}}} {{roll=[[1d20]]}} {{mod=[[${acc}]]}}`
             console.log(rollString)
             // Send the roll to the parser
             const results = await startRoll(rollString);
@@ -392,7 +392,7 @@
                 vitality: values.vitality_max, // TODO check current rules for vitality reset
                 fp: values.fp_max,
                 sp: values.sp_max,
-            });
+         });
         });
     });
 
@@ -459,3 +459,7 @@
 
 
 </script>
+
+<rolltemplate class="sheet-rolltemplate-demo">
+  name: {{name}} roll: {{roll}} mod: {{mod}}
+</rolltemplate>
