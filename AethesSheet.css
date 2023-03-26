@@ -4,7 +4,8 @@
 .charsheet .sheet-attacks,
 .charsheet .sheet-perks,
 .charsheet .sheet-rune-spells,
-.charsheet .sheet-inventory {
+.charsheet .sheet-inventory,
+.charsheet .sheet-invocation {
     display: none;
 }
 
@@ -14,7 +15,8 @@
 .charsheet .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,
 .charsheet .sheet-tabstoggle[value="perks"] ~ div.sheet-perks,
 .charsheet .sheet-tabstoggle[value="rune-spells"] ~ div.sheet-rune-spells,
-.charsheet .sheet-tabstoggle[value="inventory"] ~ div.sheet-inventory {
+.charsheet .sheet-tabstoggle[value="inventory"] ~ div.sheet-inventory,
+.charsheet .sheet-tabstoggle[value="invocation"] ~ div.sheet-invocation {
     display: block;
 }
 
@@ -25,4 +27,18 @@ h3 {
 div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
 div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_edit"] {
     display: none;
+}
+
+/* By deafult, hides all archetypes*/
+.charsheet .sheet-arcane,
+.charsheet .sheet-faith,
+.charsheet .sheet-nature {
+    display: none;
+}
+
+/* show the selected archetype */
+.charsheet .sheet-ic_type_toggle[value="arcane"] ~ div.sheet-arcane,
+.charsheet .sheet-ic_type_toggle[value="faith"] ~ div.sheet-faith,
+.charsheet .sheet-ic_type_toggle[value="nature"] ~ div.sheet-nature {
+    display: block;
 }

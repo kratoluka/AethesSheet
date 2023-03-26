@@ -6,6 +6,7 @@
     <button type="action" name="act_perks">Perks</button>
     <button type="action" name="act_rune-spells">Rune Spells</button>
     <button type="action" name="act_inventory">Inventory</button>
+    <button type="action" name="act_invocation">Invocation</button>
 </div>
 
 <div class="sheet-overview">
@@ -119,7 +120,7 @@
 
     <h2>Rune Spells</h2>
     <strong> Memory: </strong>
-    <input type="number" value="0" name="attr_spell_memory_used"/>
+    <input type="number" value="0" name="attr_spell_memory_used" readonly/>
     <text> /</text>
     <input type="number" value="3" name="attr_spell_memory" readonly/>
     <fieldset class="repeating_rune-spells" id="repeat-overview">
@@ -459,10 +460,67 @@
     <hr>
 </div>
 
+<div class="sheet-invocation">
+    <hr>
+    <h2>Invocation Caster</h2>
+        <select name="attr_ic_template">
+            <option value="touch" selected>Touch</option>
+            <option value="bolt">Bolt</option>
+            <option value="orb">Orb</option>
+            <option value="cone">Cone</option>
+            <option value="rebutal">Rebutal</option>
+            <option value="cloud">Cloud</option>
+            <option value="buff">Buff</option>
+            <option value="enchantment">Enchantment</option>
+            <option value="cloak">Cloak</option>
+            <option value="aura">Aura</option>
+            <option value="beam">Beam</option>
+            <option value="wall">Wall</option>
+            <option value="wave">Wave</option>
+            <option value="explosion">Explosion</option>
+            <option value="glyph">Glyph</option>
+        </select>
+        <select name="attr_ic_type">
+            <option value="arcane" selected>Arcane</option>
+            <option value="faith">Faith</option>
+            <option value="nature">Nature</option>
+        </select>
+        <input type="hidden" class="sheet-ic_type_toggle" name="attr_ic_type"  value="arcane"/> 
+        <div class="sheet-arcane">
+        <select name="attr_ic_effect">
+            <option selected>-</option>
+            <option value="fire">Fire</option>
+            <option value="freeze">Freeze</option>
+        </select>
+        </div>
+        <div class="sheet-faith">
+        <select name="attr_ic_effect">
+            <option selected>-</option>
+            <option value="fightning">Lightning</option>
+            <option value="shadow">Shadow</option>
+        </select>
+        </div>
+        <div class="sheet-nature">
+        <select name="attr_ic_effect">
+            <option selected>-</option>
+            <option value="water">Water</option>
+            <option value="poison">Poison</option>
+        </select>
+        </div>
+    <hr>
+</div>
+
 <script type="text/worker">
 
+    // attributes lists
+    const baseAttributes = ["Vigor","Endurance","Intelligence","Strength","Dexterity","Perception","Arcana","Faith","Nature","Charisma"];
+    const armourAttributes = ["phys_armour","mag_armour"]
+    const bonusAttributes = [...baseAttributes, ...armourAttributes].map(attr => attr + "_bonus");
+    const allAttributes = [...baseAttributes, ...bonusAttributes];
+    const baseEvents = allAttributes.map(attr => "change:" + attr).join(" ")
+
     // sheet tabs
-    const buttonlist = ["overview","stats","attacks","perks","rune-spells","inventory"];
+    const buttonlist = ["overview","stats","attacks","perks","rune-spells","inventory","invocation"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
@@ -479,7 +537,7 @@
         return total;
     }
 
-    // Don't ask me, not my code -> https://wiki.roll20.net/RepeatingSum
+    // Don't ask me, not my function -> https://wiki.roll20.net/RepeatingSum
     /* ===== PARAMETERS ==========
     destinations = the name of the attribute that stores the total quantity
             can be a single attribute, or an array: ['total_cost', 'total_weight']
@@ -506,15 +564,11 @@
         }); 
     };
 
+    // calculate used spell memory
     on('change:repeating_rune-spells remove:repeating_rune-spells', function() {
         repeatingSum("spell_memory_used", "rune-spells", "rspell_ready");
     });
 
-    const baseAttributes = ["Vigor","Endurance","Intelligence","Strength","Dexterity","Perception","Arcana","Faith","Nature","Charisma"];
-    const armourAttributes = ["phys_armour","mag_armour"]
-    const bonusAttributes = [...baseAttributes, ...armourAttributes].map(attr => attr + "_bonus");
-    const allAttributes = [...baseAttributes, ...bonusAttributes];
-    const baseEvents = allAttributes.map(attr => "change:" + attr).join(" ")
     // Parses out the section name, row id, and attribute/button name
     const parseTriggerName = function(string){
         let match = string.replace(/^clicked:/,'').match(/(?:(repeating_[^_]+)_([^_]+)_)?(.+)/);
@@ -522,6 +576,7 @@
         return match;
     };
 
+    // roll attack hit
     on("clicked:repeating_attacks:hit",(event) => {
         console.log("check_A")
         const [section,rowID] = parseTriggerName(event.triggerName);
@@ -530,12 +585,13 @@
         // Get all the attributes we need
         // Note the async tag here. This will allow us to await 
         // startroll instead of using the callback syntax.
-        getAttrs([`${row}_attack_name`,`${row}_attack_acc_bonus`,`${row}_attack_scaling`,`${row}_attack_dice_secondary`,...allAttributes],async (attributes) => {
+        getAttrs(["character_name", `${row}_attack_name`,`${row}_attack_acc_bonus`,`${row}_attack_scaling`,`${row}_attack_dice_secondary`,...allAttributes],async (attributes) => {
             // Assemble our roll string
             //const rollString = `&{template:demo} {{roll=[[${attributes[`${row}_option_1`]} + ${attributes[`${row}_option_2`]} + ${attributes[`${row}_bonus`]}]]}} {{damage=[[${attributes[`${row}_damage`]}[base damage]]]}}`;
             console.log(attributes)
             //const rollString = `/roll 1d20 ${window["attributes." + row + "_attack_name"]}`; // TODO research roll templates
             console.log(window[row + "_attack_name"])
+            console.log(attributes["character_name"])
             const scaling = attributes[`${row}_attack_scaling`]
             const acc = jsSum(attributes[`${scaling}`], attributes[`${scaling}_bonus`], attributes[`${row}_attack_acc_bonus`])
             console.log(scaling)
@@ -548,7 +604,6 @@
             finishRoll(results.rollId);
         })
     })
-
 
     // reset values on rest
     on("clicked:rest", function() {
