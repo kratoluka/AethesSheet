@@ -2,6 +2,7 @@
 <div>
     <button type="action" name="act_overview">Overview</button>
     <button type="action" name="act_stats">Stats</button>
+    <button type="action" name="act_attacks">Attacks</button>
 </div>
 
 <div class="sheet-overview">
@@ -12,15 +13,15 @@
     <strong> Level: </strong>
     <input type="number" name="attr_level" value="1" readonly/><br>
     <strong> Initiative: </strong>
-    <input type="number" name="attr_initiative" value="1" readonly/><br>
+    <input type="number" name="attr_initiative_total" value="1" readonly/><br>
     <strong> Evasion: </strong>
-    <input type="number" name="attr_evasion" value="1" readonly/><br>
+    <input type="number" name="attr_evasion_total" value="1" readonly/><br>
     <strong> Speed: </strong>
-    <input type="number" name="attr_speed" value="1" readonly/><br>
+    <input type="number" name="attr_speed_total" value="1" readonly/><br>
     <strong> Equip Load: </strong>
     <input type="number" value="0" name="attr_equip_load"/>
     <text> /</text>
-    <input type="number" value="10" name="attr_equip_load_max" readonly/><br>
+    <input type="number" value="1" name="attr_equip_load_max" readonly/><br>
 
     <strong> Health: </strong>
     <input type="number" value="0" name="attr_hp"/>
@@ -50,44 +51,54 @@
 
     <br>
     <h3> Vigor </h3>
-    <input type="number" name="attr_vig" value="1" min="1" readonly/>
-    <button type='roll' value="/roll 1d20 + @{vig} + @{vig_bonus} Vigor" name="roll_vig"></button>
+    <input type="number" name="attr_Vigor" value="1" min="1" readonly/>
+    <button type='roll' value="/roll 1d20 + @{Vigor} + @{Vigor_bonus} Vigor" name="roll_Vigor"></button>
     <br>
     <h3> Endurance </h3>
-    <input type="number" name="attr_end" value="1" min="1" readonly/>
-    <button type='roll' value="/roll 1d20 + @{end} + @{end_bonus} Endurance" name="roll_end"></button>
+    <input type="number" name="attr_Endurance" value="1" min="1" readonly/>
+    <button type='roll' value="/roll 1d20 + @{Endurance} + @{Endurance_bonus} Endurance" name="roll_Endurance"></button>
     <br>
     <h3> Intelligence </h3>
-    <input type="number" name="attr_int" value="1" min="1" readonly/>
-    <button type='roll' value="/roll 1d20 + @{int} + @{int_bonus} Intelligence" name="roll_int"></button>
+    <input type="number" name="attr_Intelligence" value="1" min="1" readonly/>
+    <button type='roll' value="/roll 1d20 + @{Intelligence} + @{Intelligence_bonus} Intelligence" name="roll_Intelligence"></button>
     <br>
     <h3> Strength </h3>
-    <input type="number" name="attr_str" value="1" min="1" readonly/>
-    <button type='roll' value="/roll 1d20 + @{str} + @{str_bonus} Strength" name="roll_str"></button>
+    <input type="number" name="attr_Strength" value="1" min="1" readonly/>
+    <button type='roll' value="/roll 1d20 + @{Strength} + @{Strength_bonus} Strength" name="roll_Strength"></button>
     <br>
     <h3> Dexterity </h3>
-    <input type="number" name="attr_dex" value="1" min="1" readonly/>
-    <button type='roll' value="/roll 1d20 + @{dex} + @{dex_bonus} Dexterity" name="roll_dex"></button>
+    <input type="number" name="attr_Dexterity" value="1" min="1" readonly/>
+    <button type='roll' value="/roll 1d20 + @{Dexterity} + @{Dexterity_bonus} Dexterity" name="roll_Dexterity"></button>
     <br>
     <h3> Perception </h3>
-    <input type="number" name="attr_per" value="1" min="1"/>
-    <button type='roll' value="/roll 1d20 + @{per} + @{per_bonus} Perception" name="roll_per"></button>
+    <input type="number" name="attr_Perception" value="1" min="1"/>
+    <button type='roll' value="/roll 1d20 + @{Perception} + @{Perception_bonus} Perception" name="roll_Perception"></button>
     <br>
     <h3> Arcana </h3>
-    <input type="number" name="attr_arc" value="1" min="1"/>
-    <button type='roll' value="/roll 1d20 + @{arc} + @{arc_bonus} Arcana" name="roll_arc"></button>
+    <input type="number" name="attr_Arcana" value="1" min="1"/>
+    <button type='roll' value="/roll 1d20 + @{Arcana} + @{Arcana_bonus} Arcana" name="roll_Arcana"></button>
     <br>
     <h3> Faith </h3>
-    <input type="number" name="attr_fai" value="1" min="1"/>
-    <button type='roll' value="/roll 1d20 + @{fai} + @{fai_bonus} Faith" name="roll_fai"></button>
+    <input type="number" name="attr_Faith" value="1" min="1"/>
+    <button type='roll' value="/roll 1d20 + @{Faith} + @{Faith_bonus} Faith" name="roll_Faith"></button>
     <br>
     <h3> Nature </h3>
-    <input type="number" name="attr_nat" value="1" min="1"/>
-    <button type='roll' value="/roll 1d20 + @{nat} + @{nat_bonus} Nature" name="roll_nat"></button>
+    <input type="number" name="attr_Nature" value="1" min="1"/>
+    <button type='roll' value="/roll 1d20 + @{Nature} + @{Nature_bonus} Nature" name="roll_Nature"></button>
     <br>
     <h3> Charisma </h3>
-    <input type="number" name="attr_chr" value="1" min="1"/>
-    <button type='roll' value="/roll 1d20 + @{cha} + @{cha_bonus} Charisma" name="roll_cha"></button>
+    <input type="number" name="attr_Charisma" value="1" min="1"/>
+    <button type='roll' value="/roll 1d20 + @{Charisma} + @{Charisma_bonus} Charisma" name="roll_Charisma"></button>
+
+    <br><strong>Attacks:</strong><br>
+    <hr>
+    <h2>Attacks</h2>
+    <fieldset class="repeating_attacks">
+        <Strong>Name:</Strong>
+        <input type="text" name="attr_attack_name" readonly/>
+        <button type="action" name="act_hit">Hit</button>
+    </fieldset>
+    <hr>
 
     <br><strong>Notes:</strong><br>
     <textarea name="attr_backstory" rows="10" cols="10"></textarea>
@@ -128,51 +139,51 @@
     <br>
 
     <strong> Health: </strong>
-    <input type="number" value="10" name="attr_hp_max" readonly/>
+    <input type="number" value="10" name="attr_hp_base" readonly/>
     <text>Bonus</text>
-    <input type="text" name="attr_hp_bonus" value="0"/>
+    <input type="number" name="attr_hp_bonus" value="0"/>
     <br>
 
     <strong> Vitality: </strong>
-    <input type="number" value="1" name="attr_vitality_max" readonly/>
+    <input type="number" value="1" name="attr_vitality_base" readonly/>
     <text>Bonus</text>
-    <input type="text" name="attr_vitality_bonus" value="0"/>
+    <input type="number" name="attr_vitality_bonus" value="0"/>
     <br>
 
     <strong> Focus: </strong>
-    <input type="number" value="10" name="attr_fp_max" readonly/>
+    <input type="number" value="10" name="attr_fp_base" readonly/>
     <text>Bonus</text>
-    <input type="text" name="attr_focus_bonus" value="0"/>
+    <input type="number" name="attr_focus_bonus" value="0"/>
     <br>
 
     <strong> Stamina: </strong>
-    <input type="number" value="1" name="attr_sp_max" readonly/>
+    <input type="number" value="1" name="attr_sp_base" readonly/>
     <text>Bonus</text>
-    <input type="text" name="attr_sp_bonus" value="0"/>
+    <input type="number" name="attr_sp_bonus" value="0"/>
     <br>
 
     <strong> Initiative: </strong>
-    <input type="number" value="1" name="attr_initiative" readonly/>
+    <input type="number" value="1" name="attr_initiative_base" readonly/>
     <text>Bonus</text>
-    <input type="text" name="attr_initiative_bonus" value="0"/>
+    <input type="number" name="attr_initiative_bonus" value="0"/>
     <br>
 
     <strong> Evasion: </strong>
-    <input type="number" value="1" name="attr_evasion" readonly/>
+    <input type="number" value="1" name="attr_evasion_base" readonly/>
     <text>Bonus</text>
-    <input type="text" name="attr_evasion_bonus" value="0"/>
+    <input type="number" name="attr_evasion_bonus" value="0"/>
     <br>
 
     <strong> Speed: </strong>
-    <input type="number" value="20" name="attr_speed" readonly/>
+    <input type="number" value="20" name="attr_speed_base" readonly/>
     <text>Bonus</text>
-    <input type="text" name="attr_speed_bonus" value="0"/>
+    <input type="number" name="attr_speed_bonus" value="0"/>
     <br>
 
     <strong> Equip Load: </strong>
-    <input type="number" value="1" name="attr_equip_load_max" readonly/>
+    <input type="number" value="1" name="attr_equip_load_base" readonly/>
     <text>Bonus</text>
-    <input type="text" name="attr_equip_load_bonus" value="0"/>
+    <input type="number" name="attr_equip_load_bonus" value="0"/>
     <br>
 
     <hr>
@@ -181,84 +192,190 @@
     <br>
     <h3> Vigor </h3>
     <text>Score</text>
-    <input type="number" name="attr_vig" value="1" min="1"/>
+    <input type="number" name="attr_Vigor" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_vig_bonus" value="0"/>
+    <input type="text" name="attr_Vigor_bonus" value="0"/>
     <br>
     <h3> Endurance </h3>
     <text>Score</text>
-    <input type="number" name="attr_end" value="1" min="1"/>
+    <input type="number" name="attr_Endurance" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_end_bonus" value="0"/>
+    <input type="text" name="attr_Endurance_bonus" value="0"/>
     <br>
     <h3> Intelligence </h3>
     <text>Score</text>
-    <input type="number" name="attr_int" value="1" min="1"/>
+    <input type="number" name="attr_Intelligence" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_int_bonus" value="0"/>
+    <input type="text" name="attr_Intelligence_bonus" value="0"/>
     <br>
     <h3> Strength </h3>
     <text>Score</text>
-    <input type="number" name="attr_str" value="1" min="1"/>
+    <input type="number" name="attr_Strength" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_str_bonus" value="0"/>
+    <input type="text" name="attr_Strength_bonus" value="0"/>
     <br>
     <h3> Dexterity </h3>
     <text>Score</text>
-    <input type="number" name="attr_dex" value="1" min="1"/>
+    <input type="number" name="attr_Dexterity" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_dex_bonus" value="0"/>
+    <input type="text" name="attr_Dexterity_bonus" value="0"/>
     <br>
     <h3> Perception </h3>
     <text>Score</text>
-    <input type="number" name="attr_per" value="1" min="1"/>
+    <input type="number" name="attr_Perception" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_per_bonus" value="0"/>
+    <input type="text" name="attr_Perception_bonus" value="0"/>
     <br>
     <h3> Arcana </h3>
     <text>Score</text>
-    <input type="number" name="attr_arc" value="1" min="1"/>
+    <input type="number" name="attr_Arcana" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_arc_bonus" value="0"/>
+    <input type="text" name="attr_Arcana_bonus" value="0"/>
     <br>
     <h3> Faith </h3>
     <text>Score</text>
-    <input type="number" name="attr_fai" value="1" min="1"/>
+    <input type="number" name="attr_Faith" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_fai_bonus" value="0"/>
+    <input type="text" name="attr_Faith_bonus" value="0"/>
     <br>
     <h3> Nature </h3>
     <text>Score</text>
-    <input type="number" name="attr_nat" value="1" min="1"/>
+    <input type="number" name="attr_Nature" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_nat_bonus" value="0"/>
+    <input type="text" name="attr_Nature_bonus" value="0"/>
     <br>
     <h3> Charisma </h3>
     <text>Score</text>
-    <input type="number" name="attr_cha" value="1" min="1"/>
+    <input type="number" name="attr_Charisma" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_cha_bonus" value="0"/>
+    <input type="text" name="attr_Charisma_bonus" value="0"/>
+</div>
 
+<div class="sheet-attacks">
     <hr>
-    <h2>Skill Bonuses</h2>
-    <fieldset class="repeating_skills">
+    <h2>Attacks</h2>
+    <fieldset class="repeating_attacks">
         <Strong>Name:</Strong>
-        <input type="text" name="attr_skillname"/>
-        Rank:
-        <input type="number" name="attr_skillRank"/>
-        Rerolls:
-        <input type="number" name="attr_rerolls"/>
-        /
-        <input type="number" name="attr_rerolls_max"/>
-        Is Master?
-        <input type="checkbox" name="attr_skillMaster"/>
+        <input type="text" name="attr_attack_name"/>
+        Acc Bonus:
+        <input type="number" name="attr_attack_acc_bonus"/>
+        Dmg Bonus:
+        <input type="number" name="attr_attack_dmg_bonus"/>
+        Is Weapon
+        <input type="checkbox" name="attr_attack_type"/>
+        Scaling:
+        <select name="attr_attack_scaling">
+            <option selected>-</option>
+            <option value="Vigor">Vigor</option>
+            <option value="Endurance">Endurance</option>
+            <option value="Intelligence">Intelligence</option>
+            <option value="Strength">Strength</option>
+            <option value="Dexterity">Dexterity</option>
+            <option value="Perception">Perception</option>
+            <option value="Arcana">Arcana</option>
+            <option value="Faith">Faith</option>
+            <option value="Nature">Nature</option>
+            <option value="Charisma">Charisma</option>
+        </select>
+        One-Handed Dice:
+        <input type="text" name="attr_attack_dice_one"/>
+        Type:
+        <select name="attr_attack_type_one">
+            <option selected>-</option>
+            <option value="Slashing">Slashing</option>
+            <option value="Piercing">Piercing</option>
+            <option value="Bludgeoning">Bludgeoning</option>
+            <option value="Fire">Fire</option>
+            <option value="Frost">Frost</option>
+            <option value="Lightning">Lightning</option>
+            <option value="Shadow">Shadow</option>
+            <option value="Water">Water</option>
+            <option value="Poison">Poison</option>
+        </select>
+        Two-Handed Dice:
+        <input type="text" name="attr_attack_dice_two"/>
+        Type:
+        <select name="attr_attack_type_two">
+            <option selected>-</option>
+            <option value="Slashing">Slashing</option>
+            <option value="Piercing">Piercing</option>
+            <option value="Bludgeoning">Bludgeoning</option>
+            <option value="Fire">Fire</option>
+            <option value="Frost">Frost</option>
+            <option value="Lightning">Lightning</option>
+            <option value="Shadow">Shadow</option>
+            <option value="Water">Water</option>
+            <option value="Poison">Poison</option>
+        </select>
+        Secondary Dice:
+        <input type="text" name="attr_attack_dice_secondary"/>
+        Type:
+        <select name="attr_attack_type_secondary">
+            <option selected>-</option>
+            <option value="Slashing">Slashing</option>
+            <option value="Piercing">Piercing</option>
+            <option value="Bludgeoning">Bludgeoning</option>
+            <option value="Fire">Fire</option>
+            <option value="Frost">Frost</option>
+            <option value="Lightning">Lightning</option>
+            <option value="Shadow">Shadow</option>
+            <option value="Water">Water</option>
+            <option value="Poison">Poison</option>
+        </select>
     </fieldset>
     <hr>
 </div>
 
 <script type="text/worker">
+
+    function jsSum(...args) {
+        let total = 0;
+        for (let i = 0; i < args.length; i++) {
+            total += parseInt(args[i]) || 0;
+        }
+        return total;
+    }
+    const baseAttributes = ["Vigor","Endurance","Intelligence","Strength","Dexterity","Perception","Arcana","Faith","Nature","Charisma"];
+    const bonusAttributes = baseAttributes.map(attr => attr + "_bonus");
+    const allAttributes = [...baseAttributes, ...bonusAttributes];
+    const baseEvents = allAttributes.map(attr => "change:" + attr).join(" ")
+    // Parses out the section name, row id, and attribute/button name
+    const parseTriggerName = function(string){
+        let match = string.replace(/^clicked:/,'').match(/(?:(repeating_[^_]+)_([^_]+)_)?(.+)/);
+        match.shift();
+        return match;
+    };
+
+    on("clicked:repeating_attacks:hit",(event) => {
+        console.log("check_A")
+        const [section,rowID] = parseTriggerName(event.triggerName);
+        // Assemble the row string so we can use it easily later
+        const row = `${section}_${rowID}`;
+        // Get all the attributes we need
+        // Note the async tag here. This will allow us to await 
+        // startroll instead of using the callback syntax.
+        getAttrs([`${row}_attack_name`,`${row}_attack_acc_bonus`,`${row}_attack_scaling`,`${row}_attack_dice_secondary`,...allAttributes],async (attributes) => {
+            // Assemble our roll string
+            //const rollString = `&{template:demo} {{roll=[[${attributes[`${row}_option_1`]} + ${attributes[`${row}_option_2`]} + ${attributes[`${row}_bonus`]}]]}} {{damage=[[${attributes[`${row}_damage`]}[base damage]]]}}`;
+            console.log(attributes)
+            //const rollString = `/roll 1d20 ${window["attributes." + row + "_attack_name"]}`; // TODO research roll templates
+            console.log(window[row + "_attack_name"])
+            const scaling = attributes[`${row}_attack_scaling`]
+            const acc = jsSum(attributes[`${scaling}`], attributes[`${scaling}_bonus`], attributes[`${row}_attack_acc_bonus`])
+            console.log(scaling)
+            console.log(acc)
+            const rollString = `&{template:atk} {{mod=[[${acc}]]}} {{rname=${attributes[`${row}_attack_name`]}}} {{r1=[[1d20]]}} {{normal=1}}`
+            console.log(rollString)
+            // Send the roll to the parser
+            const results = await startRoll(rollString);
+            // Tell roll20 that the roll is ready to be displayed in chat
+            finishRoll(results.rollId);
+        })
+    })
+
+
     // sheet tabs
-    const buttonlist = ["overview","stats"];
+    const buttonlist = ["overview","stats","attacks"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
@@ -266,6 +383,8 @@
             });
         });
     });
+
+    // reset values on rest
     on("clicked:rest", function() {
         getAttrs(["hp_max", "vitality_max", "fp_max", "sp_max"], function(values) {
             setAttrs({
@@ -276,8 +395,10 @@
             });
         });
     });
-    on("sheet:opened change:xp change:hp_bonus change:fp_bonus change:sp_bonus change:race change:vig change:vig_bonus change:end change:end_bonus change:int change:int_bonus change:str change:str_bonus change:dex change:dex_bonus change:per change:per_bonus change:arc change:arc_bonus change:fai change:fai_bonus change:nat change:nat_bonus change:cha change:cha_bonus", function() {
-        getAttrs(["xp","race","vig","vig_bonus","end","end_bonus","str","str_bonus","int","int_bonus","dex","dex_bonus","per","per_bonus","arc","arc_bonus","fai","fai_bonus","nat","nat_bonus","cha","cha_bonus"], function(values) {
+
+    // general attribute changes
+    on("sheet:opened change:xp change:hp_bonus change:vitality_bonus change:fp_bonus change:sp_bonus change:race " + baseEvents, function() {
+        getAttrs(["xp","race","hp_bonus","vitality_bonus","fp_bonus","sp_bonus","initiative_bonus","evasion_bonus","speed_bonus","equip_load_bonus",...allAttributes], function(values) {
 
             function getRaceSpeed(race) {
                 const raceValues = {
@@ -303,38 +424,38 @@
                 return level;
             }
 
-            function jsSum(...args) {
-                let total = 0;
-                for (let i = 0; i < args.length; i++) {
-                    total += parseInt(args[i]) || 0;
-                }
-                return total;
-            }
-
-            let calcHP = 10 + jsSum(values.vig, values.vig_bonus) * 8 + jsSum(values.end, values.end_bonus, values.str, values.hp_bonus);
-            let calcVitality = 1 + Math.floor(parseInt(values.vig) / 2);
-            let calcFP = jsSum(values.int, values.int_bonus, values.cha, values.cha_bonus) * 3 + jsSum(values.per, values.per_bonus, values.arc, values.arc_bonus, values.fai, values.fai_bonus, values.nat, values.nat_bonus, values.fp_bonus);
-            let calcSP = jsSum(values.end, values.end_bonus, values.sp_bonus);
-            let calcInitiative = jsSum(values.dex, values.per);
-            let calcEvasion = jsSum(10, values.dex);
-            let calcSpeed = getRaceSpeed(values.race) + Math.floor(parseInt(values.end) / 2) * 5;
+            let calcHP = 10 + jsSum(values.Vigor, values.Vigor_bonus) * 8 + jsSum(values.Endurance, values.Endurance_bonus, values.Strength);
+            let calcVitality = jsSum("1", Math.floor(jsSum(values.Vigor, values.Vigor_bonus) / 2));
+            let calcFP = jsSum(values.Intelligence, values.Intelligence_bonus, values.Charisma, values.Charisma_bonus) * 3 + jsSum(values.Perception, values.Perception_bonus, values.Arcana, values.Arcana_bonus, values.Faith, values.Faith_bonus, values.Nature, values.Nature_bonus);
+            let calcSP = jsSum(values.Endurance, values.Endurance_bonus);
+            let calcInitiative = jsSum(values.Dexterity, values.Dexterity_bonus, values.Perception, values.Perception_bonus);
+            let calcEvasion = jsSum(10, values.Dexterity, values.Dexterity_bonus);
+            let calcSpeed = jsSum(getRaceSpeed(values.race), Math.floor(jsSum(values.Endurance, values.Endurance_bonus) / 2) * 5);
+            let calcEquipLoad = jsSum(values.Strength, values.Strength_bonus)
 
             console.log(values)
 
             setAttrs({
-                hp_max: calcHP,
-                vitality_max: calcVitality,
-                fp_max: calcFP,
-                sp_max: calcSP,
-                initiative: calcInitiative,
-                evasion: calcEvasion,
-                speed: calcSpeed,
+                hp_base: calcHP,
+                hp_max: jsSum(calcHP, values.hp_bonus),
+                vitality_base: calcVitality,
+                vitality_max: jsSum(calcVitality, values.vitality_bonus),
+                fp_base: calcFP,
+                fp_max: jsSum(calcFP, values.fp_bonus),
+                sp_base: calcSP,
+                sp_max: jsSum(calcSP, values.sp_bonus),
+                initiative_base: calcInitiative,
+                initiative_total: jsSum(calcInitiative, values.initiative_bonus),
+                evasion_base: calcEvasion,
+                evasion_total: jsSum(calcEvasion, values.evasion_bonus),
+                speed_base: calcSpeed,
+                speed_total: jsSum(calcSpeed, values.speed_bonus),
                 level: getLevel(values.xp),
+                equip_load_base: calcEquipLoad,
+                equip_load_max: jsSum(calcEquipLoad, values.equip_load_bonus),
             });
         });
     });
-
-
 
 
 </script>
