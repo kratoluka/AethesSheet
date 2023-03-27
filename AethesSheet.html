@@ -470,7 +470,7 @@
     <div class="sheet-invocation_memory">
         <h2>Invocation Memory</h2>
         <fieldset class="repeating_ic-templates">
-            <select name="attr_ic-template-memory">
+            <select name="attr_ic_template_memory">
                 <option selected>-</option>
                 <option value="touch">Touch</option>
                 <option value="bolt">Bolt</option>
@@ -495,7 +495,10 @@
                 <option selected>-</option>
                 <option value="fire_damage">Fire Damage</option>
                 <option value="ice_damage">Ice Damage</option>
+                <option value="lightning_damage">Lightning Damage</option>
                 <option value="shadow_damage">Shadow Damage</option>
+                <option value="water_damage">Water Damage</option>
+                <option value="poison_damage">Poison Damage</option>
                 <option value="force_damage">Force Damage</option>
                 <option value="dispel">Dispel</option>
                 <option value="slow">Slow</option>
@@ -510,11 +513,6 @@
                 <option value="reveal">Reveal</option>
                 <option value="arcane_eye">Arcane Eye</option>
                 <option value="telekinesis">Telekinesis</option>
-                <option value="fire_damage">Fire Damage</option>
-                <option value="lightning_damage">Lightning Damage</option>
-                <option value="shadow_damage">Shadow Damage</option>
-                <option value="poison_damage">Poison Damage</option>
-                <option value="water_damage">Water Damage</option>
                 <option value="healing_light">Healing Light</option>
                 <option value="terrify">Terrify</option>
                 <option value="truth">Truth</option>
@@ -528,11 +526,6 @@
                 <option value="invisibility">Invisibility</option>
                 <option value="ward">Ward</option>
                 <option value="divine_sense">Divine Sense</option>
-                <option value="lightning_damage">Lightning Damage</option>
-                <option value="ice_damage">Ice Damage</option>
-                <option value="poison_damage">Poison Damage</option>
-                <option value="force_damage">Force Damage</option>
-                <option value="water_damage">Water Damage</option>
                 <option value="balm_of_nature">Balm of Nature</option>
                 <option value="pull">Pull</option>
                 <option value="resist_poison">Resist Poison</option>
@@ -664,10 +657,11 @@
         <input type="number" value="0" name="attr_ic_ap" readonly />
         <strong>FP Cost:</strong>
         <input type="number" value="0" name="attr_ic_fp" readonly />
-        <strong>Damage:</strong>
-        <input type="text" value="0" name="attr_ic_dice" readonly />
+        <strong>Dice:</strong>
+        <input type="text" value="" name="attr_ic_dice" readonly />
         <button>Placeholder CAST</button>
         <br>
+        <input id="ic_warning" type="text" name="attr_ic_warning" readonly />
         <br><strong>Description:</strong><br>
         <textarea name="attr_ic_desc" cols="20" rows="2" readonly></textarea>
      </div>
@@ -737,6 +731,8 @@
         }); 
     };
 
+    function snakeToTitleCase(str) {return str.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');}
+
     // calculate used spell memory
     on('change:repeating_rune-spells remove:repeating_rune-spells', function() {
         repeatingSum("spell_memory_used", "rune-spells", "rspell_ready");
@@ -790,9 +786,23 @@
         });
     });
 
-    function snakeToTitleCase(str) {
-      return str.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    }
+    // save currently remembered templates
+    on('sheet:opened change:repeating_ic-templates remove:repeating_ic-templates', () => {
+    getSectionIDs('repeating_ic-templates', (idarray) => {
+        getAttrs(idarray.map((id) => `repeating_ic-templates_${id}_ic_template_memory`), (values) => {
+            setAttrs({ic_tmemory: idarray.map((id) => values[`repeating_ic-templates_${id}_ic_template_memory`])});
+            });
+        });
+    });
+
+    // save currently remembered effects
+    on('sheet:opened change:repeating_ic-effects remove:repeating_ic-effects', () => {
+    getSectionIDs('repeating_ic-effects', (idarray) => {
+        getAttrs(idarray.map((id) => `repeating_ic-effects_${id}_ic_effect_memory`), (values) => {
+            setAttrs({ic_ememory: idarray.map((id) => values[`repeating_ic-effects_${id}_ic_effect_memory`])});
+            });
+        });
+    });
 
     function getEffectDetails(effectName) { 
         const spellEffects = {
@@ -890,8 +900,8 @@
         // I know what the function is called but I'll abuse a system I made if I want to
         const specialCases = {  
             "ward": {dice:"3d10", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
-            "healing_light": {dice:"-1d10", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
-            "balm_of_nature": {dice:"-1d6", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
+            "healing_light": {dice:"1d10", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
+            "balm_of_nature": {dice:"1d6", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
         }
         if (effectName in specialCases) {return specialCases[effectName];}
         const diceMap = {
@@ -920,9 +930,27 @@
         };
     }
 
+    function invocationWarning(effect, template, attribute, attr_req, int_req) {
+        getAttrs(["ic_ememory", "ic_tmemory",...allAttributes], function(values) {
+
+
+            let warning = "";
+            warning += (!values.ic_ememory.includes(effect)) ? `You do not know ${snakeToTitleCase(effect)}\n` : "";
+            warning += (!values.ic_tmemory.includes(template)) ? `You do not know ${snakeToTitleCase(template)}\n` : "";
+            warning += (parseInt(values[attribute]) < attr_req) ? `Your ${attribute} is not high enough\n` : "";
+            warning += (parseInt(values["Intelligence"]) < int_req) ? `Your Intelligence is not high enough\n` : "";
+
+            setAttrs({
+                ic_warning: warning,
+            });
+        });
+    }
+
     // generate invocation spell
     on("sheet:opened change:ic_template change:ic_tier change:ic_type change:ic_effect " , function() {
         getAttrs(["ic_template","ic_tier","ic_type","ic_effect",...allAttributes], function(values) {
+
+            console.log(values)
 
             const effect = getEffectDetails(values.ic_effect)
             const template = getTemplateDetails(values.ic_template)
@@ -932,11 +960,9 @@
             spell_name = (tiered.tier) ? spell_name + ` ${tiered.tier}` : spell_name
 
             const contested = template.contested !== "" ? `\nContested: ${effect.contested}` : "";
-            const description = `${template.description.replace("{}", spell_name)}\n${effect.description}${contested}\nRange: ${template.range}\nDuration: ${template.duration}`;
+            const description = `${template.description.replace("{}", snakeToTitleCase(values.ic_effect))}\n${effect.description}${contested}\nRange: ${template.range}\nDuration: ${template.duration}`;
 
-            console.log(effect)
-            console.log(template)
-            console.log(tiered)
+            invocationWarning(values.ic_effect, values.ic_template, effect.attr_required + tiered.req_cost);
 
             setAttrs({
                 ic_name: spell_name,
@@ -1004,9 +1030,6 @@
             const calcEquipLoad = jsSum(values.Strength, values.Strength_bonus)
             const calcXpUsed = baseAttributes.reduce((accumulator, attribute) => accumulator + getAttributeCost(values[attribute]), 0);
             const nextXP = getNextXP(values);
-
-            console.log(values)
-            console.log(calcXpUsed)
 
             setAttrs(Object.assign({
                 hp_base: calcHP,

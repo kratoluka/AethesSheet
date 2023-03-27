@@ -54,3 +54,15 @@ div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontr
 .charsheet .sheet-ic_type_toggle[value="nature"] ~ div.sheet-nature {
     display: inline-block;
 }
+
+#ic_warning {
+    color: red;
+}
+
+#ic_warning:empty {
+    display: none;
+}
+
+#ic_warning:not(:empty) {
+    display: block;
+}
