@@ -1,34 +1,143 @@
+.charsheet {
+    background-image: url("https://media.discordapp.net/attachments/531267211688411146/1089981446602629170/seamless-background-textures-12-780x780.jpg?width=905&height=905");
+    background-color: black;
+}
+
+.charsheet, h1, h2, h3 {
+    color: white;
+}
+
+button {
+    border: 3px solid white;
+    background-color: black;
+}
+
+.headpiece-img {
+    width: 20%;
+}
+
+input.headpiece-name {
+    color: white;
+    background-color: transparent;
+    border-color: transparent;
+    min-width: 1px;
+    width: 65%;
+    font-size: xxx-large;
+    outline: none;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-align: center;
+}
+
+
+
+.charsheet div.sheet-master {  
+    display: grid; 
+    grid-gap: 5px;
+    grid-template-areas:
+        "Tabs"
+        "Sheet";
+}
+
+.charsheet div.sheet-Tabs { grid-area: Tabs; }
+
+.charsheet div.sheet-overview,
+.charsheet div.sheet-stats,
+.charsheet div.sheet-attacks,
+.charsheet div.sheet-perks,
+.charsheet div.sheet-rune-spells,
+.charsheet div.sheet-invocation,
+.charsheet div.sheet-equipment,
+.charsheet div.sheet-inventory { grid-area: Sheet; }
+
 /*Configure the tab buttons*/
 .charsheet .sheet-overview,
 .charsheet .sheet-stats,
 .charsheet .sheet-attacks,
 .charsheet .sheet-perks,
 .charsheet .sheet-rune-spells,
+.charsheet .sheet-invocation,
 .charsheet .sheet-inventory,
-.charsheet .sheet-invocation {
+.charsheet .sheet-equipment {
     display: none;
+    grid-gap: 5px;
+    padding: 5px;
+    justify-content: center;
+    border: 3px solid white;
 }
 
 /* show the selected tab */
-.charsheet .sheet-tabstoggle[value="invocation_memory"] ~ div.sheet-invocation_memory,
-.charsheet .sheet-tabstoggle[value="invocation_caster"] ~ div.sheet-invocation_caster {
-    display: block;
-}
-
-/*Configure the invocation tab buttons*/
-.charsheet .sheet-invocation_memory,
-.charsheet .sheet-invocation_caster{
-    display: none;
-}
-
-/* show the selected invocation tab */
 .charsheet .sheet-tabstoggle[value="overview"] ~ div.sheet-overview,
 .charsheet .sheet-tabstoggle[value="stats"] ~ div.sheet-stats,
 .charsheet .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,
 .charsheet .sheet-tabstoggle[value="perks"] ~ div.sheet-perks,
 .charsheet .sheet-tabstoggle[value="rune-spells"] ~ div.sheet-rune-spells,
-.charsheet .sheet-tabstoggle[value="inventory"] ~ div.sheet-inventory,
-.charsheet .sheet-tabstoggle[value="invocation"] ~ div.sheet-invocation {
+.charsheet .sheet-tabstoggle[value="invocation"] ~ div.sheet-invocation,
+.charsheet .sheet-tabstoggle[value="equipment"] ~ div.sheet-equipment,
+.charsheet .sheet-tabstoggle[value="inventory"] ~ div.sheet-inventory {
+    display: grid;
+}
+
+.charsheet div.sheet-block{
+  padding: 5px;
+  justify-content: center;
+  border: 3px solid white;
+}
+
+/*Overview*/
+.charsheet div.sheet-overview {
+    grid-template-areas:
+        "overview-Headpiece overview-Headpiece overview-Race"
+        "overview-Attributes overview-State overview-Stats"
+        "overview-Attacks overview-Runes overview-Invocations"
+        "overview-Notes overview-Notes overview-Notes";
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.charsheet div.sheet-overview-Headpiece { grid-area: overview-Headpiece; }
+.charsheet div.sheet-overview-Race { grid-area: overview-Race; }
+.charsheet div.sheet-overview-Attributes { grid-area: overview-Attributes; }
+.charsheet div.sheet-overview-State { grid-area: overview-State; }
+.charsheet div.sheet-overview-Stats { grid-area: overview-Stats; }
+.charsheet div.sheet-overview-Attacks { grid-area: overview-Attacks; }
+.charsheet div.sheet-overview-Runes { grid-area: overview-Runes; }
+.charsheet div.sheet-overview-Invocations { grid-area: overview-Invocations; }
+.charsheet div.sheet-overview-Notes { grid-area: overview-Notes; }
+
+/*Stats*/
+.charsheet div.sheet-stats {
+    grid-template-areas:
+        "stats-Character stats-Character stats-Character"
+        "stats-Attributes stats-Stats stats-Armour";
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.charsheet div.sheet-stats-Character { grid-area: stats-Character; }
+.charsheet div.sheet-stats-Attributes { grid-area: stats-Attributes; }
+.charsheet div.sheet-stats-Stats { grid-area: stats-Stats; }
+.charsheet div.sheet-stats-Armour { grid-area: stats-Armour; }
+
+/*Attacks*/
+.charsheet div.sheet-attacks,
+.charsheet div.sheet-perks,
+.charsheet div.sheet-rune-spells,
+.charsheet div.sheet-inventory,
+.charsheet div.sheet-equipment {
+    grid-template-areas:
+        "Basic";
+    grid-template-columns: 1fr;
+}
+.charsheet div.sheet-basic { grid-area: Basic; }
+
+
+/*Configure the invocation tab buttons*/
+.charsheet .sheet-invocation_memory,
+.charsheet .sheet-invocation_caster,
+.charsheet .sheet-invocation_saved {
+    display: none;
+}
+
+/* show the selected invocation tab */
+.charsheet .sheet-tabstoggle[value="invocation_memory"] ~ div.sheet-invocation_memory,
+.charsheet .sheet-tabstoggle[value="invocation_caster"] ~ div.sheet-invocation_caster,
+.charsheet .sheet-tabstoggle[value="invocation_saved"] ~ div.sheet-invocation_saved {
     display: block;
 }
 
@@ -55,14 +164,10 @@ div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontr
     display: inline-block;
 }
 
-#ic_warning {
+.ic_warning {
     color: red;
 }
 
-#ic_warning:empty {
+div[class^="sheet-invocation_saved"] div[class^="repcontrol"] button[class="btn repcontrol_add"] {
     display: none;
-}
-
-#ic_warning:not(:empty) {
-    display: block;
 }
