@@ -10,6 +10,18 @@
 }
 
 /* show the selected tab */
+.charsheet .sheet-tabstoggle[value="invocation_memory"] ~ div.sheet-invocation_memory,
+.charsheet .sheet-tabstoggle[value="invocation_caster"] ~ div.sheet-invocation_caster {
+    display: block;
+}
+
+/*Configure the invocation tab buttons*/
+.charsheet .sheet-invocation_memory,
+.charsheet .sheet-invocation_caster{
+    display: none;
+}
+
+/* show the selected invocation tab */
 .charsheet .sheet-tabstoggle[value="overview"] ~ div.sheet-overview,
 .charsheet .sheet-tabstoggle[value="stats"] ~ div.sheet-stats,
 .charsheet .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,

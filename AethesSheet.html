@@ -54,9 +54,9 @@
     <h2>Character Stats</h2>
 
     <br>
-    <h3> Vigor </h3>
-    <input type="number" name="attr_Vigor" value="1" min="1" readonly/>
-    <button type='roll' value="/roll 1d20 + @{Vigor} + @{Vigor_bonus} Vigor" name="roll_Vigor"></button>
+    <h3> Vigour </h3>
+    <input type="number" name="attr_Vigour" value="1" min="1" readonly/>
+    <button type='roll' value="/roll 1d20 + @{Vigour} + @{Vigour_bonus} Vigour" name="roll_Vigour"></button>
     <br>
     <h3> Endurance </h3>
     <input type="number" name="attr_Endurance" value="1" min="1" readonly/>
@@ -228,12 +228,12 @@
     <text> /</text>
     <input type="number" value="100" name="attr_xp" readonly/>
     <br>
-    <h3> Vigor </h3>
-    <input type="number" name="attr_Vigor" value="1" min="1"/>
+    <h3> Vigour </h3>
+    <input type="number" name="attr_Vigour" value="1" min="1"/>
     <text>Bonus</text>
-    <input type="text" name="attr_Vigor_bonus" value="0"/>
+    <input type="text" name="attr_Vigour_bonus" value="0"/>
     <text>XP to increase</text>
-    <input type="text" name="attr_Vigor_next" value="2" readonly/>
+    <input type="text" name="attr_Vigour_next" value="2" readonly/>
     <br>
     <h3> Endurance </h3>
     <input type="number" name="attr_Endurance" value="1" min="1"/>
@@ -344,7 +344,7 @@
         Scaling:
         <select name="attr_attack_scaling">
             <option selected>-</option>
-            <option value="Vigor">Vigor</option>
+            <option value="Vigour">Vigour</option>
             <option value="Endurance">Endurance</option>
             <option value="Intelligence">Intelligence</option>
             <option value="Strength">Strength</option>
@@ -461,8 +461,94 @@
 </div>
 
 <div class="sheet-invocation">
-    <hr>
-    <h2>Invocation Caster</h2>
+    <br>
+    <input type="hidden" class="sheet-tabstoggle" name="attr_sheetInvocation" value="character"/>
+    <div>
+        <button type="action" name="act_invocation_memory">Memory</button>
+        <button type="action" name="act_invocation_caster">Caster</button>
+    </div>
+    <div class="sheet-invocation_memory">
+        <h2>Invocation Memory</h2>
+        <fieldset class="repeating_ic-templates">
+            <select name="attr_ic-template-memory">
+                <option selected>-</option>
+                <option value="touch">Touch</option>
+                <option value="bolt">Bolt</option>
+                <option value="orb">Orb</option>
+                <option value="cone">Cone</option>
+                <option value="rebutal">Rebutal</option>
+                <option value="cloud">Cloud</option>
+                <option value="buff">Buff</option>
+                <option value="enchantment">Enchantment</option>
+                <option value="cloak">Cloak</option>
+                <option value="aura">Aura</option>
+                <option value="beam">Beam</option>
+                <option value="wall">Wall</option>
+                <option value="wave">Wave</option>
+                <option value="explosion">Explosion</option>
+                <option value="glyph">Glyph</option>
+            </select>
+        </fieldset>
+        <hr>
+        <fieldset class="repeating_ic-effects">
+            <select name="attr_ic_effect_memory">
+                <option selected>-</option>
+                <option value="fire_damage">Fire Damage</option>
+                <option value="ice_damage">Ice Damage</option>
+                <option value="shadow_damage">Shadow Damage</option>
+                <option value="force_damage">Force Damage</option>
+                <option value="dispel">Dispel</option>
+                <option value="slow">Slow</option>
+                <option value="haste">Haste</option>
+                <option value="freeze">Freeze</option>
+                <option value="resist_fire">Resist Fire</option>
+                <option value="resist_frost">Resist Frost</option>
+                <option value="alarm">Alarm</option>
+                <option value="levitation">Levitation</option>
+                <option value="arcane_flight">Arcane Flight</option>
+                <option value="charm">Charm</option>
+                <option value="reveal">Reveal</option>
+                <option value="arcane_eye">Arcane Eye</option>
+                <option value="telekinesis">Telekinesis</option>
+                <option value="fire_damage">Fire Damage</option>
+                <option value="lightning_damage">Lightning Damage</option>
+                <option value="shadow_damage">Shadow Damage</option>
+                <option value="poison_damage">Poison Damage</option>
+                <option value="water_damage">Water Damage</option>
+                <option value="healing_light">Healing Light</option>
+                <option value="terrify">Terrify</option>
+                <option value="truth">Truth</option>
+                <option value="light">Light</option>
+                <option value="darkness">Darkness</option>
+                <option value="resist_lightning">Resist Lightning</option>
+                <option value="destroy_undead">Destroy Undead</option>
+                <option value="silence">Silence</option>
+                <option value="celestial_flight">Celestial Flight</option>
+                <option value="become_incorporeal">Become Incorporeal</option>
+                <option value="invisibility">Invisibility</option>
+                <option value="ward">Ward</option>
+                <option value="divine_sense">Divine Sense</option>
+                <option value="lightning_damage">Lightning Damage</option>
+                <option value="ice_damage">Ice Damage</option>
+                <option value="poison_damage">Poison Damage</option>
+                <option value="force_damage">Force Damage</option>
+                <option value="water_damage">Water Damage</option>
+                <option value="balm_of_nature">Balm of Nature</option>
+                <option value="pull">Pull</option>
+                <option value="resist_poison">Resist Poison</option>
+                <option value="feather_fall">Feather Fall</option>
+                <option value="entangle">Entangle</option>
+                <option value="water_breathing">Water Breathing</option>
+                <option value="bark_skin">Bark Skin</option>
+                <option value="reinforce_object">Reinforce Object</option>
+                <option value="mending">Mending</option>
+                <option value="eagle's_wings">Eagle's Wings</option>
+                <option value="petrify">Petrify</option>
+            </select>
+        </fieldset>
+    </div>
+    <div class="sheet-invocation_caster">
+        <h2>Invocation Caster</h2>
         <strong>Template:</strong>
         <select name="attr_ic_template">
             <option value="touch" selected>Touch</option>
@@ -565,13 +651,32 @@
             <option value="petrify">Petrify</option>
         </select>
         </div>
-    <hr>
+        <hr>
+        <strong>Name:</strong>
+        <input type="text" name="attr_ic_name" value="" readonly />
+        <br>
+        <strong>Intelligence Requirements:</strong>
+        <input type="number" value="0" name="attr_ic_int_req" readonly />
+        <strong>Attribute Requirement:</strong>
+        <input type="number" value="0" name="attr_ic_attr_req" readonly />
+        <br>
+        <strong>AP Cost:</strong>
+        <input type="number" value="0" name="attr_ic_ap" readonly />
+        <strong>FP Cost:</strong>
+        <input type="number" value="0" name="attr_ic_fp" readonly />
+        <strong>Damage:</strong>
+        <input type="text" value="0" name="attr_ic_dice" readonly />
+        <button>Placeholder CAST</button>
+        <br>
+        <br><strong>Description:</strong><br>
+        <textarea name="attr_ic_desc" cols="20" rows="2" readonly></textarea>
+     </div>
 </div>
 
 <script type="text/worker">
 
     // attributes lists
-    const baseAttributes = ["Vigor","Endurance","Intelligence","Strength","Dexterity","Perception","Arcana","Faith","Nature","Charisma"];
+    const baseAttributes = ["Vigour","Endurance","Intelligence","Strength","Dexterity","Perception","Arcana","Faith","Nature","Charisma"];
     const armourAttributes = ["phys_armour","mag_armour"]
     const bonusAttributes = [...baseAttributes, ...armourAttributes].map(attr => attr + "_bonus");
     const allAttributes = [...baseAttributes, ...bonusAttributes];
@@ -587,100 +692,22 @@
         });
     });
 
+    // invocation tabs
+    const invocationslist = ["invocation_memory","invocation_caster"];
+    invocationslist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                sheetInvocation: button
+            });
+        });
+    });
+
     function jsSum(...args) {
         let total = 0;
         for (let i = 0; i < args.length; i++) {
             total += parseInt(args[i]) || 0;
         }
         return total;
-    }
-
-    function getSpellDetails(effectName) { 
-        const spellEffects = {
-            "fire_damage": [1, 0, 1, false, "Disadvantage to Contests against Wet characters.\nContested with DEX.\n1D6 => 1 FP => 0AP\n2D6 => 2 FP => 1AP\n4D6 => 4 FP => 1AP\n6D6 => 6 FP => 2AP\n9D6 => 8 FP => 2AP"],
-            "ice_damage": [1, 0, 1, false, "Freezes wet Characters.\nContested with Endurance.\n1D8 => 1 FP => 0AP\n2D8 => 2 FP => 1AP\n3D8 => 4 FP => 1AP\n5D8 => 6 FP => 2AP\n7D8 => 8 FP => 2AP"],
-            "shadow_damage": [1, 0, 1, false, "Advantage to Attack Rolls and Contests against Characters in Darkness.\nContested with Vigour.\n1D12 => 1 FP => 0AP\n2D12 => 2 FP => 1AP\n3D12 => 4 FP => 1AP\n5D12 => 6 FP => 2AP\n7D12 => 8 FP => 2AP"],
-            "force_damage": [1, 0, 1, false, "Deals 2 x Damage to Structures.\nContested with Strength.\n1D8 => 1 FP => 0AP\n2D8 => 2 FP => 1AP\n3D8 => 4 FP => 1AP\n5D8 => 6 FP => 2AP\n7D8 => 8 FP => 2AP"],
-            "lightning_damage": [1, 0, 1, false, "Advantage to Attack Rolls and Contests against Wet characters. Contested with Dexterity.\n1D10 => 1 FP => 0AP\n2D10 => 2 FP => 1AP\n3D10 => 4 FP => 1AP\n5D10 => 6 FP => 2AP\n7D10 => 8 FP => 2AP"],
-            "poison_damage": [1, 0, 1, false, "Contest against Target to avoid Poisoning. Contested with Vigour.\n1D6 => 1 FP => 0AP\n2D6 => 2 FP => 1AP\n3D6 => 4 FP => 1AP\n5D6 => 6 FP => 2AP\n7D6 => 8 FP => 2AP"],
-            "water_damage": [1, 0, 1, false, "Allies are instead Healed equal to Damage Roll. Characters Damaged or Healed become Wet. Contested with Endurance.\n1D6 => 1 FP => 0AP\n2D6 => 2 FP => 1AP\n3D6 => 4 FP => 1AP\n5D6 => 6 FP => 2AP\n7D6 => 8 FP => 2AP"],
-            "dispel": [5, 1, 3, false, "This magic unravels all magic it touches.\nDispel 1 in AOE."],
-            "slow": [3, 1, 1, true, "Slows all in range > Halves Base Movement Speed."],
-            "haste": [3, 1, 4, true, "Adds +10ft Base Movement Speed\nOvercharge 2: +5ft Base Movement Speed (Max 3)"],
-            "freeze": [5, 1, 3, true, "Freezes all Wet Characters."],
-            "resist_fire": [5, 1, 4, true, "Resistance to Fire Damage."],
-            "resist_frost": [5, 1, 4, true, "Resistance to Frost Damage + Cannot be Frozen."],
-            "alarm": [4, 1, 4, true, "Caster becomes aware when objects within AoE are moved or touched by another Character."],
-            "levitation": [5, 2, 6, true, "Allows the casters to levitate. \nLevitate – 5ft\nOvercharge 2: +5ft (Max 4)"],
-            "arcane_flight": [8, 2, 8, true, "Fly Speed equal to Movement Speed."],
-            "charm": [5, 1, 6, true, "Enthrals the target with a mystical mist. "],
-            "reveal": [6, 1, 5, false, "Reveals and Dispels all illusions."],
-            "arcane_eye": [9, 1, 10, true, "30ft Magic Sight"],
-            "telekinesis": [8, 2, 10, true, "Allows the caster to move objects with their mind. "],
-            "healing_light": [4, 1, 3, false, "A golden light cleanses the wounded. Restores 1D10 Hit Points.\nOvercharge 2: +1D10 Healing (Max 6)"],
-            "terrify": [5, 1, 5, true, "Scary shadows frighten those afflicted."],
-            "truth": [8, 1, 5, true, "Characters within this effect cannot lie. If they attempt to lie, they are Silenced for 1 Minute. If they believe something to be true, then it is not considered a lie by this spell."],
-            "light": [4, 1, 3, true, "A glowing light illuminates the area."],
-            "darkness": [5, 1, 5, true, "Covers the area in thick shadow."],
-            "resist_lightning": [6, 1, 4, true, "Resistance to Lightning Damage."],
-            "destroy_undead": [5, 1, 2, false, "Destroys Level 1 Undead instantly.\nOvercharge 2: +1 Undead Level destroyed (Max 9) \n"],
-            "silence": [5, 1, 5, true, "All sounds is silenced."],
-            "celestial_flight": [9, 2, 7, true, "Fly Speed equal to Movement Speed."],
-            "become_incorporeal": [9, 2, 8, false, "Characters within the effect take on a ghostly visage, allowing them to move through solid objects."],
-            "invisibility": [9, 2, 7, true, "Bends the light to grant invisibility."],
-            "ward": [8, 2, 6, true, "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nTarget Creature Type takes 3D10 Lightning Damage in AoE. \nOvercharge 3: +1 Creature Type (Max 4)\n"],
-            "divine_sense": [6, 2, 5, true, "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nCaster is aware of all creatures of that type in range.\nOvercharge 3: +1 Creature Type (Max 4)"],
-            "balm_of_nature": [4, 1, 3, false, "Restores 1D6 Hit Points\nOverheal\nOvercharge 2: +1D6 Healing (Max 6)"],
-            "pull": [4, 1, 3, false, "Pulls 10ft toward Caster.\nOvercharge 1: +5ft Pull Distance (Max 6)"],
-            "resist_poison": [5, 1, 4, false, "Resistance to Poison Damage.\nCannot be Poisoned."],
-            "feather_fall": [5, 1, 4, false, "Nullifies all Fall Damage. "],
-            "entangle": [5, 1, 4, false, "Movement Speed reduced to 0."],
-            "water_breathing": [5, 1, 1, false, "Characters gain Water Breathing"],
-            "bark_skin": [5, 1, 1, false, "Characters gain: \n+5 Physical Armour\n-2 Magical Armour"],
-            "reinforce_object": [4, 1, 4, false, "Objects gains 20 + Nature Hit Points for the duration."],
-            "mending": [4, 1, 4, false, "Object Regains 20 + Nature Hit Points.\nOverheal."],
-            "eagle's_wings": [7, 2, 7, false, "Fly Speed equal to Movement Speed."],
-            "petrify": [9, 2, 12, false, "Petrifies characters with 0 Hit Points."],
-        };
-
-        const effectDetails = spellEffects[effectName];
-        return {
-            attr_required: effectDetails[0],
-            ap_cost: effectDetails[1],
-            fp_cost: effectDetails[2],
-            concentration: effectDetails[4],
-            description: effectDetails[4] || ""
-        };
-    }
-
-    function getTemplateDetails(templateName) {
-        const spellTemplates = {
-            "touch": [1, 1, 0, false, "The caster reaches out and touches the target. Range: Touch Duration: Instant"],
-            "dart": [2, 1, 1, false, "The caster shoots a small burst of magic toward the target. Range: 30ft Duration: Instant"],
-            "bolt": [4, 1, 3, false, "The caster shoots a bolt of magic toward their Target. Range: 60ft Duration: Instant"],
-            "orb": [5, 2, 4, false, "The caster hurls an orb of magic at a Target, which then bursts in the area around them. Range: 40ft Duration: Instant"],
-            "cone": [4, 2, 4, false, "The caster shoots a cone of magic from their hands and apply the chosen Spell Effect to the Target. Range: 10ft Cone Duration: Instant"],
-            "rebuttal": [5, 0, 3, false, "The caster retaliates with a blast of magic. Range: 60ft Duration: Instant"],
-            "cloud": [4, 2, 4, true, "The caster conjures a lingering cloud of magic. Range: 10ft x 10ft Duration: 10 Minutes"],
-            "buff": [4, 1, 3, true, "The caster empowers a character within range with a spell effect. Range: 30ft Duration: 10 Minutes Overcharge 2: +10ft Range (Max 3)"],
-            "enchantment": [4, 1, 3, true, "The caster empowers an object within range with a spell effect. Range: Touch Duration: 10 Minutes"],
-            "cloak": [5, 2, 5, true, "The caster surrounds themselves in a small aura of magic. Range: Self - 5ft Aura from Self Duration: 5 Minutes"],
-            "aura": [8, 2, 8, true, "The caster surrounds themselves in a large aura of magic. Range: Self - 15ft Aura from Self Duration: 5 Minutes"],
-            "beam": [8, 2, 8, false, "The caster shoots a beam from their hand. Range: 60ft Line Duration: Instant"],
-            "wall": [9, 2, 9, false, "The caster lifts a wall up from the floor, blocking access to an area. Choose 2 Points: 5ft thick Wall appears between those two points as a straight-Line effect. Range: 60ft Line Duration: Instant"],
-            "wave": [8, 2, 8, true, "The caster surrounds themselves in a large aura of magic which spreads for the duration. Each Replenish, the Wave expands 5ft, but doesn't move with the caster. Range: Self - 10ft Aura from Self Duration: 5 Minutes"],
-            "explosion": [9, 2, 9, false, "The caster chooses a location, and an enormous blast of magic bursts in that spot. Range: 60ft - 15ft Radius AoE around Target Space Duration: Instant"],
-            "glyph": [6, 2, 10, false, "The caster etches an invisible rune into a location as a trap ready to spring. Spell Effect is applied to that space as an Invisible Magical Effect, Triggered by a Character entering that space. * Contest is Rolled on Casting and noted down Range: Touch Duration: Instant"]
-        };
-
-        const spellTemplate = spellTemplates[templateName];
-        return {
-            int_required: spellTemplate[0],
-            ap_cost: spellTemplate[1],
-            fp_cost: spellTemplate[2],
-            concentration: effectDetails[3],
-            description: spellTemplate[4] || ""
-        };
     }
 
     // Don't ask me, not my function -> https://wiki.roll20.net/RepeatingSum
@@ -763,6 +790,169 @@
         });
     });
 
+    function snakeToTitleCase(str) {
+      return str.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+
+    function getEffectDetails(effectName) { 
+        const spellEffects = {
+            "fire_damage": [1, 0, 1, false, "Dexterity", "Disadvantage to Contests against Wet characters."],
+            "ice_damage": [1, 0, 1, false, "Endurance", "Freezes wet Characters."],
+            "shadow_damage": [1, 0, 1, false, "Vigour", "Advantage to Attack Rolls and Contests against Characters in Darkness."],
+            "force_damage": [1, 0, 1, false, "Strength", "Deals 2 x Damage to Structures."],
+            "lightning_damage": [1, 0, 1, false, "Dexterity", "Advantage to Attack Rolls and Contests against Wet characters."],
+            "poison_damage": [1, 0, 1, false, "Vigour", "Contest against Target to avoid Poisoning."],
+            "water_damage": [1, 0, 1, false, "Endurance", "Allies are instead Healed equal to Damage Roll. Characters Damaged or Healed become Wet."],
+            "dispel": [5, 1, 3, false, "", "This magic unravels all magic it touches.\nDispel 1 in AOE."],
+            "slow": [3, 1, 1, true, "", "Slows all in range > Halves Base Movement Speed."],
+            "haste": [3, 1, 4, true, "", "", "Adds +10ft Base Movement Speed\nOvercharge 2: +5ft Base Movement Speed (Max 3)"],
+            "freeze": [5, 1, 3, true, "", "Freezes all Wet Characters."],
+            "resist_fire": [5, 1, 4, true, "", "Resistance to Fire Damage."],
+            "resist_frost": [5, 1, 4, true, "", "Resistance to Frost Damage + Cannot be Frozen."],
+            "alarm": [4, 1, 4, true, "", "Caster becomes aware when objects within AoE are moved or touched by another Character."],
+            "levitation": [5, 2, 6, true, "", "Allows the casters to levitate. \nLevitate – 5ft\nOvercharge 2: +5ft (Max 4)"],
+            "arcane_flight": [8, 2, 8, true, "", "Fly Speed equal to Movement Speed."],
+            "charm": [5, 1, 6, true, "Charisma", "Enthrals the target with a mystical mist. "],
+            "reveal": [6, 1, 5, false, "", "Reveals and Dispels all illusions."],
+            "arcane_eye": [9, 1, 10, true, "", "30ft Magic Sight"],
+            "telekinesis": [8, 2, 10, true, "", "Allows the caster to move objects with their mind. "],
+            "healing_light": [4, 1, 3, false, "", "A golden light cleanses the wounded. Restores 1D10 Hit Points.\nOvercharge 2: +1D10 Healing (Max 6)"],
+            "terrify": [5, 1, 5, true, "Charisma", "Scary shadows frighten those afflicted."],
+            "truth": [8, 1, 5, true, "", "Characters within this effect cannot lie. If they attempt to lie, they are Silenced for 1 Minute. If they believe something to be true, then it is not considered a lie by this spell."],
+            "light": [4, 1, 3, true, "", "A glowing light illuminates the area."],
+            "darkness": [5, 1, 5, true, "", "Covers the area in thick shadow."],
+            "resist_lightning": [6, 1, 4, true, "", "Resistance to Lightning Damage."],
+            "destroy_undead": [5, 1, 2, false, "", "Destroys Level 1 Undead instantly.\nOvercharge 2: +1 Undead Level destroyed (Max 9)"],
+            "silence": [5, 1, 5, true, "", "All sounds is silenced."],
+            "celestial_flight": [9, 2, 7, true, "", "Fly Speed equal to Movement Speed."],
+            "become_incorporeal": [9, 2, 8, false, "", "Characters within the effect take on a ghostly visage, allowing them to move through solid objects."],
+            "invisibility": [9, 2, 7, true, "", "Bends the light to grant invisibility."],
+            "ward": [8, 2, 6, true, "", "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nTarget Creature Type takes 3D10 Lightning Damage in AoE. \nOvercharge 3: +1 Creature Type (Max 4)"],
+            "divine_sense": [6, 2, 5, true, "", "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nCaster is aware of all creatures of that type in range.\nOvercharge 3: +1 Creature Type (Max 4)"],
+            "balm_of_nature": [4, 1, 3, false, "", "Restores 1D6 Hit Points\nOverheal\nOvercharge 2: +1D6 Healing (Max 6)"],
+            "pull": [4, 1, 3, false, "Strength or Dexterity", "Pulls 10ft toward Caster.\nOvercharge 1: +5ft Pull Distance (Max 6)"],
+            "resist_poison": [5, 1, 4, false, "", "Resistance to Poison Damage.\nCannot be Poisoned."],
+            "feather_fall": [5, 1, 4, false, "", "Nullifies all Fall Damage. "],
+            "entangle": [5, 1, 4, false, "Dexterity", "Movement Speed reduced to 0."],
+            "water_breathing": [5, 1, 1, false, "", "Characters gain Water Breathing"],
+            "bark_skin": [5, 1, 1, false, "", "Characters gain: \n+5 Physical Armour\n-2 Magical Armour"],
+            "reinforce_object": [4, 1, 4, false, "", "Objects gains 20 + Nature Hit Points for the duration."],
+            "mending": [4, 1, 4, false, "", "Object Regains 20 + Nature Hit Points.\nOverheal."],
+            "eagle's_wings": [7, 2, 7, false, "", "Fly Speed equal to Movement Speed."],
+            "petrify": [9, 2, 12, false, "Vigour", "Petrifies characters with 0 Hit Points."],
+        };
+
+        const effectDetails = spellEffects[effectName];
+        return {
+            attr_required: effectDetails[0],
+            ap_cost: effectDetails[1],
+            fp_cost: effectDetails[2],
+            concentration: effectDetails[3],
+            contested: effectDetails[4],
+            description: effectDetails[5]
+        };
+    }
+
+    function getTemplateDetails(templateName) {
+        const spellTemplates = {
+            "touch": [1, 1, 0, false, "Touch", "Instant", "The caster reaches out and touches the target with {}."],
+            "dart": [2, 1, 1, false, "30ft", "Instant", "The caster shoots a small burst of {} toward the target."],
+            "bolt": [4, 1, 3, false, "60ft", "Instant", "The caster shoots a bolt of {} toward their target."],
+            "orb": [5, 2, 4, false, "40ft", "Instant", "The caster hurls an orb of {} at a target, which then bursts in the area around them."],
+            "cone": [4, 2, 4, false, "10ft Cone", "Instant", "The caster shoots a cone of {} from their hands and applies the spell effect to the target."],
+            "rebuttal": [5, 0, 3, false, "60ft", "Instant", "The caster retaliates with a blast of {}."],
+            "cloud": [4, 2, 4, true, "10x10ft Cloud up to 30ft away", "10 Minutes", "The caster conjures a lingering cloud of {}."],
+            "buff": [4, 1, 3, true, "30ft", "10 Minutes", "The caster empowers a character within range with {}."],
+            "enchantment": [4, 1, 3, true, "Touch", "10 Minutes", "The caster empowers an object within range with {}."],
+            "cloak": [5, 2, 5, true, "Self", "5 Minutes", "The caster surrounds themselves in a small aura of {}."],
+            "aura": [8, 2, 8, true, "Self", "5 Minutes", "The caster surrounds themselves in a large aura of {}."],
+            "beam": [8, 2, 8, false, "60ft line", "Instant", "The caster shoots a beam of {} from their hand."],
+            "wall": [9, 2, 9, true, "60ft line", "10 Minutes", "The caster lifts a wall of {} up from the floor, blocking access to an area."],
+            "wave": [8, 2, 8, true, "Self", "5 Minutes", "The caster surrounds themselves in a large aura of {} which spreads for the duration."],
+            "explosion": [9, 2, 9, false, "60ft", "Instant", "The caster chooses a location, and an enormous blast of {} bursts in that spot."],
+            "glyph": [6, 2, 10, false, "Touch", "Instant", "The caster etches an invisible rune into a location as a trap ready to spring."]
+        };
+
+        const spellTemplate = spellTemplates[templateName];
+        return {
+            int_required: spellTemplate[0],
+            ap_cost: spellTemplate[1],
+            fp_cost: spellTemplate[2],
+            concentration: spellTemplate[3],
+            range: spellTemplate[4],
+            duration: spellTemplate[5],
+            description: spellTemplate[6]
+        };
+    }
+
+    function getTieredEffect(effectName, tier) { 
+        let index = parseInt(tier) - 1;
+        // I know what the function is called but I'll abuse a system I made if I want to
+        const specialCases = {  
+            "ward": {dice:"3d10", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
+            "healing_light": {dice:"-1d10", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
+            "balm_of_nature": {dice:"-1d6", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
+        }
+        if (effectName in specialCases) {return specialCases[effectName];}
+        const diceMap = {
+            "fire_damage": ["2d6","4d6","6d6","9d6","12d6"],
+            "ice_damage": ["1d8","2d8","3d8","5d8","7d8"],
+            "shadow_damage": ["1d12","2d12","3d12","5d12","7d12"],
+            "force_damage": ["1d8","2d8","3d8","5d8","7d8"],
+            "lightning_damage": ["1d10","2d10","3d10","5d10","7d10"],
+            "poison_damage": ["1d6","2d6","3d6","5d6","7d6"],
+            "water_damage": ["1d6","2d6","3d6","5d6","7d6"],
+        };
+        const tierMap = [
+            ["I", 1, 0, 1],
+            ["II", 2, 1, 3],
+            ["III", 4, 1, 5],
+            ["IV", 6, 2, 8],
+            ["V", 8, 2, 11]
+        ];
+
+        return {
+            dice: (effectName in diceMap) ? diceMap[effectName][index] : "",
+            tier: (effectName in diceMap) ? tierMap[index][0] : "",
+            fp_cost: (effectName in diceMap) ? tierMap[index][1] : 0,
+            ap_cost: (effectName in diceMap) ? tierMap[index][2] : 0,
+            req_cost: (effectName in diceMap) ? tierMap[index][3] : 0
+        };
+    }
+
+    // generate invocation spell
+    on("sheet:opened change:ic_template change:ic_tier change:ic_type change:ic_effect " , function() {
+        getAttrs(["ic_template","ic_tier","ic_type","ic_effect",...allAttributes], function(values) {
+
+            const effect = getEffectDetails(values.ic_effect)
+            const template = getTemplateDetails(values.ic_template)
+            const tiered = getTieredEffect(values.ic_effect, values.ic_tier)
+
+            let spell_name = snakeToTitleCase(values.ic_template + "_of_" + values.ic_effect)
+            spell_name = (tiered.tier) ? spell_name + ` ${tiered.tier}` : spell_name
+
+            const contested = template.contested !== "" ? `\nContested: ${effect.contested}` : "";
+            const description = `${template.description.replace("{}", spell_name)}\n${effect.description}${contested}\nRange: ${template.range}\nDuration: ${template.duration}`;
+
+            console.log(effect)
+            console.log(template)
+            console.log(tiered)
+
+            setAttrs({
+                ic_name: spell_name,
+                ic_int_req: template.int_required, 
+                ic_attr_req: effect.attr_required + tiered.req_cost, 
+                ic_ap: effect.ap_cost + template.ap_cost + tiered.ap_cost, 
+                ic_fp: effect.fp_cost + template.fp_cost + tiered.fp_cost, 
+                ic_dice: tiered.dice,
+                ic_range: template.range,
+                ic_duration: template.duration,
+                ic_cont: effect.contested,
+                ic_desc: description,
+            });
+        });
+    });
+
     // general attribute changes
     on("sheet:opened change:xp change:hp_bonus change:vitality_bonus change:fp_bonus change:sp_bonus change:race " + baseEvents, function() {
         getAttrs(["xp","race","hp_bonus","vitality_bonus","fp_bonus","sp_bonus","initiative_bonus","evasion_bonus","speed_bonus","equip_load_bonus",...allAttributes], function(values) {
@@ -804,8 +994,8 @@
                 return level;
             }
 
-            const calcHP = 10 + jsSum(values.Vigor, values.Vigor_bonus) * 8 + jsSum(values.Endurance, values.Endurance_bonus, values.Strength);
-            const calcVitality = jsSum("1", Math.floor(jsSum(values.Vigor, values.Vigor_bonus) / 2));
+            const calcHP = 10 + jsSum(values.Vigour, values.Vigour_bonus) * 8 + jsSum(values.Endurance, values.Endurance_bonus, values.Strength);
+            const calcVitality = jsSum("1", Math.floor(jsSum(values.Vigour, values.Vigour_bonus) / 2));
             const calcFP = jsSum(values.Intelligence, values.Intelligence_bonus, values.Charisma, values.Charisma_bonus) * 3 + jsSum(values.Perception, values.Perception_bonus, values.Arcana, values.Arcana_bonus, values.Faith, values.Faith_bonus, values.Nature, values.Nature_bonus);
             const calcSP = jsSum(values.Endurance, values.Endurance_bonus);
             const calcInitiative = jsSum(values.Dexterity, values.Dexterity_bonus, values.Perception, values.Perception_bonus);
