@@ -118,26 +118,67 @@ input.headpiece-name {
 .charsheet div.sheet-attacks,
 .charsheet div.sheet-perks,
 .charsheet div.sheet-rune-spells,
-.charsheet div.sheet-inventory,
-.charsheet div.sheet-equipment {
+.charsheet div.sheet-inventory{
     grid-template-areas:
         "Basic";
     grid-template-columns: 1fr;
 }
 .charsheet div.sheet-basic { grid-area: Basic; }
 
+/*Invocation*/
+.charsheet div.sheet-invocation {
+    grid-template-areas:
+        "invocation-Tabs"
+        "invocation-Sheet";
+    grid-template-columns: 1fr;
+}
+.charsheet div.sheet-invocation-Tabs { 
+    grid-area: invocation-Tabs; 
+}
+.charsheet div.sheet-invocation-Memory,
+.charsheet div.sheet-invocation-Caster,
+.charsheet div.sheet-invocation-Saved {
+    grid-area: invocation-Sheet; 
+}
 
 /*Configure the invocation tab buttons*/
-.charsheet .sheet-invocation_memory,
-.charsheet .sheet-invocation_caster,
-.charsheet .sheet-invocation_saved {
+.charsheet .sheet-invocation-Memory,
+.charsheet .sheet-invocation-Caster,
+.charsheet .sheet-invocation-Saved {
     display: none;
 }
 
-/* show the selected invocation tab */
-.charsheet .sheet-tabstoggle[value="invocation_memory"] ~ div.sheet-invocation_memory,
-.charsheet .sheet-tabstoggle[value="invocation_caster"] ~ div.sheet-invocation_caster,
-.charsheet .sheet-tabstoggle[value="invocation_saved"] ~ div.sheet-invocation_saved {
+/*Show the selected invocation tab*/
+.charsheet .sheet-tabstoggle[value="invocation-Memory"] ~ div.sheet-invocation-Memory,
+.charsheet .sheet-tabstoggle[value="invocation-Caster"] ~ div.sheet-invocation-Caster,
+.charsheet .sheet-tabstoggle[value="invocation-Saved"] ~ div.sheet-invocation-Saved {
+    display: block;
+}
+
+/*Equipment*/
+.charsheet div.sheet-equipment {
+    grid-template-areas:
+        "equipment-Tabs"
+        "equipment-Sheet";
+    grid-template-columns: 1fr;
+}
+.charsheet div.sheet-equipment-Tabs { 
+    grid-area: equipment-Tabs; 
+}
+.charsheet div.sheet-equipment-Armour,
+.charsheet div.sheet-equipment-Other {
+    grid-area: equipment-Sheet; 
+}
+
+/*Configure the equipment tab buttons*/
+.charsheet .sheet-equipment-Armour,
+.charsheet .sheet-equipment-Other {
+    display: none;
+}
+
+/*Show the selected equipment tab*/
+.charsheet .sheet-tabstoggle[value="equipment-Armour"] ~ div.sheet-equipment-Armour,
+.charsheet .sheet-tabstoggle[value="equipment-Other"] ~ div.sheet-equipment-Other {
     display: block;
 }
 
@@ -168,6 +209,6 @@ div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontr
     color: red;
 }
 
-div[class^="sheet-invocation_saved"] div[class^="repcontrol"] button[class="btn repcontrol_add"] {
+div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn repcontrol_add"] {
     display: none;
 }

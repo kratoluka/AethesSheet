@@ -105,10 +105,10 @@
         <text> /</text>
         <input type="number" value="1" name="attr_equip_load_max" readonly/><br>
         <strong> Physical: </strong>
-        <input type="number" name="attr_phys_armour_total" value="0" readonly/>
+        <input type="number" name="attr_phys_resist_total" value="0" readonly/>
         <br>
         <strong> Magical: </strong>
-        <input type="number" name="attr_mag_armour_total" value="0" readonly/>
+        <input type="number" name="attr_mag_resist_total" value="0" readonly/>
         <br>
 
         <strong> Resistant to: </strong>
@@ -308,17 +308,17 @@
         <input type="number" name="attr_equip_load_bonus" value="0"/>
     </div>
     <div class="sheet-stats-Armour sheet-block">
-        <h2>Armour</h2>
+        <h2>Resistance</h2>
         <br>
-        <h3> Physical armour </h3>
-        <input type="number" name="attr_phys_armour" value="0"/>
+        <h3> Physical </h3>
+        <input type="number" name="attr_phys_resist" value="0"/>
         <text>Bonus</text>
-        <input type="number" name="attr_phys_armour_bonus" value="0"/>
+        <input type="number" name="attr_phys_resist_bonus" value="0"/>
         <br>
-        <h3> Magical armour </h3>
-        <input type="number" name="attr_mag_armour" value="0"/>
+        <h3> Magical </h3>
+        <input type="number" name="attr_mag_resist" value="0"/>
         <text>Bonus</text>
-        <input type="number" name="attr_mag_armour_bonus" value="0"/>
+        <input type="number" name="attr_mag_resist_bonus" value="0"/>
         <br>
 
         <h3> Add resistance </h3>
@@ -456,14 +456,13 @@
 </div>
 
 <div class="sheet-invocation">
-    <br>
     <input type="hidden" class="sheet-tabstoggle" name="attr_sheetInvocation" value="character"/>
-    <div>
-        <button type="action" name="act_invocation_memory">Memory</button>
-        <button type="action" name="act_invocation_caster">Caster</button>
-        <button type="action" name="act_invocation_saved">Saved</button>
+    <div class="sheet-invocation-Tabs sheet-block">
+        <button type="action" name="act_invocation-Memory">Memory</button>
+        <button type="action" name="act_invocation-Caster">Caster</button>
+        <button type="action" name="act_invocation-Saved">Saved</button>
     </div>
-    <div class="sheet-invocation_memory">
+    <div class="sheet-invocation-Memory sheet-block">
         <h2>Invocation Memory</h2>
         <strong>Templates known:</strong>
         <strong> Memory: </strong>
@@ -546,7 +545,7 @@
             </select>
         </fieldset>
     </div>
-    <div class="sheet-invocation_caster">
+    <div class="sheet-invocation-Caster sheet-block">
         <h2>Invocation Caster</h2>
         <strong>Template:</strong>
         <select name="attr_ic_template">
@@ -677,7 +676,7 @@
         <input type="text" value="" name="attr_ic_contested" readonly hidden/>
         <input type="text" value="" name="attr_ic_desc" readonly hidden/><!--roll display description-->
     </div>
-    <div class="sheet-invocation_saved">
+    <div class="sheet-invocation-Saved sheet-block">
         <h2>Invocation Saved</h2>
         <fieldset class="repeating_ic-saved">
             <strong>Name:</strong>
@@ -722,13 +721,42 @@
 </div>
 
 <div class="sheet-equipment">
-    <div class="sheet-basic sheet-block">
-        <h2>Equipment</h2>
+    <input type="hidden" class="sheet-tabstoggle" name="attr_sheetEquipment" value="character"/>
+    <div class="sheet-equipment-Tabs sheet-block">
+        <button type="action" name="act_equipment-Armour">Armour</button>
+        <button type="action" name="act_equipment-Other">Equipment</button>
+    </div>
+    <div class="sheet-equipment-Armour sheet-block">
+        <h2>Armour</h2>
+        <strong>Name:</strong>
+        <input type="text" name="attr_armour_name"/><br>
+        <strong>Physical Damage Reduction:</strong>
+        <input type="number" name="attr_armour_phys" value="0"/><br>
+        <strong>Magical Damage Reduction:</strong>
+        <input type="number" name="attr_armour_mag" value="0"/><br>
+        <strong>Evasion Penalty:</strong>
+        <select name="attr_armour_evasion">
+            <option selected value="1">None</option>
+            <option value="0.5">Halved</option>
+            <option value="0">Full</option>
+        </select>
+        <input type="number" name="attr_armour_evasion_mod" value="0"/><br>
+        <strong>Speed Penalty:</strong>
+        <input type="number" name="attr_armour_speed" value="0"/><br>
+        <strong>Weight:</strong>
+        <input type="number" name="attr_armour_weight" value="0"/><br>
+        <br><strong>Note:</strong><br>
+        <textarea name="attr_armour_note" cols="20" rows="2"></textarea>
+    </div>
+    <div class="sheet-equipment-Other sheet-block">
+        <h2>Other</h2>
         <fieldset class="repeating_equipment">
             <strong>Name:</strong>
-            <input type="text" name="attr_item_name"/>
+            <input type="text" name="attr_eq_name"/>
+            <strong>Weight:</strong>
+            <input type="number" name="attr_eq_weight" value="0"/>
             <br><strong>Note:</strong><br>
-            <textarea name="attr_item_note" cols="20" rows="2"></textarea>
+            <textarea name="attr_eq_note" cols="20" rows="2"></textarea>
         </fieldset>
     </div>
 </div>
@@ -739,9 +767,10 @@
 
     // attributes lists
     const baseAttributes = ["Vigour","Endurance","Intelligence","Strength","Dexterity","Perception","Arcana","Faith","Nature","Charisma"];
-    const armourAttributes = ["phys_armour","mag_armour"]
+    const armourAttributes = ["phys_resist","mag_resist"];
     const bonusAttributes = [...baseAttributes, ...armourAttributes].map(attr => attr + "_bonus");
-    const allAttributes = [...baseAttributes, ...bonusAttributes];
+    const armourValues = ["armour_name","armour_phys", "armour_mag", "armour_evasion", "armour_evasion_mod", "armour_speed", "armour_weight"]
+    const allAttributes = [...baseAttributes, ...bonusAttributes, ...armourValues];
     const baseEvents = allAttributes.map(attr => "change:" + attr).join(" ")
 
     // sheet tabs
@@ -755,11 +784,22 @@
     });
 
     // invocation tabs
-    const invocationslist = ["invocation_memory","invocation_caster","invocation_saved"];
+    const invocationslist = ["invocation-Memory","invocation-Caster","invocation-Saved"];
     invocationslist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
                 sheetInvocation: button
+            });
+        });
+    });
+
+    // equipment tabs
+    const equipmentlist = ["equipment-Armour","equipment-Other"];
+    equipmentlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            console.log(button)
+            setAttrs({
+                sheetEquipment: button
             });
         });
     });
@@ -1112,11 +1152,13 @@
             const calcFP = jsSum(values.Intelligence, values.Intelligence_bonus, values.Charisma, values.Charisma_bonus) * 3 + jsSum(values.Perception, values.Perception_bonus, values.Arcana, values.Arcana_bonus, values.Faith, values.Faith_bonus, values.Nature, values.Nature_bonus);
             const calcSP = jsSum(values.Endurance, values.Endurance_bonus);
             const calcInitiative = jsSum(values.Dexterity, values.Dexterity_bonus, values.Perception, values.Perception_bonus);
-            const calcEvasion = jsSum(10, values.Dexterity, values.Dexterity_bonus);
-            const calcSpeed = jsSum(getRaceSpeed(values.race), Math.floor(jsSum(values.Endurance, values.Endurance_bonus) / 2) * 5);
+            const calcEvasion = jsSum(10, jsSum(values.Dexterity, values.Dexterity_bonus) * parseFloat(values.armour_evasion), values.armour_evasion_mod);
+            const calcSpeed = jsSum(getRaceSpeed(values.race), Math.floor(jsSum(values.Endurance, values.Endurance_bonus) / 2) * 5, values.armour_speed);
             const calcEquipLoad = jsSum(values.Strength, values.Strength_bonus)
             const calcXpUsed = baseAttributes.reduce((accumulator, attribute) => accumulator + getAttributeCost(values[attribute]), 0);
             const nextXP = getNextXP(values);
+
+            console.log(values)
 
             setAttrs(Object.assign({
                 hp_base: calcHP,
@@ -1139,8 +1181,8 @@
                 equip_load_max: jsSum(calcEquipLoad, values.equip_load_bonus),
                 ic_spell_memory: jsSum(values.Charisma, values.Charisma_bonus),
                 rspell_memory: jsSum(values.Intelligence, values.Intelligence_bonus) * 3,
-                phys_armour_total: jsSum(values.phys_armour, values.phys_armour_bonus),
-                mag_armour_total: jsSum(values.mag_armour, values.mag_armour_bonus)
+                phys_resist_total: jsSum(values.phys_resist, values.phys_resist_bonus),
+                mag_resist_total: jsSum(values.mag_resist, values.mag_resist_bonus)
             }, nextXP));
         });
     });
