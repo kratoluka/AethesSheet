@@ -4,8 +4,8 @@
 <div class="sheet-Tabs sheet-block">
     <button type="action" name="act_overview">Overview</button>
     <button type="action" name="act_stats">Stats</button>
-    <button type="action" name="act_attacks">Attacks</button>
     <button type="action" name="act_perks">Perks</button>
+    <button type="action" name="act_weapons">Weapons</button>
     <button type="action" name="act_rune-spells">Rune Spells</button>
     <button type="action" name="act_invocation">Invocation</button>
     <button type="action" name="act_inventory">Inventory</button>
@@ -119,20 +119,35 @@
     <div class="sheet-overview-Attacks sheet-block">
         <h2>Attacks</h2>
         <fieldset class="repeating_attacks" readonly>
-            <strong>Name:</strong>
             <input type="text" name="attr_attack_name" readonly/>
             <button type="action" name="act_hit">Hit</button>
+            <!--hidden fields-->
+            <input type="text" value="" name="attr_attack_acc_bonus" readonly hidden/>
+            <input type="text" value="" name="attr_attack_dmg_bonus" readonly hidden/>
+            <input type="text" value="" name="attr_attack_crit_chance" readonly hidden/>
+            <input type="text" value="" name="attr_attack_scaling" readonly hidden/>
+            <input type="text" value="" name="attr_attack_dice_one" readonly hidden/>
+            <input type="text" value="" name="attr_attack_type_one" readonly hidden/>
+            <input type="text" value="" name="attr_attack_range_one" readonly hidden/>
+            <input type="text" value="" name="attr_attack_dice_two" readonly hidden/>
+            <input type="text" value="" name="attr_attack_type_two" readonly hidden/>
+            <input type="text" value="" name="attr_attack_range_two" readonly hidden/>
+            <input type="text" value="" name="attr_attack_dice_secondary" readonly hidden/>
+            <input type="text" value="" name="attr_attack_type_secondary" readonly hidden/>
+            <input type="text" value="" name="attr_attack_desc" readonly hidden/>
+            <input type="checkbox" name="attr_attack_ranged" readonly hidden/>
+            <input type="checkbox" name="attr_attack_spell" readonly hidden/>
         </fieldset>
     </div>
     <div class="sheet-overview-Runes sheet-block">
         <h2>Rune Spells</h2>
         <strong> Memory: </strong>
-        <input type="number" value="0" name="attr_rspell_memory_used" readonly/>
+        <input type="number" value="0" name="attr_rs_memory_used" readonly/>
         <text> /</text>
-        <input type="number" value="3" name="attr_rspell_memory" readonly/>
+        <input type="number" value="3" name="attr_rs_memory" readonly/>
         <fieldset class="repeating_rune-spells">
-            <input type="text" name="attr_rspell_name" readonly/>
-            <input type="checkbox" name="attr_rspell_ready"/>
+            <input type="text" name="attr_rs_name" readonly/>
+            <input type="checkbox" name="attr_rs_ready"/>
         </fieldset>
     </div>
     <div class="sheet-overview-Invocations sheet-block">
@@ -186,71 +201,51 @@
         <input type="number" name="attr_Vigour" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Vigour_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Vigour_next" value="2" readonly/>
         <br>
         <h3> Endurance </h3>
         <input type="number" name="attr_Endurance" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Endurance_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Endurance_next" value="2" readonly/>
         <br>
         <h3> Intelligence </h3>
         <input type="number" name="attr_Intelligence" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Intelligence_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Intelligence_next" value="2" readonly/>
         <br>
         <h3> Strength </h3>
         <input type="number" name="attr_Strength" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Strength_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Strength_next" value="2" readonly/>
         <br>
         <h3> Dexterity </h3>
         <input type="number" name="attr_Dexterity" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Dexterity_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Dexterity_next" value="2" readonly/>
         <br>
         <h3> Perception </h3>
         <input type="number" name="attr_Perception" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Perception_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Perception_next" value="2" readonly/>
         <br>
         <h3> Arcana </h3>
         <input type="number" name="attr_Arcana" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Arcana_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Arcana_next" value="2" readonly/>
         <br>
         <h3> Faith </h3>
         <input type="number" name="attr_Faith" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Faith_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Faith_next" value="2" readonly/>
         <br>
         <h3> Nature </h3>
         <input type="number" name="attr_Nature" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Nature_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Nature_next" value="2" readonly/>
         <br>
         <h3> Charisma </h3>
         <input type="number" name="attr_Charisma" value="1" min="1"/>
         <text>Bonus</text>
         <input type="number" name="attr_Charisma_bonus" value="0"/>
-        <text>XP to increase</text>
-        <input type="number" name="attr_Charisma_next" value="2" readonly/>
     </div>
     <div class="sheet-stats-Stats sheet-block">
         <h2>Stats</h2>
@@ -339,81 +334,6 @@
     </div>
 </div>
 
-<div class="sheet-attacks">
-    <div class="sheet-basic sheet-block">
-        <h2>Attacks</h2>
-        <fieldset class="repeating_attacks">
-            <strong>Name:</strong>
-            <input type="text" name="attr_attack_name"/>
-            Acc Bonus:
-            <input type="number" name="attr_attack_acc_bonus"/>
-            Dmg Bonus:
-            <input type="number" name="attr_attack_dmg_bonus"/>
-            Is Weapon
-            <input type="checkbox" name="attr_attack_type"/>
-            Scaling:
-            <select name="attr_attack_scaling">
-                <option selected>-</option>
-                <option value="Vigour">Vigour</option>
-                <option value="Endurance">Endurance</option>
-                <option value="Intelligence">Intelligence</option>
-                <option value="Strength">Strength</option>
-                <option value="Dexterity">Dexterity</option>
-                <option value="Perception">Perception</option>
-                <option value="Arcana">Arcana</option>
-                <option value="Faith">Faith</option>
-                <option value="Nature">Nature</option>
-                <option value="Charisma">Charisma</option>
-            </select>
-            One-Handed Dice:
-            <input type="text" name="attr_attack_dice_one"/>
-            Type:
-            <select name="attr_attack_type_one">
-                <option selected>-</option>
-                <option value="Slashing">Slashing</option>
-                <option value="Piercing">Piercing</option>
-                <option value="Bludgeoning">Bludgeoning</option>
-                <option value="Fire">Fire</option>
-                <option value="Frost">Frost</option>
-                <option value="Lightning">Lightning</option>
-                <option value="Shadow">Shadow</option>
-                <option value="Water">Water</option>
-                <option value="Poison">Poison</option>
-            </select>
-            Two-Handed Dice:
-            <input type="text" name="attr_attack_dice_two"/>
-            Type:
-            <select name="attr_attack_type_two">
-                <option selected>-</option>
-                <option value="Slashing">Slashing</option>
-                <option value="Piercing">Piercing</option>
-                <option value="Bludgeoning">Bludgeoning</option>
-                <option value="Fire">Fire</option>
-                <option value="Frost">Frost</option>
-                <option value="Lightning">Lightning</option>
-                <option value="Shadow">Shadow</option>
-                <option value="Water">Water</option>
-                <option value="Poison">Poison</option>
-            </select>
-            Secondary Dice:
-            <input type="text" name="attr_attack_dice_secondary"/>
-            Type:
-            <select name="attr_attack_type_secondary">
-                <option selected>-</option>
-                <option value="Slashing">Slashing</option>
-                <option value="Piercing">Piercing</option>
-                <option value="Bludgeoning">Bludgeoning</option>
-                <option value="Fire">Fire</option>
-                <option value="Frost">Frost</option>
-                <option value="Lightning">Lightning</option>
-                <option value="Shadow">Shadow</option>
-                <option value="Water">Water</option>
-                <option value="Poison">Poison</option>
-            </select>
-        </fieldset>
-    </div>
-</div>
-
 <div class="sheet-perks">
     <div class="sheet-basic sheet-block">
         <h2>Perks</h2>
@@ -431,26 +351,115 @@
     </div>
 </div>
 
+<div class="sheet-weapons">
+    <div class="sheet-basic sheet-block">
+        <h2>Weapons</h2>
+        <fieldset class="repeating_weapons">
+            Name:
+            <input type="text" name="attr_weapon_name"/><br>
+            Acc Bonus:
+            <input type="number" name="attr_weapon_acc_bonus" value="0"/>
+            Dmg Bonus:
+            <input type="number" name="attr_weapon_dmg_bonus" value="0"/>
+            Crit Chance:
+            <input type="number" name="attr_weapon_crit_chance" value="5" min="5" step="5" />%<br>
+            Scaling:
+            <select name="attr_weapon_scaling">
+                <option selected>-</option>
+                <option value="Vigour">Vigour</option>
+                <option value="Endurance">Endurance</option>
+                <option value="Intelligence">Intelligence</option>
+                <option value="Strength">Strength</option>
+                <option value="Dexterity">Dexterity</option>
+                <option value="Perception">Perception</option>
+                <option value="Arcana">Arcana</option>
+                <option value="Faith">Faith</option>
+                <option value="Nature">Nature</option>
+                <option value="Charisma">Charisma</option>
+            </select>
+            Ranged:
+            <input type="checkbox" name="attr_weapon_ranged"/><br>
+            One-Handed Dice:
+            <input type="text" name="attr_weapon_dice_one"/>
+            Type:
+            <select name="attr_weapon_type_one">
+                <option selected>-</option>
+                <option value="Slashing">Slashing</option>
+                <option value="Piercing">Piercing</option>
+                <option value="Bludgeoning">Bludgeoning</option>
+                <option value="Fire">Fire</option>
+                <option value="Frost">Frost</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Water">Water</option>
+                <option value="Poison">Poison</option>
+            </select>
+            Range:
+            <input type="text" name="attr_weapon_range_one"><br>
+            Two-Handed Dice:
+            <input type="text" name="attr_weapon_dice_two"/>
+            Type:
+            <select name="attr_weapon_type_two">
+                <option selected>-</option>
+                <option value="Slashing">Slashing</option>
+                <option value="Piercing">Piercing</option>
+                <option value="Bludgeoning">Bludgeoning</option>
+                <option value="Fire">Fire</option>
+                <option value="Frost">Frost</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Water">Water</option>
+                <option value="Poison">Poison</option>
+            </select>
+            Range:
+            <input type="text" value="0" name="attr_weapon_range_two"><br>
+            Secondary Dice:
+            <input type="text" name="attr_weapon_dice_secondary"/>
+            Type:
+            <select name="attr_weapon_type_secondary">
+                <option selected>-</option>
+                <option value="Slashing">Slashing</option>
+                <option value="Piercing">Piercing</option>
+                <option value="Bludgeoning">Bludgeoning</option>
+                <option value="Fire">Fire</option>
+                <option value="Frost">Frost</option>
+                <option value="Lightning">Lightning</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Water">Water</option>
+                <option value="Poison">Poison</option>
+            </select>
+            <br><strong>Description:</strong><br>
+            <textarea name="attr_weapon_desc" cols="20" rows="2">
+        </fieldset>
+    </div>
+</div>
+
 <div class="sheet-rune-spells">
     <div class="sheet-basic sheet-block">
         <h2>Rune Spells</h2>
         <fieldset class="repeating_rune-spells">
             <strong>Name:</strong>
-            <input type="text" name="attr_rspell_name"/>
+            <input type="text" name="attr_rs_name"/>
+            <strong>Cast:</strong>
+            <select name="attr_rs_scaling">
+                <option value="arcane" selected>Arcane</option>
+                <option value="faith">Faith</option>
+                <option value="nature">Nature</option>
+            </select>
             <strong>AP Cost:</strong>
-            <input type="text" name="attr_rspell_ap"/>
+            <input type="number" name="attr_rs_ap" value="2"/>
             <strong>FP Cost:</strong>
-            <input type="text" name="attr_rspell_fp"/>
+            <input type="number" name="attr_rs_fp" value="0"/>
             <strong>Damage:</strong>
-            <input type="text" name="attr_rspell_dmg"/>
+            <input type="text" name="attr_rs_dice"/>
             <strong>Range:</strong>
-            <input type="text" name="attr_rspell_range"/>
+            <input type="text" name="attr_rs_range"/>
             <strong>Concentration:</strong>
-            <input type="checkbox" name="attr_rspell_conc"/>
+            <input type="checkbox" name="attr_rs_conc"/>
             <strong>Ready:</strong>
-            <input type="checkbox" name="attr_rspell_ready"/>
+            <input type="checkbox" name="attr_rs_ready"/>
             <br><strong>Description:</strong><br>
-            <textarea name="attr_rspell_note" cols="20" rows="2"></textarea>
+            <textarea name="attr_rs_note" cols="20" rows="2"></textarea>
         </fieldset>
     </div>
 </div>
@@ -576,12 +585,12 @@
         </select>
         <br>
         <strong>Cast:</strong>
-        <select name="attr_ic_type">
+        <select name="attr_ic_scaling">
             <option value="arcane" selected>Arcane</option>
             <option value="faith">Faith</option>
             <option value="nature">Nature</option>
         </select>
-        <input type="hidden" class="sheet-ic_type_toggle" name="attr_ic_type"  value="arcane"/> 
+        <input type="hidden" class="sheet-ic_scaling_toggle" name="attr_ic_scaling"  value="arcane"/> 
         <strong>Effect:</strong>
         <div class="sheet-arcane">
         <select name="attr_ic_effect">
@@ -696,6 +705,7 @@
             <br><strong>Description:</strong><br><!--sheet display description-->
             <textarea name="attr_ic_desc_full" cols="20" rows="2" readonly></textarea>
             <!--hidden fields-->
+            <input type="text" value="" name="attr_ic_scaling" readonly hidden/>
             <input type="text" value="" name="attr_ic_range" readonly hidden/>
             <input type="text" value="" name="attr_ic_duration" readonly hidden/>
             <input type="text" value="" name="attr_ic_contested" readonly hidden/>
@@ -770,11 +780,11 @@
     const armourAttributes = ["phys_resist","mag_resist"];
     const bonusAttributes = [...baseAttributes, ...armourAttributes].map(attr => attr + "_bonus");
     const armourValues = ["armour_name","armour_phys", "armour_mag", "armour_evasion", "armour_evasion_mod", "armour_speed", "armour_weight"]
-    const allAttributes = [...baseAttributes, ...bonusAttributes, ...armourValues];
+    const allAttributes = [...baseAttributes, ...armourAttributes, ...bonusAttributes, ...armourValues];
     const baseEvents = allAttributes.map(attr => "change:" + attr).join(" ")
 
     // sheet tabs
-    const buttonlist = ["overview","stats","attacks","perks","rune-spells","invocation","inventory","equipment"];
+    const buttonlist = ["overview","stats","perks","weapons","rune-spells","invocation","inventory","equipment"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
@@ -797,7 +807,6 @@
     const equipmentlist = ["equipment-Armour","equipment-Other"];
     equipmentlist.forEach(button => {
         on(`clicked:${button}`, function() {
-            console.log(button)
             setAttrs({
                 sheetEquipment: button
             });
@@ -843,7 +852,7 @@
 
     // calculate used rune spell memory
     on('sheet:opened change:repeating_rune-spells remove:repeating_rune-spells', function() {
-        repeatingSum("rspell_memory_used", "rune-spells", "rspell_ready");
+        repeatingSum("rs_memory_used", "rune-spells", "rs_ready");
     });
     // calculate used invocation effects memory
     on('sheet:opened change:repeating_ic-effects remove:repeating_ic-effects', function() {getSectionIDs('repeating_ic-effects', idArray => {
@@ -1062,8 +1071,8 @@
     }
 
     // generate invocation spell
-    on("sheet:opened change:ic_template change:ic_tier change:ic_type change:ic_effect " , function() {
-        getAttrs(["ic_template","ic_tier","ic_type","ic_effect",...allAttributes], function(values) {
+    on("sheet:opened change:ic_template change:ic_tier change:ic_scaling change:ic_effect " , function() {
+        getAttrs(["ic_template","ic_tier","ic_scaling","ic_effect",...allAttributes], function(values) {
 
             const effect = getEffectDetails(values.ic_effect)
             const template = getTemplateDetails(values.ic_template)
@@ -1094,20 +1103,115 @@
         });
     });
 
+    // configure attacks
+    // also called from invocation save!
+    function saveAttacks() {       
+        getSectionIDs('repeating_weapons', (w_ids) => {
+        getSectionIDs('repeating_rune-spells', (rs_ids) => { 
+        getSectionIDs('repeating_ic-saved', (ic_ids) => {
+            getAttrs([
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_name`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_acc_bonus`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_dmg_bonus`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_crit_chance`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_scaling`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_ranged`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_dice_one`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_type_one`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_range_one`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_dice_two`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_type_two`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_range_two`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_dice_secondary`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_type_secondary`),
+                ...w_ids.map((id) => `repeating_weapons_${id}_weapon_desc`),
+                ...rs_ids.map((id) => `repeating_rune-spells_${id}_rs_name`),
+                ...rs_ids.map((id) => `repeating_rune-spells_${id}_rs_scaling`),
+                ...rs_ids.map((id) => `repeating_rune-spells_${id}_rs_dice`),
+                ...rs_ids.map((id) => `repeating_rune-spells_${id}_rs_range`),
+                ...rs_ids.map((id) => `repeating_rune-spells_${id}_rs_desc`),
+                ...ic_ids.map((id) => `repeating_ic-saved_${id}_ic_name`),
+                ...ic_ids.map((id) => `repeating_ic-saved_${id}_ic_scaling`),
+                ...ic_ids.map((id) => `repeating_ic-saved_${id}_ic_dice`),
+                ...ic_ids.map((id) => `repeating_ic-saved_${id}_ic_range`),
+                ...ic_ids.map((id) => `repeating_ic-saved_${id}_ic_desc`),
+                ], function(values) {
+
+                let weapons = w_ids.map((id) => ({
+                        attack_name: values[`repeating_weapons_${id}_weapon_name`],
+                        attack_acc_bonus: (values[`repeating_weapons_${id}_weapon_acc_bonus`] != "0") ? values[`repeating_weapons_${id}_weapon_acc_bonus`] : "",
+                        attack_dmg_bonus: (values[`repeating_weapons_${id}_weapon_dmg_bonus`] != "0") ? values[`repeating_weapons_${id}_weapon_dmg_bonus`] : "",
+                        attack_crit_chance: values[`repeating_weapons_${id}_weapon_crit_chance`],
+                        attack_scaling: values[`repeating_weapons_${id}_weapon_scaling`],
+                        attack_dice_one: values[`repeating_weapons_${id}_weapon_dice_one`],
+                        attack_type_one: values[`repeating_weapons_${id}_weapon_type_one`],
+                        attack_range_one: values[`repeating_weapons_${id}_weapon_range_one`],
+                        attack_dice_two: values[`repeating_weapons_${id}_weapon_dice_two`],
+                        attack_type_two: values[`repeating_weapons_${id}_weapon_type_two`],
+                        attack_range_two: values[`repeating_weapons_${id}_weapon_range_two`],
+                        attack_dice_secondary: values[`repeating_weapons_${id}_weapon_dice_secondary`],
+                        attack_type_secondary: values[`repeating_weapons_${id}_weapon_type_secondary`],
+                        attack_desc: values[`repeating_weapons_${id}_weapon_desc`],
+                        attack_ranged: (values[`repeating_weapons_${id}_weapon_ranged`] == "0") ? values[`repeating_weapons_${id}_weapon_dmg_bonus`] : "1",
+                }));
+                let runes = rs_ids.filter((id) => !!values[`repeating_rune-spells_${id}_rs_dice`]).map((id) => ({
+                    attack_name: values[`repeating_rune-spells_${id}_rs_name`],
+                    attack_dice_one: values[`repeating_rune-spells_${id}_rs_dice`],
+                    attack_scaling: values[`repeating_rune-spells_${id}_rs_scaling`],
+                    attack_range: values[`repeating_rune-spells_${id}_rs_range`],
+                    attack_spell: "1",
+                }));
+                let invocations = ic_ids.filter((id) => !!values[`repeating_ic-saved_${id}_ic_dice`]).map((id) => ({
+                    attack_name: values[`repeating_ic-saved_${id}_ic_name`],
+                    attack_dice_one: values[`repeating_ic-saved_${id}_ic_dice`],
+                    attack_scaling: values[`repeating_ic-saved_${id}_ic_scaling`],
+                    attack_range: values[`repeating_ic-saved_${id}_ic_range`],
+                }));
+
+                getSectionIDs("repeating_attacks", function(idarray) {
+                    for(var i=0; i < idarray.length; i++) {
+                        removeRepeatingRow("repeating_attacks_" + idarray[i]);
+                    }
+                });
+
+                newAttackList = [];
+                [...weapons, ...runes, ...invocations].forEach(weapon => {
+                    const newRowId = generateRowID();
+                    const newAttack = Object.keys(weapon).reduce((item, key) => {
+                        item[`repeating_attacks_${newRowId}_${key}`] = weapon[key];
+                        return item;
+                    }, {});
+                    newAttackList.push(newAttack);
+                });
+
+                setAttrs(Object.assign({}, ...newAttackList));
+            });
+        }); 
+        }); 
+        }); 
+    }
+
+    // save attacks
+    on('change:repeating_weapons remove:repeating_weapons change:repeating_rune-spells remove:repeating_rune-spells change:repeating_ic-saved remove:repeating_ic-saved', function() {
+        saveAttacks();
+    });
+
     // save invocation spell
     on("clicked:ic_save", function() {
-        getAttrs(["ic_name", "ic_int_req", "ic_ap", "ic_fp", "ic_dice", "ic_range", "ic_duration", "ic_contested", "ic_desc", "ic_desc_full"], function(values) {
+        getAttrs(["ic_name", "ic_scaling", "ic_int_req", "ic_attr_req", "ic_ap", "ic_fp", "ic_dice", "ic_range", "ic_duration", "ic_contested", "ic_desc", "ic_desc_full"], function(values) {
             var newrowid = generateRowID();
             const newrowattrs = Object.keys(values).reduce((item, key) => {
                 item[`repeating_ic-saved_${newrowid}_${key}`] = values[key];
                 return item;
             }, {});
+
             setAttrs(newrowattrs);
+            saveAttacks()
         });
     });
 
     // general attribute changes
-    on("sheet:opened change:xp change:hp_bonus change:vitality_bonus change:fp_bonus change:sp_bonus change:race " + baseEvents, function() {
+    on("sheet:opened change:xp change:hp_bonus change:vitality_bonus change:fp_bonus change:sp_bonus change:initiative_bonus change:evasion_bonus change:speed_bonus change:equip_load_bonus change:race " + baseEvents, function() {
         getAttrs(["xp","race","hp_bonus","vitality_bonus","fp_bonus","sp_bonus","initiative_bonus","evasion_bonus","speed_bonus","equip_load_bonus",...allAttributes], function(values) {
 
             function getRaceSpeed(race) {
@@ -1124,13 +1228,6 @@
                 let attributeLevel = parseInt(attribute);
                 if (attributeLevel == 1) {return 0;}
                 return attributeLevel/2 * (1 + attributeLevel) - 1;
-            }
-
-            function getNextXP(items) {
-                return baseAttributes.reduce((nextXP, attribute) => {
-                    nextXP[`${attribute}_next`] = parseInt(items[attribute]) + 1;
-                    return nextXP;
-                }, {});
             }
 
             function getLevel(xp)
@@ -1156,11 +1253,10 @@
             const calcSpeed = jsSum(getRaceSpeed(values.race), Math.floor(jsSum(values.Endurance, values.Endurance_bonus) / 2) * 5, values.armour_speed);
             const calcEquipLoad = jsSum(values.Strength, values.Strength_bonus)
             const calcXpUsed = baseAttributes.reduce((accumulator, attribute) => accumulator + getAttributeCost(values[attribute]), 0);
-            const nextXP = getNextXP(values);
 
-            console.log(values)
+            saveAttacks();
 
-            setAttrs(Object.assign({
+            setAttrs({
                 hp_base: calcHP,
                 hp_max: jsSum(calcHP, values.hp_bonus),
                 vitality_base: calcVitality,
@@ -1180,10 +1276,10 @@
                 equip_load_base: calcEquipLoad,
                 equip_load_max: jsSum(calcEquipLoad, values.equip_load_bonus),
                 ic_spell_memory: jsSum(values.Charisma, values.Charisma_bonus),
-                rspell_memory: jsSum(values.Intelligence, values.Intelligence_bonus) * 3,
-                phys_resist_total: jsSum(values.phys_resist, values.phys_resist_bonus),
-                mag_resist_total: jsSum(values.mag_resist, values.mag_resist_bonus)
-            }, nextXP));
+                rs_memory: jsSum(values.Intelligence, values.Intelligence_bonus) * 3,
+                phys_resist_total: jsSum(values.phys_resist, values.phys_resist_bonus, values.armour_phys),
+                mag_resist_total: jsSum(values.mag_resist, values.mag_resist_bonus, values.armour_mag)
+            });
         });
     });
 

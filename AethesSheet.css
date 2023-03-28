@@ -42,8 +42,8 @@ input.headpiece-name {
 
 .charsheet div.sheet-overview,
 .charsheet div.sheet-stats,
-.charsheet div.sheet-attacks,
 .charsheet div.sheet-perks,
+.charsheet div.sheet-weapons,
 .charsheet div.sheet-rune-spells,
 .charsheet div.sheet-invocation,
 .charsheet div.sheet-equipment,
@@ -52,8 +52,8 @@ input.headpiece-name {
 /*Configure the tab buttons*/
 .charsheet .sheet-overview,
 .charsheet .sheet-stats,
-.charsheet .sheet-attacks,
 .charsheet .sheet-perks,
+.charsheet .sheet-weapons,
 .charsheet .sheet-rune-spells,
 .charsheet .sheet-invocation,
 .charsheet .sheet-inventory,
@@ -68,8 +68,8 @@ input.headpiece-name {
 /* show the selected tab */
 .charsheet .sheet-tabstoggle[value="overview"] ~ div.sheet-overview,
 .charsheet .sheet-tabstoggle[value="stats"] ~ div.sheet-stats,
-.charsheet .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,
 .charsheet .sheet-tabstoggle[value="perks"] ~ div.sheet-perks,
+.charsheet .sheet-tabstoggle[value="weapons"] ~ div.sheet-weapons,
 .charsheet .sheet-tabstoggle[value="rune-spells"] ~ div.sheet-rune-spells,
 .charsheet .sheet-tabstoggle[value="invocation"] ~ div.sheet-invocation,
 .charsheet .sheet-tabstoggle[value="equipment"] ~ div.sheet-equipment,
@@ -88,7 +88,7 @@ input.headpiece-name {
     grid-template-areas:
         "overview-Headpiece overview-Headpiece overview-Race"
         "overview-Attributes overview-State overview-Stats"
-        "overview-Attacks overview-Runes overview-Invocations"
+        "overview-Weapons overview-Runes overview-Invocations"
         "overview-Notes overview-Notes overview-Notes";
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -97,7 +97,7 @@ input.headpiece-name {
 .charsheet div.sheet-overview-Attributes { grid-area: overview-Attributes; }
 .charsheet div.sheet-overview-State { grid-area: overview-State; }
 .charsheet div.sheet-overview-Stats { grid-area: overview-Stats; }
-.charsheet div.sheet-overview-Attacks { grid-area: overview-Attacks; }
+.charsheet div.sheet-overview-Weapons { grid-area: overview-Weapons; }
 .charsheet div.sheet-overview-Runes { grid-area: overview-Runes; }
 .charsheet div.sheet-overview-Invocations { grid-area: overview-Invocations; }
 .charsheet div.sheet-overview-Notes { grid-area: overview-Notes; }
@@ -114,11 +114,11 @@ input.headpiece-name {
 .charsheet div.sheet-stats-Stats { grid-area: stats-Stats; }
 .charsheet div.sheet-stats-Armour { grid-area: stats-Armour; }
 
-/*Attacks*/
-.charsheet div.sheet-attacks,
+/*Basic*/
 .charsheet div.sheet-perks,
+.charsheet div.sheet-weapons,
 .charsheet div.sheet-rune-spells,
-.charsheet div.sheet-inventory{
+.charsheet div.sheet-inventory {
     grid-template-areas:
         "Basic";
     grid-template-columns: 1fr;
@@ -199,9 +199,9 @@ div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontr
 }
 
 /* show the selected archetype */
-.charsheet .sheet-ic_type_toggle[value="arcane"] ~ div.sheet-arcane,
-.charsheet .sheet-ic_type_toggle[value="faith"] ~ div.sheet-faith,
-.charsheet .sheet-ic_type_toggle[value="nature"] ~ div.sheet-nature {
+.charsheet .sheet-ic_scaling_toggle[value="arcane"] ~ div.sheet-arcane,
+.charsheet .sheet-ic_scaling_toggle[value="faith"] ~ div.sheet-faith,
+.charsheet .sheet-ic_scaling_toggle[value="nature"] ~ div.sheet-nature {
     display: inline-block;
 }
 
