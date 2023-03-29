@@ -9,7 +9,7 @@
     <button type="action" name="act_rune-spells">Rune Spells</button>
     <button type="action" name="act_invocation">Invocation</button>
     <button type="action" name="act_inventory">Inventory</button>
-    <button type="action" name="act_equipment">Equipment</button>
+    <button type="action" name="act_equipment">Character</button>
 </div>
 
 <div class="sheet-overview">
@@ -117,7 +117,11 @@
         </fieldset>
     </div>
     <div class="sheet-overview-Attacks sheet-block">
-        <h2>Attacks</h2>
+        <h2 style="display: inline;">Attacks</h2>
+        <input type="hidden" class="attack-mode" name="attr_attackMode" value="character"/>
+        <button type="action" class="attack-mode-normal" name="act_advantage">Normal</button>
+        <button type="action" class="attack-mode-advantage" name="act_disadvantage">Advantage</button>
+        <button type="action" class="attack-mode-disadvantage" name="act_normal">Disadvantage</button>
         <fieldset class="repeating_attacks" readonly>
             <input type="text" name="attr_attack_name" readonly/>
             <button type="action" name="act_hit">Hit</button>
@@ -730,13 +734,14 @@
     </div>
 </div>
 
-<div class="sheet-equipment">
+<div class="sheet-character">
     <input type="hidden" class="sheet-tabstoggle" name="attr_sheetEquipment" value="character"/>
-    <div class="sheet-equipment-Tabs sheet-block">
+    <div class="sheet-character-Tabs sheet-block">
         <button type="action" name="act_equipment-Armour">Armour</button>
-        <button type="action" name="act_equipment-Other">Equipment</button>
+        <button type="action" name="act_equipment-Equipment">Equipment</button>
+        <button type="action" name="act_equipment-Info">Info</button>
     </div>
-    <div class="sheet-equipment-Armour sheet-block">
+    <div class="sheet-character-Armour sheet-block">
         <h2>Armour</h2>
         <strong>Name:</strong>
         <input type="text" name="attr_armour_name"/><br>
@@ -758,8 +763,8 @@
         <br><strong>Note:</strong><br>
         <textarea name="attr_armour_note" cols="20" rows="2"></textarea>
     </div>
-    <div class="sheet-equipment-Other sheet-block">
-        <h2>Other</h2>
+    <div class="sheet-character-Equipment sheet-block">
+        <h2>Equipment</h2>
         <fieldset class="repeating_equipment">
             <strong>Name:</strong>
             <input type="text" name="attr_eq_name"/>
@@ -768,6 +773,75 @@
             <br><strong>Note:</strong><br>
             <textarea name="attr_eq_note" cols="20" rows="2"></textarea>
         </fieldset>
+    </div>
+    <div class="sheet-character-Info">
+        <div class="info-Appearance">
+            <div class="info-Appearance-Title">
+                Title
+            </div>
+            <div class="info-Gender info-field">
+                <input type="text" name="attr_info_gender"/><br>Gender
+            </div>
+            <div class="info-Age info-field">
+                <input type="text" name="attr_info_age"/><br>Age
+            </div>
+            <div class="info-Height info-field">
+                <input type="text" name="attr_info_height"/><br>Height
+            </div>
+            <div class="info-Weight info-field">
+                <input type="text" name="attr_info_weight"/><br>Weight
+            </div>
+            <div class="info-Eyes info-field">
+                <input type="text" name="attr_info_eyes"/><br>Eyes
+            </div>
+            <div class="info-Hair info-field">
+                <input type="text" name="attr_info_hair"/><br>Hair
+            </div>
+            <div class="info-Size info-field">
+                <input type="text" name="attr_info_size"/><br>Size
+            </div>
+            <div class="info-Vision info-field">
+                <input type="text" name="attr_info_vision"/><br>Vision
+            </div>
+            <div class="info-Languages info-field">
+                <input type="text" name="attr_info_languages"/><br>Languages
+            </div>
+            <div class="info-Alignment info-field">
+                <input type="text" name="attr_info_alignment"/><br>Alignment
+            </div>
+        </div>
+        <div class="info-Traits">
+            <div class="info-Traits-Banner">
+                Traits and background
+            </div>
+            <div class="info-Racial info-field">
+                <textarea type="text" name="attr_info_racial"/></textarea>Racial
+            </div>
+            <div class="info-Personality info-field">
+                <textarea type="text" name="attr_info_personality"/></textarea>Personality
+            </div>
+            <div class="info-Background info-field">
+                <textarea type="text" name="attr_info_background"/></textarea>Background
+            </div>
+        </div>
+        <div class="info-Proficiencies">
+            <div class="info-Proficiencies-Banner">
+                Proficiencies
+            </div>
+            <div class="info-Armour info-field">
+                <textarea type="text" name="attr_info_armour"/></textarea>Armour
+            </div>
+            <div class="info-Weapon info-field">
+                <textarea type="text" name="attr_info_weapon"/></textarea>Weapons
+            </div>
+            <div class="info-Tool info-field">
+                <textarea type="text" name="attr_info_tool"/></textarea>Tools
+            </div>
+        </div>
+        <div class="info-Backstory info-field">
+            Bio
+            <textarea name="attr_info_backstory" cols="20" rows="2"></textarea>
+        </div>
     </div>
 </div>
 
@@ -804,11 +878,26 @@
     });
 
     // equipment tabs
-    const equipmentlist = ["equipment-Armour","equipment-Other"];
+    const equipmentlist = ["equipment-Armour","equipment-Equipment","equipment-Info"];
     equipmentlist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
                 sheetEquipment: button
+            });
+        });
+    });
+    
+    // attack mode button
+    const attackmode = ["normal","advantage","disadvantage"];
+    attackmode.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                attackMode: button
+            });
+        });
+        on(`sheet:opened`, function() {
+            setAttrs({
+                attackMode: "normal"
             });
         });
     });

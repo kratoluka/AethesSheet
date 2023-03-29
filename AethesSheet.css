@@ -46,7 +46,7 @@ input.headpiece-name {
 .charsheet div.sheet-weapons,
 .charsheet div.sheet-rune-spells,
 .charsheet div.sheet-invocation,
-.charsheet div.sheet-equipment,
+.charsheet div.sheet-character,
 .charsheet div.sheet-inventory { grid-area: Sheet; }
 
 /*Configure the tab buttons*/
@@ -57,7 +57,7 @@ input.headpiece-name {
 .charsheet .sheet-rune-spells,
 .charsheet .sheet-invocation,
 .charsheet .sheet-inventory,
-.charsheet .sheet-equipment {
+.charsheet .sheet-character {
     display: none;
     grid-gap: 5px;
     padding: 5px;
@@ -72,7 +72,7 @@ input.headpiece-name {
 .charsheet .sheet-tabstoggle[value="weapons"] ~ div.sheet-weapons,
 .charsheet .sheet-tabstoggle[value="rune-spells"] ~ div.sheet-rune-spells,
 .charsheet .sheet-tabstoggle[value="invocation"] ~ div.sheet-invocation,
-.charsheet .sheet-tabstoggle[value="equipment"] ~ div.sheet-equipment,
+.charsheet .sheet-tabstoggle[value="equipment"] ~ div.sheet-character,
 .charsheet .sheet-tabstoggle[value="inventory"] ~ div.sheet-inventory {
     display: grid;
 }
@@ -101,6 +101,21 @@ input.headpiece-name {
 .charsheet div.sheet-overview-Runes { grid-area: overview-Runes; }
 .charsheet div.sheet-overview-Invocations { grid-area: overview-Invocations; }
 .charsheet div.sheet-overview-Notes { grid-area: overview-Notes; }
+
+/* By deafult make attack mode button red*/
+button.attack-mode-normal,
+button.attack-mode-advantage,
+button.attack-mode-disadvantage {
+    display: none;
+}
+
+/* color the selected button */
+.attack-mode[value="normal"] ~ button.attack-mode-normal,
+.attack-mode[value="advantage"] ~ button.attack-mode-advantage,
+.attack-mode[value="disadvantage"] ~ button.attack-mode-disadvantage {
+    display: inline-block;
+    align-content: right;
+}
 
 /*Stats*/
 .charsheet div.sheet-stats {
@@ -156,29 +171,32 @@ input.headpiece-name {
 }
 
 /*Equipment*/
-.charsheet div.sheet-equipment {
+.charsheet div.sheet-character {
     grid-template-areas:
         "equipment-Tabs"
         "equipment-Sheet";
     grid-template-columns: 1fr;
 }
-.charsheet div.sheet-equipment-Tabs { 
+.charsheet div.sheet-character-Tabs { 
     grid-area: equipment-Tabs; 
 }
-.charsheet div.sheet-equipment-Armour,
-.charsheet div.sheet-equipment-Other {
+.charsheet div.sheet-character-Armour,
+.charsheet div.sheet-character-Equipment,
+.charsheet div.sheet-character-Info {
     grid-area: equipment-Sheet; 
 }
 
 /*Configure the equipment tab buttons*/
-.charsheet .sheet-equipment-Armour,
-.charsheet .sheet-equipment-Other {
+.charsheet .sheet-character-Armour,
+.charsheet .sheet-character-Equipment,
+.charsheet .sheet-character-Info {
     display: none;
 }
 
 /*Show the selected equipment tab*/
-.charsheet .sheet-tabstoggle[value="equipment-Armour"] ~ div.sheet-equipment-Armour,
-.charsheet .sheet-tabstoggle[value="equipment-Other"] ~ div.sheet-equipment-Other {
+.charsheet .sheet-tabstoggle[value="equipment-Armour"] ~ div.sheet-character-Armour,
+.charsheet .sheet-tabstoggle[value="equipment-Equipment"] ~ div.sheet-character-Equipment,
+.charsheet .sheet-tabstoggle[value="equipment-Info"] ~ div.sheet-character-Info {
     display: block;
 }
 
@@ -212,3 +230,85 @@ div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontr
 div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn repcontrol_add"] {
     display: none;
 }
+
+
+/* INFO */
+.info-field {
+    border: 1px solid white;
+}
+.info-field > input {
+    width: 100%;
+}
+.info-field > textarea {
+    max-width: 100%;
+    resize: vertical;
+    box-sizing: border-box;
+}
+.charsheet div.sheet-character-Info {  
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "info-Appearance"
+        "info-Traits"
+        "info-Proficiencies"
+        "info-Backstory";
+    border: 1px solid white;
+    text-align: center;
+}
+
+.info-Appearance {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title"
+        "info-Gender info-Age info-Height info-Weight info-Eyes info-Hair info-Size"
+        "info-Vision info-Languages info-Languages info-Languages info-Languages info-Languages info-Alignment";
+    grid-area: info-Appearance;
+    border: 1px solid white;
+}
+
+.info-Vision { grid-area: info-Vision; }
+.info-Languages { grid-area: info-Languages; }
+.info-Alignment { grid-area: info-Alignment; }
+.info-Gender { grid-area: info-Gender; }
+.info-Age { grid-area: info-Age; }
+.info-Height { grid-area: info-Height; }
+.info-Weight { grid-area: info-Weight; }
+.info-Eyes { grid-area: info-Eyes; }
+.info-Hair { grid-area: info-Hair; }
+.info-Size { grid-area: info-Size; }
+.info-Appearance-Title { grid-area: info-Appearance-Title; }
+.info-Traits {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "info-Traits-Banner info-Traits-Banner info-Traits-Banner"
+        "info-Racial info-Personality info-Background"
+        "info-Racial info-Personality info-Background";
+    grid-area: info-Traits;
+    border: 1px solid white;
+}
+
+.info-Traits-Banner { grid-area: info-Traits-Banner; }
+.info-Racial { grid-area: info-Racial; }
+.info-Personality { grid-area: info-Personality; }
+.info-Background { grid-area: info-Background; }
+.info-Proficiencies {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "info-Proficiencies-Banner info-Proficiencies-Banner info-Proficiencies-Banner"
+        "info-Armour info-Weapon info-Tool"
+        "info-Armour info-Weapon info-Tool";
+    grid-area: info-Proficiencies;
+    border: 1px solid white;
+}
+
+.info-Proficiencies-Banner { grid-area: info-Proficiencies-Banner; }
+.info-Armour { grid-area: info-Armour; }
+.info-Weapon { grid-area: info-Weapon; }
+.info-Tool { grid-area: info-Tool; }
+.info-Backstory { grid-area: info-Backstory; }
