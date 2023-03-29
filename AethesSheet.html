@@ -115,6 +115,24 @@
         <fieldset class="repeating_resistance">
             <input type="text" name="attr_resistance" readonly/>
         </fieldset>
+        <input type="hidden" class="prompt-take-damage" name="attr_promptTakeDamage" value="character"/>
+        <button type="action" class="prompt-take-damage-button" name="act_promptTakeDamage"> Take Damage </button>
+        <div class="prompt-background">
+            <input type="hidden" class="sheet-prompt" name="attr_promptAttack" value="character"/>
+            <div class="prompt-attack">
+                Take Damage<button type="action" name="act_promptClose">Close</button><br>
+                Slashing<input type="number" name="attr_take_slashing" value="0"/><br>
+                Piercing<input type="number" name="attr_take_piercing" value="0"/><br>
+                Bludgeoning<input type="number" name="attr_take_bludgeoning" value="0"/><br>
+                Fire<input type="number" name="attr_take_fire" value="0"/><br>
+                Frost<input type="number" name="attr_take_frost" value="0"/><br>
+                Shadow<input type="number" name="attr_take_shadow" value="0"/><br>
+                Water<input type="number" name="attr_take_water" value="0"/><br>
+                Poison<input type="number" name="attr_take_poison" value="0"/><br>
+                <button type="action" name="act_promptTake">Take Damage</button>
+            </div>
+        </div>
+
     </div>
     <div class="sheet-overview-Attacks sheet-block">
         <h2 style="display: inline;">Attacks</h2>
@@ -856,6 +874,22 @@
     const armourValues = ["armour_name","armour_phys", "armour_mag", "armour_evasion", "armour_evasion_mod", "armour_speed", "armour_weight"]
     const allAttributes = [...baseAttributes, ...armourAttributes, ...bonusAttributes, ...armourValues];
     const baseEvents = allAttributes.map(attr => "change:" + attr).join(" ")
+    const damageTypes = ["slashing","piercing","bludgeoning","fire","frost","shadow","water","poison"]
+
+    // prompt
+    const promptTakeDamage = ["promptTakeDamage","promptClose","promptTake"];
+    promptTakeDamage.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                promptTakeDamage: button
+            });
+        });
+        on(`sheet:opened`, function() {
+            setAttrs({
+                promptTakeDamage: "promptClose"
+            });
+        });
+    });
 
     // sheet tabs
     const buttonlist = ["overview","stats","perks","weapons","rune-spells","invocation","inventory","equipment"];
@@ -909,6 +943,10 @@
         }
         return total;
     }
+    function minusToZero(a, b) {
+        const out = parseInt(a) - parseInt(b);
+        return (out < 0) ? 0 : out;
+    }
 
     // Don't ask me, not my function -> https://wiki.roll20.net/RepeatingSum
     /* ===== PARAMETERS ==========
@@ -943,17 +981,32 @@
     on('sheet:opened change:repeating_rune-spells remove:repeating_rune-spells', function() {
         repeatingSum("rs_memory_used", "rune-spells", "rs_ready");
     });
+
     // calculate used invocation effects memory
-    on('sheet:opened change:repeating_ic-effects remove:repeating_ic-effects', function() {getSectionIDs('repeating_ic-effects', idArray => {
+    on('sheet:opened change:repeating_ic-effects remove:repeating_ic-effects', function() {
+        getSectionIDs('repeating_ic-effects', idArray => {
             setAttrs({
                 ic_effects_memory_used: idArray.length,
             });
         });
     });
+
     // calculate used invocation effects memory
-    on('sheet:opened change:repeating_ic-templates remove:rrepeating_ic-templates', function() {getSectionIDs('repeating_ic-templates', idArray => {
+    on('sheet:opened change:repeating_ic-templates remove:repeating_ic-templates', function() {
+        getSectionIDs('repeating_ic-templates', idArray => {
             setAttrs({
                 ic_templates_memory_used: idArray.length,
+            });
+        });
+    });
+
+    // list resistances
+    on('sheet:opened change:repeating_resistance remove:repeating_resistance', function() {
+        getSectionIDs('repeating_resistance', idArray => {
+            getAttrs(idArray.map((id) => `repeating_resistance_${id}_resistance`), function(values) {
+                setAttrs({
+                    resistances_list: idArray.map((id) => values[`repeating_resistance_${id}_resistance`].toLowerCase()),
+                });
             });
         });
     });
@@ -995,7 +1048,21 @@
                 vitality: values.vitality_max, // TODO check current rules for vitality reset
                 fp: values.fp_max,
                 sp: values.sp_max,
-         });
+            });
+        });
+    });
+
+    // take damage
+    on("clicked:promptTake", function() {
+        getAttrs(["hp", "phys_resist_total", "mag_resist_total", "resistances_list", ...damageTypes.map((damage) => `take_${damage}`)], function(values) {
+
+            const physicalDamageTypes = ["slashing","piercing","bludgeoning"]
+
+            const calcDamage = damageTypes.map((damage) => minusToZero((values["resistances_list"].includes(damage)) ? parseInt(values[`take_${damage}`]) / 2 : parseInt(values[`take_${damage}`]), parseInt((damage in physicalDamageTypes) ? values["phys_resist_total"] : values["mag_resist_total"]))).reduce((acc,curr) => acc + curr, 0)
+
+            setAttrs({
+                hp: minusToZero(values["hp"], calcDamage),
+            });
         });
     });
 
