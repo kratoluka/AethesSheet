@@ -68,7 +68,7 @@
     <div class="sheet-overview-State sheet-block">
         <h2>State</h2>
         <strong> Health: </strong>
-        <input type="number" value="0" name="attr_hp"/>
+        <input type="number" value="0" name="attr_hp" step="any"/>
         <text> /</text>
         <input type="number" value="10" name="attr_hp_max" readonly/>
         <br>
@@ -111,10 +111,10 @@
         <input type="number" value="0" name="attr_equip_load"/>
         <text> /</text>
         <input type="number" value="1" name="attr_equip_load_max" readonly/><br>
-        <strong> Physical: </strong>
+        <strong> Physical Resistance: </strong>
         <input type="number" name="attr_phys_resist_total" value="0" readonly/>
         <br>
-        <strong> Magical: </strong>
+        <strong> Magical Resistance: </strong>
         <input type="number" name="attr_mag_resist_total" value="0" readonly/>
         <br>
 
@@ -149,15 +149,16 @@
         <button type="action" class="attack-mode-disadvantage" name="act_normal">Disadvantage</button>
         <fieldset class="repeating_attacks" readonly>
             <input type="text" name="attr_attack_name" readonly/>
-            <button type="action" name="act_hit">Hit</button>
             <input type="hidden" class="attack-one" name="attr_attack_one"/>
-            <button type="action" class="attack-button-one" name="act_dmg-one">☝️</button>
+            <button type="action" class="attack-button-one" name="act_attack-one">☝️</button>
             <input type="hidden" class="attack-two" name="attr_attack_two"/>
-            <button type="action" class="attack-button-two" name="act_dmg-two">✌️</button>
+            <button type="action" class="attack-button-two" name="act_attack-two">✌️</button>
             <!--hidden fields-->
-            <input type="text" value="" name="attr_attack_acc_bonus" readonly hidden/>
-            <input type="text" value="" name="attr_attack_dmg_bonus" readonly hidden/>
-            <input type="text" value="" name="attr_attack_crit_chance" readonly hidden/>
+            <input type="hidden" name="attr_attack_roll_dmg" value=""/>
+            <button type="roll" name="roll_attack_dmg" style="display: none;" value="@{attack_roll_dmg}"></button>
+            <input type="text" value="0" name="attr_attack_acc_bonus" readonly hidden/>
+            <input type="text" value="0" name="attr_attack_dmg_bonus" readonly hidden/>
+            <input type="text" value="5" name="attr_attack_crit_chance" readonly hidden/>
             <input type="text" value="" name="attr_attack_scaling" readonly hidden/>
             <input type="text" value="" name="attr_attack_dice_one" readonly hidden/>
             <input type="text" value="" name="attr_attack_type_one" readonly hidden/>
@@ -877,7 +878,6 @@
 </div><!--end tag for master-->
 
 <script type="text/worker">
-
     // attributes lists
     const baseAttributes = ["Vigour","Endurance","Intelligence","Strength","Dexterity","Perception","Arcana","Faith","Nature","Charisma"];
     const armourAttributes = ["phys_resist","mag_resist"];
@@ -886,6 +886,21 @@
     const allAttributes = [...baseAttributes, ...armourAttributes, ...bonusAttributes, ...armourValues];
     const baseEvents = allAttributes.map(attr => "change:" + attr).join(" ")
     const damageTypes = ["slashing","piercing","bludgeoning","fire","frost","shadow","water","poison"]
+
+    
+    const bubbleFieldList = ["hp", "barrier", "barrier_max", "vitality", "fp", "sp", "equip_load"]
+    const bubbleFieldEvents = bubbleFieldList.map(attr => "change:" + attr).join(" ")+" "+baseEvents
+    on("", function(obj, prev) {
+        console.log(obj);
+        let result = {};
+        result[obj.sourceAttribute] = obj.newValue;
+        if (/^[+\-*/%]\d+/.test(obj.newValue)) {
+            result[obj.sourceAttribute] = jsSum(eval(obj.newValue), obj.previousValue);
+        }
+        console.log(result);
+        setAttrs(result);
+    });
+
 
     // prompt
     const promptTakeDamage = ["promptTakeDamage","promptClose","promptTake"];
@@ -1030,60 +1045,53 @@
     };
 
     // roll attack hit
-    on("clicked:repeating_attacks:hit",(event) => {
+    on("clicked:repeating_attacks:attack-one clicked:repeating_attacks:attack-two",(event) => {
+        const hand = event.htmlAttributes.name.replace("act_", "")
         const [section,rowID] = parseTriggerName(event.triggerName);
         // Assemble the row string so we can use it easily later
         const attack = `${section}_${rowID}_attack`;
         // Get all the attributes we need
         // Note the async tag here. This will allow us to await 
         // startroll instead of using the callback syntax.
-        getAttrs(["character_name", "attackMode", `${attack}_name`,`${attack}_acc_bonus`,`${attack}_crit_chance`,`${attack}_scaling`,`${attack}_ranged`,`${attack}_range`,`${attack}_spell`,...allAttributes], async (values) => {
+        getAttrs(["character_name", "attackMode", `${attack}_name`,`${attack}_acc_bonus`,`${attack}_crit_chance`,`${attack}_scaling`,`${attack}_ranged`,`${attack}_range`,`${attack}_spell`,`${attack}_dmg_bonus`,`${attack}_dice_one`,`${attack}_type_one`,`${attack}_dice_two`,`${attack}_type_two`,`${attack}_dice_secondary`,`${attack}_type_secondary`,...allAttributes], async (values) => {
+            console.log(values)
 
             const scaling = values[`${attack}_scaling`]
             const acc = jsSum(values[`${scaling}`], values[`${scaling}_bonus`], values[`${attack}_acc_bonus`])
 
-            const type = (values[`${attack}_spell`] != 0) ? `{{spell=1}} {{category=${scaling}}}` : ((values[`${attack}_ranged`] != 0) ? `{{weapon=1}} {{category=Ranged Attack}}` : `{{weapon=1}} {{category=Melee Attack}}`)
-
-            const critThreshold = 20 - jsSum(values[`${attack}_crit_chance`], -5) / 5
-
-            const rollString = `&{template:atk} {{charname=${values.character_name}}} {{title=${values[`${attack}_name`]}}} ${type} {{r1=[[1d20cs>${critThreshold}+${acc}]]}} {{${values.attackMode}=1}}`
-
-            // Send the roll to the parser
-            const results = await startRoll(rollString);
-            // Tell roll20 that the roll is ready to be displayed in chat
-            finishRoll(results.rollId);
-        })
-    })
-
-    // roll attack damage
-    function attack_damage(attack, hand) {
-        getAttrs(["character_name", "attackMode", `${attack}_name`,`${attack}_scaling`,`${attack}_spell`,`${attack}_dmg_bonus`,`${attack}_dice_one`,`${attack}_type_one`,`${attack}_dice_two`,`${attack}_type_two`,`${attack}_dice_secondary`,`${attack}_type_secondary`,...allAttributes], async (values) => {
-            console.log(attack)
-            const scaling = values[`${attack}_scaling`]
-            const acc = jsSum(values[`${scaling}`], values[`${scaling}_bonus`], values[`${attack}_acc_bonus`])
 
             const type = (values[`${attack}_spell`] != 0) ? "{{spell=1}}" : "{{weapon=1}}"
-            let damage = (hand == "one") ? `{{dmg1flag=1}} {{dmg1=[[${values[`${attack}_dice_one`]}+${values[`${attack}_dmg_bonus`]}]]}} {{dmg1type=${values[`${attack}_type_one`]}}}` : `{{dmg1flag=1}} {{dmg1=[[${values[`${attack}_dice_two`]}+${values[`${attack}_dmg_bonus`]}]]}} {{dmg1type=${values[`${attack}_type_two`]}}}`
+            const category = (values[`${attack}_spell`] != 0) ? `{{category=${scaling}}}` : ((values[`${attack}_ranged`] != 0) ? `{{category=Ranged Attack}}` : `{{category=Melee Attack}}`)
+
+            const critThreshold = 20 - jsSum(values[`${attack}_crit_chance`], -5) / 5
+            const rollString = `&{template:atk} {{charname=${values.character_name}}} {{title=${values[`${attack}_name`]}}} ${type} ${category} {{r1=[[1d20cs>${critThreshold}+${acc}]]}} {{r2=[[1d20cs>${critThreshold}${(acc>0)?`+${acc}`:""}]]}} {{${values.attackMode}=1}} {{damage=${`~${values.character_name}|${attack}_dmg`}}}`
+
+            // Send the roll to the parser
+            console.log(rollString)
+            const results = await startRoll(rollString);
+
+            let damage = (hand == "attack-one") ? `{{dmg1flag=1}} {{dmg1=[[${values[`${attack}_dice_one`]}${(values[`${attack}_dmg_bonus`] != "")? "+"+values[`${attack}_dmg_bonus`]:""}]]}} {{dmg1type=${values[`${attack}_type_one`]}}}` : `{{dmg1flag=1}} {{dmg1=[[${values[`${attack}_dice_two`]}${(values[`${attack}_dmg_bonus`] != "")? "+"+values[`${attack}_dmg_bonus`]:""}]]}} {{dmg1type=${values[`${attack}_type_two`]}}}`
             damage += (values[`${attack}_dice_secondary`] != "") ? ` {{dmg2flag=1}} {{dmg2=[[${values[`${attack}_dice_secondary`]}]]}} {{dmg2type=${values[`${attack}_type_secondary`]}}}` : ""
 
-            const rollString = `&{template:atkdmg} {{damage=1}} {{charname=${values.character_name}}} {{title=${values[`${attack}_name`]}}} ${type} ${damage} {{${values.attackMode}=1}} {{crit=0}}  {{crit1=[[1d1]]}} `
+            const r1 = results.results.r1.dice[0]
+            const r2 = results.results.r2.dice[0]
+            const dice = (values.attackMode == "normal") ? r1 : ((values.attackMode == "advantage") ? Math.max(r1, r2) : Math.min(r1, r2))
+            console.log(results)
 
-            console.log(rollString)
-            // Send the roll to the parser
-            const results = await startRoll(rollString);
+            let critical = (dice >= critThreshold) ? `{{crit=1}} {{crit1=[[${(hand == "attack-one") ? values[`${attack}_dice_one`] : values[`${attack}_dice_two`]}]]}}` : ""
+            critical  += (values[`${attack}_dice_secondary`] != "") ? ` {{crit2=[[${values[`${attack}_dice_secondary`]}]]}}` : ""
+
+            const damageString = `&{template:dmg} {{damage=1}} {{charname=${values.character_name}}} {{title=${values[`${attack}_name`]}}} ${type} ${category} ${damage} ${critical}`
+
+            console.log(damageString)
+            damageRoll = {}
+            damageRoll[`${attack}_roll_dmg`] = damageString
+
+            setAttrs(Object.assign(damageRoll));
+
             // Tell roll20 that the roll is ready to be displayed in chat
             finishRoll(results.rollId);
         })
-    }
-
-    on("clicked:repeating_attacks:dmg-one",(event) => {
-        const [section,rowID] = parseTriggerName(event.triggerName);
-        attack_damage(`${section}_${rowID}_attack`, "one");
-    })
-
-    on("clicked:repeating_attacks:dmg-two",(event) => {
-        const [section,rowID] = parseTriggerName(event.triggerName);
-        attack_damage(`${section}_${rowID}_attack`, "two");
     })
 
     // reset values on rest
@@ -1376,6 +1384,7 @@
                         attack_ranged: (values[`repeating_weapons_${id}_weapon_ranged`] == "0") ? values[`repeating_weapons_${id}_weapon_dmg_bonus`] : "1",
                         attack_one: (values[`repeating_weapons_${id}_weapon_dice_one`] != "") ? "show" : "hide",
                         attack_two: (values[`repeating_weapons_${id}_weapon_dice_two`] != "") ? "show" : "hide",
+                        attack_roll_dmg: `&{template:default} {{name=${values[`repeating_weapons_${id}_weapon_name`]}}} `
                 }));
                 let runes = rs_ids.filter((id) => !!values[`repeating_rune-spells_${id}_rs_dice`]).map((id) => ({
                     attack_name: values[`repeating_rune-spells_${id}_rs_name`],
@@ -1385,14 +1394,17 @@
                     attack_spell: "1",
                     attack_one: "show",
                     attack_two: "hide",
+                    attack_roll_dmg: `&{template:default} {{name=${values[`repeating_rune-spells_${id}_rs_name`]}}} `
                 }));
                 let invocations = ic_ids.filter((id) => !!values[`repeating_ic-saved_${id}_ic_dice`]).map((id) => ({
                     attack_name: values[`repeating_ic-saved_${id}_ic_name`],
                     attack_dice_one: values[`repeating_ic-saved_${id}_ic_dice`],
                     attack_scaling: values[`repeating_ic-saved_${id}_ic_scaling`],
                     attack_range: values[`repeating_ic-saved_${id}_ic_range`],
+                    attack_spell: "1",
                     attack_one: "show",
                     attack_two: "hide",
+                    attack_roll_dmg: `&{template:default} {{name=${values[`repeating_ic-saved_${id}_ic_name`]}}} `,
                 }));
 
                 getSectionIDs("repeating_attacks", function(idarray) {
@@ -1520,8 +1532,8 @@
             <div class="sheet-rt-card">
                 <div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#spell}}  sheet-spell{{/spell}}{{#attribute}} sheet-attribute{{/attribute}}">
                 
-                    <div class="sheet-rt-title">{{title}}</div>
-                
+                    <div class="sheet-rt-title">[{{title}}]({{damage}})</div>
+
                     {{#charname}}
                     <div class="sheet-rt-subheader">{{charname}} &bullet; Accuracy {{#category}}&bullet; {{category}}{{/category}}</div>
                     {{/charname}}

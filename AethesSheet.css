@@ -353,12 +353,10 @@ div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn 
 .info-Backstory { grid-area: info-Backstory; }
 
 
-/* ----------------------- ROLL TEMPLATES ----------------------- */
-
+/* 5e ROLL TEMPLATES */
 .sheet-rolltemplate-desc .sheet-rt-card,
+.sheet-rolltemplate-spell .sheet-rt-card,
 .sheet-rolltemplate-atkdmg .sheet-rt-card,
-.sheet-rolltemplate-dmg .sheet-rt-card,
-.sheet-rolltemplate-atk .sheet-rt-card,
 .sheet-rolltemplate-simple .sheet-rt-card {
     width: 95%;
     background-color: #FFFFFF;
@@ -374,7 +372,41 @@ div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn 
     margin-top: 3%;
 }
 
-/* Universal header */
+
+.sheet-rolltemplate-dmg .sheet-rt-card {
+    width: 95%;
+    background-color: #FFFFFF;
+    font-size: 11px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: black 1px solid;
+    padding: 5px 0px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 3%;
+}
+
+.sheet-rolltemplate-atk .sheet-rt-card {
+    width: 95%;
+    background-color: #FFFFFF;
+    font-size: 11px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: black 1px solid;
+    padding: 5px 0px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 3%;
+}
+
+
+/* Generic header */
 
 .sheet-rolltemplate-desc .sheet-rt-header,
 .sheet-rolltemplate-atkdmg .sheet-rt-header,
