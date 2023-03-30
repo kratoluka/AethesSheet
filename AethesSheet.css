@@ -142,7 +142,9 @@ button.attack-mode-disadvantage {
 /* By deafult make attack mode button red*/
 button.attack-mode-normal,
 button.attack-mode-advantage,
-button.attack-mode-disadvantage {
+button.attack-mode-disadvantage,
+button.attack-button-one,
+button.attack-button-two {
     display: none;
 }
 
@@ -152,6 +154,11 @@ button.attack-mode-disadvantage {
 .attack-mode[value="disadvantage"] ~ button.attack-mode-disadvantage {
     display: inline-block;
     align-content: right;
+}
+
+.repcontainer[data-groupname="repeating_attacks"]>.repitem .attack-one[value="show"]  ~ button.attack-button-one,
+.repcontainer[data-groupname="repeating_attacks"]>.repitem .attack-two[value="show"]  ~ button.attack-button-two {
+    display: inline-block;
 }
 
 /*Stats*/
@@ -344,3 +351,538 @@ div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn 
 .info-Weapon { grid-area: info-Weapon; }
 .info-Tool { grid-area: info-Tool; }
 .info-Backstory { grid-area: info-Backstory; }
+
+
+/* ----------------------- ROLL TEMPLATES ----------------------- */
+
+.sheet-rolltemplate-desc .sheet-rt-card,
+.sheet-rolltemplate-atkdmg .sheet-rt-card,
+.sheet-rolltemplate-dmg .sheet-rt-card,
+.sheet-rolltemplate-atk .sheet-rt-card,
+.sheet-rolltemplate-simple .sheet-rt-card {
+    width: 95%;
+    background-color: #FFFFFF;
+    font-size: 11px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: black 1px solid;
+    padding: 5px 0px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 3%;
+}
+
+/* Universal header */
+
+.sheet-rolltemplate-desc .sheet-rt-header,
+.sheet-rolltemplate-atkdmg .sheet-rt-header,
+.sheet-rolltemplate-dmg .sheet-rt-header,
+.sheet-rolltemplate-atk .sheet-rt-header,
+.sheet-rolltemplate-simple .sheet-rt-header {
+    text-align: center;
+    position: relative;
+    color: #fff;
+    margin: 0 -10px 10px -10px;
+    padding: 5px 0;
+    background-color: #5c5c5c;
+    background-image: linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+    -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .3); }
+.sheet-rolltemplate-desc .sheet-rt-header:before,
+.sheet-rolltemplate-desc .sheet-rt-header:after,
+.sheet-rolltemplate-atkdmg .sheet-rt-header:before,
+.sheet-rolltemplate-atkdmg .sheet-rt-header:after,
+.sheet-rolltemplate-dmg .sheet-rt-header:before,
+.sheet-rolltemplate-dmg .sheet-rt-header:after,
+.sheet-rolltemplate-atk .sheet-rt-header:before,
+.sheet-rolltemplate-atk .sheet-rt-header:after,
+.sheet-rolltemplate-simple .sheet-rt-header:before,
+.sheet-rolltemplate-simple .sheet-rt-header:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-color: transparent;
+    bottom: -10px; }
+.sheet-rolltemplate-desc .sheet-rt-header:before,
+.sheet-rolltemplate-atkdmg .sheet-rt-header:before,
+.sheet-rolltemplate-dmg .sheet-rt-header:before,
+.sheet-rolltemplate-atk .sheet-rt-header:before,
+.sheet-rolltemplate-simple .sheet-rt-header:before {
+    border-width: 0 10px 10px 0;
+    border-right-color: #222;
+    left: 0; }
+.sheet-rolltemplate-desc .sheet-rt-header:after,
+.sheet-rolltemplate-atkdmg .sheet-rt-header:after,
+.sheet-rolltemplate-dmg .sheet-rt-header:after,
+.sheet-rolltemplate-atk .sheet-rt-header:after,
+.sheet-rolltemplate-simple .sheet-rt-header:after {
+    border-width: 0 0 10px 10px;
+    border-left-color: #222;
+    right: 0; }
+.sheet-rolltemplate-desc .sheet-rt-title,
+.sheet-rolltemplate-atkdmg .sheet-rt-title,
+.sheet-rolltemplate-dmg .sheet-rt-title,
+.sheet-rolltemplate-atk .sheet-rt-title,
+.sheet-rolltemplate-simple .sheet-rt-title {
+    font-size: 1.5em; }
+.sheet-rolltemplate-desc .sheet-rt-subheader,
+.sheet-rolltemplate-atkdmg .sheet-rt-subheader,
+.sheet-rolltemplate-dmg .sheet-rt-subheader,
+.sheet-rolltemplate-atk .sheet-rt-subheader,
+.sheet-rolltemplate-simple .sheet-rt-subheader {}
+
+/* Melee header (red) */
+
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-weapon,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-weapon,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-weapon,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-weapon,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-weapon {
+    background-color: #5f0a0b; }
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-weapon:before,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-weapon:before,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-weapon:before,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-weapon:before,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-weapon:before {
+    border-right-color: #503535; }
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-weapon:after,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-weapon:after,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-weapon:after,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-weapon:after,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-weapon:after {
+    border-left-color: #503535; }
+
+/* Spell header (purple) */
+
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-spell,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-spell,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-spell,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-spell,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-spell {
+    background-color: #45285D; }
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-spell:before,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-spell:before,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-spell:before,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-spell:before,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-spell:before {
+    border-right-color: #443550; }
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-spell:after,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-spell:after,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-spell:after,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-spell:after,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-spell:after {
+    border-left-color: #443550; }
+
+/* Attribute header (blue) */
+
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-attribute,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-attribute,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-attribute,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-attribute,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-attribute {
+    background-color: #28595D; }
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-attribute:before,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-attribute:before,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-attribute:before,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-attribute:before,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-attribute:before {
+    border-right-color: #354E50; }
+.sheet-rolltemplate-desc .sheet-rt-header.sheet-attribute:after,
+.sheet-rolltemplate-atkdmg .sheet-rt-header.sheet-attribute:after,
+.sheet-rolltemplate-dmg .sheet-rt-header.sheet-attribute:after,
+.sheet-rolltemplate-atk .sheet-rt-header.sheet-attribute:after,
+.sheet-rolltemplate-simple .sheet-rt-header.sheet-attribute:after {
+    border-left-color: #354E50; }
+.sheet-rolltemplate-desc .sheet-main-content,
+.sheet-rolltemplate-atkdmg .sheet-main-content,
+.sheet-rolltemplate-dmg .sheet-main-content,
+.sheet-rolltemplate-atk .sheet-main-content,
+.sheet-rolltemplate-simple .sheet-main-content {}
+
+.sheet-rolltemplate-desc .sheet-main-content hr.sheet-roll,
+.sheet-rolltemplate-atkdmg .sheet-main-content hr.sheet-roll,
+.sheet-rolltemplate-dmg .sheet-main-content hr.sheet-roll,
+.sheet-rolltemplate-atk .sheet-main-content hr.sheet-roll,
+.sheet-rolltemplate-simple .sheet-main-content hr.sheet-roll {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #D64541;
+    background-color: #D64541;
+    height: 1px; }
+
+
+/* ------------- Darkest Dungeon ROLL TEMPLATES ------------- */
+
+.sheet-rolltemplate-desc .sheet-grey {
+  color: #A0A0A0;
+  font-weight: normal; }
+.sheet-rolltemplates {
+  display: none; }
+.sheet-rolltemplate-simple .sheet-containerold {
+  width: 189px;
+  background: url(http://i.imgur.com/53WSdhx.png) top left;
+  background-size: 189px 100%;
+  background-repeat: no-repeat;
+  color: black; }
+.sheet-rolltemplate-simple .sheet-container {
+  width: 189px;
+  color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white; }
+.sheet-rolltemplate-atk .sheet-containerold,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-atkold,
+.sheet-rolltemplate-dmg .sheet-atkold {
+  width: 189px;
+  background: url(http://i.imgur.com/4RCRsAd.png) top left;
+  background-size: 189px 100%;
+  background-repeat: no-repeat;
+  color: black; }
+.sheet-rolltemplate-atk .sheet-container,
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-atk,
+.sheet-rolltemplate-dmg .sheet-atk {
+  width: 189px;
+  color: black;
+  border: 1px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: white; }
+.sheet-rolltemplate-atkdmg .sheet-container.sheet-damagetemplate,
+.sheet-rolltemplate-dmg .sheet-container.sheet-damagetemplate {
+  width: 189px;
+  color: black;
+  border: 1px solid black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: white; }
+.sheet-rolltemplate-simple .sheet-result,
+.sheet-rolltemplate-atk .sheet-result,
+.sheet-rolltemplate-atkdmg .sheet-result,
+.sheet-rolltemplate-dmg .sheet-result,
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .sheet-result,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-result {
+  min-height: 45px; }
+.sheet-rolltemplate-simple .sheet-adv,
+.sheet-rolltemplate-atk .sheet-adv,
+.sheet-rolltemplate-atkdmg .sheet-adv,
+.sheet-rolltemplate-dmg .sheet-adv {
+  width: 84px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  margin-top: 15px; }
+.sheet-rolltemplate-simple .sheet-adv:first-child,
+.sheet-rolltemplate-atk .sheet-adv:first-child,
+.sheet-rolltemplate-atkdmg .sheet-adv:first-child,
+.sheet-rolltemplate-dmg .sheet-adv:first-child {
+  width: 48%;
+  color:#000000; }
+.sheet-rolltemplate-simple .sheet-adv:nth-child(3),
+.sheet-rolltemplate-atk .sheet-adv:nth-child(3),
+.sheet-rolltemplate-atkdmg .sheet-adv:nth-child(3),
+.sheet-rolltemplate-dmg .sheet-adv:nth-child(3) {
+  width: 48%;
+  color:#000000; }
+.sheet-rolltemplate-simple .sheet-solo span,
+.sheet-rolltemplate-simple .sheet-adv span,
+.sheet-rolltemplate-atk .sheet-solo span,
+.sheet-rolltemplate-atk .sheet-adv span,
+.sheet-rolltemplate-atkdmg .sheet-solo span,
+.sheet-rolltemplate-atkdmg .sheet-adv span,
+.sheet-rolltemplate-dmg .sheet-solo span {
+  width: 30px;
+  font-size: 30px;
+  background-color: transparent;
+  border: 0px;
+  padding: 0px; }
+.sheet-rolltemplate-dmg .sheet-adv span,
+.sheet-rolltemplate-atkdmg .sheet-adv .sheet-damage span {
+  width: 30px;
+  font-size: 26px;
+  background-color: transparent;
+  border: 0px;
+  padding: 0px; }
+.sheet-rolltemplate-simple .sheet-advspacer,
+.sheet-rolltemplate-atk .sheet-advspacer,
+.sheet-rolltemplate-atkdmg .sheet-advspacer,
+.sheet-rolltemplate-dmg .sheet-advspacer {
+  width: 0px;
+  border: 1px solid black;
+  display: inline-block;
+  height: 44px; }
+.sheet-rolltemplate-simple .sheet-solo,
+.sheet-rolltemplate-atk .sheet-solo,
+.sheet-rolltemplate-atkdmg .sheet-solo,
+.sheet-rolltemplate-dmg .sheet-solo {
+  width: 100%;
+  color: #000000;
+  text-align: center;
+  height: 23px;
+  padding-top: 15px; }
+.sheet-rolltemplate-simple span,
+.sheet-rolltemplate-atk span,
+.sheet-rolltemplate-atkdmg span,
+.sheet-rolltemplate-dmg span {
+  font-size: 12px;
+  line-height: 12px;
+  text-align: center;
+  font-weight: bold; }
+.sheet-rolltemplate-dmg .sheet-desc span.sheet-plus,
+.sheet-rolltemplate-atkdmg .sheet-desc span.sheet-plus {
+  font-weight: bold;
+  font-size: 30px;
+  display: inline; }
+.sheet-rolltemplate-simple .sheet-grey,
+.sheet-rolltemplate-simple .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-simple .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-simple .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-simple .sheet-label span span,
+.sheet-rolltemplate-atk .sheet-label span span,
+.sheet-rolltemplate-atk .sheet-grey,
+.sheet-rolltemplate-atk .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atk .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-atk .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-atkdmg .sheet-label span span,
+.sheet-rolltemplate-atkdmg .sheet-grey,
+.sheet-rolltemplate-atkdmg .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atkdmg .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-atkdmg .sheet-grey .inlinerollresult.importantroll,
+.sheet-rolltemplate-dmg .sheet-label span span,
+.sheet-rolltemplate-dmg .sheet-grey,
+.sheet-rolltemplate-dmg .sheet-grey .inlinerollresult.fullcrit,
+.sheet-rolltemplate-dmg .sheet-grey .inlinerollresult.fullfail,
+.sheet-rolltemplate-dmg .sheet-grey .inlinerollresult.importantroll {
+  color: #A0A0A0;
+  border: 0px; }
+.sheet-rolltemplate-simple .sheet-label,
+.sheet-rolltemplate-atk .sheet-label,
+.sheet-rolltemplate-atkdmg .sheet-label,
+.sheet-rolltemplate-dmg .sheet-label {
+  text-align: center;
+  margin-top: -3px;
+  padding-bottom: 5px; }
+.sheet-rolltemplate-simple .sheet-label span span,
+.sheet-rolltemplate-atk .sheet-label span span,
+.sheet-rolltemplate-atkdmg .sheet-label span span,
+.sheet-rolltemplate-dmg .sheet-label span span {
+  padding: 0px;
+  border: 0px;
+  background-color: transparent;
+  font-size: 12px; }
+.sheet-rolltemplate-simple .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atk .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atkdmg .inlinerollresult.fullcrit,
+.sheet-rolltemplate-dmg .inlinerollresult.fullcrit {
+  color: #3FB315;
+  border: 0px; }
+.sheet-rolltemplate-simple .inlinerollresult.fullfail,
+.sheet-rolltemplate-atk .inlinerollresult.fullfail,
+.sheet-rolltemplate-atkdmg .inlinerollresult.fullfail,
+.sheet-rolltemplate-dmg .inlinerollresult.fullfail {
+  color: #B31515;
+  border: 0px; }
+.sheet-rolltemplate-simple .inlinerollresult.importantroll,
+.sheet-rolltemplate-atk .inlinerollresult.importantroll,
+.sheet-rolltemplate-atkdmg .inlinerollresult.importantroll,
+.sheet-rolltemplate-dmg .inlinerollresult.importantroll {
+  color: #4A57ED;
+  border: 0px; }
+.sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-result,
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .sheet-result {
+  padding-top: 3%;
+  padding-bottom: 2%; }
+.sheet-rolltemplate-atk .sheet-damage,
+.sheet-rolltemplate-atkdmg .sheet-damage,
+.sheet-rolltemplate-dmg .sheet-damage {
+  text-align: center;
+  margin-top: -5px; }
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .inlinerollresult.fullfail,
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .inlinerollresult.importantroll,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.fullcrit,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.fullfail,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .inlinerollresult.importantroll,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult.importantroll,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult.fullfail,
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult.fullcrit,
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult.importantroll,
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult.fullfail
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult.fullcrit,
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult.importantroll,
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult.fullfail {
+  color: black;
+  border: 0px; }
+.sheet-rolltemplate-atk .sheet-attribute .sheet-attributedc,
+.sheet-rolltemplate-dmg .sheet-attribute .sheet-attributedc,
+.sheet-rolltemplate-atkdmg .sheet-attribute .sheet-attributedc {
+  padding-bottom: 5px;
+  padding-top: 15px;
+  text-align: center; }
+.sheet-rolltemplate-atk .sheet-attribute .sheet-attributedc span,
+.sheet-rolltemplate-dmg .sheet-attribute .sheet-attributedc span,
+.sheet-rolltemplate-atkdmg .sheet-attribute .sheet-attributedc span {
+  font-size: 15px;
+  font-weight: bold; }
+.sheet-rolltemplate-atk .sheet-attribute .sheet-label span,
+.sheet-rolltemplate-dmg .sheet-attribute .sheet-label span,
+.sheet-rolltemplate-atkdmg .sheet-attribute .sheet-label span {
+  font-weight: bold; }
+.sheet-rolltemplate-atk .sheet-attribute .inlinerollresult,
+.sheet-rolltemplate-dmg .sheet-attribute .inlinerollresult,
+.sheet-rolltemplate-atkdmg .sheet-attribute .inlinerollresult {
+  background-color: transparent;
+  border: 0px;
+  padding: 0px;
+  display: inline-block;
+  font-weight: bold; }
+
+.sheet-rolltemplate-dmg .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-atkdmg .sheet-desc .inlinerollresult,
+.sheet-rolltemplate-atk .sheet-desc .inlinerollresult {
+  background-color: transparent;
+  border: 0px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 30px;
+  padding-top: 10px;
+  padding-bottom: 6px; }
+.sheet-rolltemplate-dmg .sheet-desc .sheet-label span,
+.sheet-rolltemplate-atkdmg .sheet-desc .sheet-label span {
+  font-weight: bold; }
+.sheet-rolltemplate-atk .sheet-attribute span,
+.sheet-rolltemplate-dmg .sheet-attribute span,
+.sheet-rolltemplate-atkdmg .sheet-attribute span {
+  font-weight: normal;
+  line-height: 12px;
+  display: block; }
+.sheet-rolltemplate-atk .sheet-attribute span.sheet-bold,
+.sheet-rolltemplate-dmg .sheet-attribute span.sheet-bold,
+.sheet-rolltemplate-atkdmg .sheet-attribute span.sheet-bold {
+  font-weight: bold;
+  display: inline-block; }
+.sheet-rolltemplate-atk .sheet-sublabel,
+.sheet-rolltemplate-atkdmg .sheet-sublabel,
+.sheet-rolltemplate-dmg .sheet-sublabel {
+  text-align: center;
+  font-style: italic;
+  margin-top: -2px;
+  min-height: 17px; }
+.sheet-rolltemplate-atk .sheet-descold,
+.sheet-rolltemplate-atkdmg .sheet-descold,
+.sheet-rolltemplate-dmg .sheet-descold {
+  width: 189px;
+  background: url(http://i.imgur.com/4988JS0.png) top left;
+  background-size: 189px 100%;
+  background-repeat: no-repeat;
+  color: black;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px; }
+.sheet-rolltemplate-atk .sheet-desc,
+.sheet-rolltemplate-atkdmg .sheet-desc,
+.sheet-rolltemplate-dmg .sheet-desc {
+  width: 189px;
+  border: 1px solid black;
+  color: black;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+  width: 95%;
+  margin-left: 2%; 
+  margin-top: 2%;}
+.sheet-rolltemplate-atk .sheet-desc span,
+.sheet-rolltemplate-atkdmg .sheet-desc span,
+.sheet-rolltemplate-dmg .sheet-desc span {
+  font-weight: normal;
+  line-height: 12px;
+  display: block; }
+.sheet-rolltemplate-atk .sheet-info span,
+.sheet-rolltemplate-atkdmg .sheet-info span,
+.sheet-rolltemplate-dmg .sheet-info span {
+  text-align: left;
+  padding: 0px 5px 0px 5px; }
+.sheet-rolltemplate-atk .sheet-info .inlinerollresult,
+.sheet-rolltemplate-atkdmg .sheet-info .inlinerollresult,
+.sheet-rolltemplate-dmg .sheet-info .inlinerollresult {
+  font-size: inherit;
+  padding: 0px; }
+.sheet-rolltemplate-atkdmg .sheet-damagetemplate .sheet-sublabel,
+.sheet-rolltemplate-dmg .sheet-damagetemplate .sheet-sublabel,
+.sheet-rolltemplate-atkdmg .sheet-desc .sheet-sublabel,
+.sheet-rolltemplate-dmg .sheet-desc .sheet-sublabel {
+  display: inline-block;
+  width: 100%;
+  font-size: 11px;
+  font-weight: normal;
+  margin-top: -5px;
+  color: #A0A0A0; }
+.sheet-rolltemplate-atk .sheet-sublabel span,
+.sheet-rolltemplate-atkdmg .sheet-sublabel span,
+.sheet-rolltemplate-dmg .sheet-sublabel span {
+  font-weight: normal;
+  color: black; }
+.sheet-rolltemplate-atk .sheet-spacer,
+.sheet-rolltemplate-atkdmg .sheet-spacer,
+.sheet-rolltemplate-dmg .sheet-spacer {
+  height: 10px; }
+.sheet-rolltemplate-dmg {
+  margin-top: -7px;
+  position: relative; }
+.sheet-rolltemplate-atk a[href^="~"] {
+  background-color: transparent;
+  padding: 0px;
+  color: black;
+  border: 0px; }
+.sheet-rolltemplate-atk a:hover {
+  color: #EC2127; }
+.sheet-rolltemplate-atk a[href^="~"]:visited {
+  pointer-events: none; }
+.sheet-rolltemplate-desc .sheet-container {
+  width: 95%;
+  background: url(https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/spellbg.jpg) center center;
+  background-size: auto;
+  background-repeat: repeat;
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  padding: 6%;
+  margin-left: -4%;
+  border: 1px solid black; }
+.withoutavatars .sheet-rolltemplate-desc .sheet-container {
+  margin-left: -15px; }
+.sheet-rolltemplate-desc .sheet-row {
+  font-size: 0.65vw;
+  font-size: 14px;
+  text-align: justify;
+  display: block; }
+.sheet-rolltemplate-desc .sheet-bold {
+  font-weight: bold; }
+.sheet-rolltemplate-desc .sheet-spacer {
+  height: 5px; }
+.sheet-rolltemplate-desc .sheet-description {
+  font-size: 0.63vw;
+  font-size: 14px; }
+.sheet-rolltemplate-simple .sheet-charname,
+.sheet-rolltemplate-atk .sheet-charname,
+.sheet-rolltemplate-dmg .sheet-charname,
+.sheet-rolltemplate-atkdmg .sheet-charname {
+  text-align: center;
+  margin-top: -10px; }
+.sheet-rolltemplate-simple .sheet-charname span,
+.sheet-rolltemplate-atk .sheet-charname span,
+.sheet-rolltemplate-dmg .sheet-charname span,
+.sheet-rolltemplate-atkdmg .sheet-charname span {
+  font-size: 11px;
+  font-weight: normal;
+  color: #A0A0A0; }
+.sheet-rolltemplate-dmg .sheet-label .sheet-rolltemplate-inline,
+.sheet-rolltemplate-dmg .sheet-attributedc .sheet-rolltemplate-inline,
+.sheet-rolltemplate-atkdmg .sheet-attributedc .sheet-rolltemplate-inline,
+.sheet-rolltemplate-atkdmg .sheet-label .sheet-rolltemplate-inline {
+  display: inline-block; }
+
