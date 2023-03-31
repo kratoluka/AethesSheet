@@ -16,6 +16,10 @@ button {
     background-color: black;
 }
 
+textarea {
+    box-sizing: border-box;
+}
+
 .headpiece-img {
     width: 20%;
 }
@@ -32,6 +36,9 @@ input.headpiece-name {
     text-align: center;
 }
 
+input[type="text"] {
+    width: 100%;
+}
 
 .prompt-background {
     position: absolute;
@@ -61,6 +68,11 @@ input.headpiece-name {
 }
 
 /* By deafult hide attack mode button*/
+button.attribute-mode-normal,
+button.attribute-mode-advantage,
+button.attribute-mode-disadvantage{
+    display: none;
+}
 button.attack-mode-normal,
 button.attack-mode-advantage,
 button.attack-mode-disadvantage {
@@ -68,11 +80,15 @@ button.attack-mode-disadvantage {
 }
 
 /* display selected attack mode */
-.attack-mode[value="normal"] ~ button.attack-mode-normal,
+.attribute-mode[value="normal"] ~ button.attribute-mode-normal,
+.attribute-mode[value="advantage"] ~ button.attribute-mode-advantage,
+.attribute-mode[value="disadvantage"] ~ button.attribute-mode-disadvantage{
+    display: inline-block;
+}
+.attack-mode[value="normal"] ~ button.attack-mode-normal
 .attack-mode[value="advantage"] ~ button.attack-mode-advantage,
 .attack-mode[value="disadvantage"] ~ button.attack-mode-disadvantage {
     display: inline-block;
-    align-content: right;
 }
 
 .charsheet div.sheet-master {  
@@ -156,8 +172,9 @@ button.attack-mode-disadvantage {
         "attribute-Row-Arcana"
         "attribute-Row-Faith"
         "attribute-Row-Nature"
-        "attribute-Row-Charisma";
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+        "attribute-Row-Charisma"
+        "state-Row-Buffer";
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
 .attribute-Row-Vigour { grid-area: attribute-Row-Vigour; display: grid; }
@@ -191,8 +208,9 @@ button.attack-mode-disadvantage {
         "state-Row-Vitality"
         "state-Row-Focus"
         "state-Row-Stamina"
-        "state-Row-Rest";
-    grid-template-rows: auto auto auto auto auto auto auto;
+        "state-Row-Rest"
+        "state-Row-Buffer";
+    grid-template-rows: auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
 .state-Row-Title { grid-area: state-Row-Title; display: grid; }
@@ -224,8 +242,10 @@ button.attack-mode-disadvantage {
         "stats-Row-EquipLoad"
         "stats-Row-Physical"
         "stats-Row-Magical"
-        "stats-Row-Resistant";
-    grid-template-rows: auto auto auto auto auto auto auto auto;
+        "stats-Row-Resistant"
+        "stats-Row-TakeDamage"
+        "state-Row-Buffer";
+    grid-template-rows: auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
 .stats-Row-Title { grid-area: stats-Row-Title; display: grid; }
@@ -236,15 +256,75 @@ button.attack-mode-disadvantage {
 .stats-Row-Physical { grid-area: stats-Row-Physical; display: grid; }
 .stats-Row-Magical { grid-area: stats-Row-Magical; display: grid; }
 .stats-Row-Resistant { grid-area: stats-Row-Resistant; display: grid; }
+.stats-Row-TakeDamage { grid-area: stats-Row-TakeDamage; display: grid; }
 .stats-Row {
     display: grid; 
     grid-template-areas:
         "stats-Row-Name stats-Row-Value";
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 4fr 3fr;
     grid-template-rows: auto;
 }
 .stats-Row-Name { grid-area: stats-Row-Name }
 .stats-Row-Value { grid-area: stats-Row-Value }
+
+
+/* Overview Attacks Grid */
+.charsheet div.sheet-overview-Attacks { 
+    display: grid;
+    grid-area: overview-Attacks; 
+    grid-template-areas:
+        "attacks-Row-Title"
+        "attacks-Row-Attacks"
+        "state-Row-Buffer";
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+}
+.attacks-Row-Title { grid-area: attacks-Row-Title; display: grid; }
+.attacks-Row-Attacks { grid-area: attacks-Row-Attacks; display: grid; }
+.attacks-Row {
+    display: grid; 
+    grid-template-areas:
+        "attacks-Row-Name attacks-Row-Buttons";
+    grid-template-columns: 1fr 0.5fr;
+    grid-template-rows: auto;
+}
+.attacks-Row-Name { grid-area: attacks-Row-Name }
+.attacks-Row-Button { grid-area: attacks-Row-Buttons } }
+
+
+/* Overview Rune Spells Grid */
+.charsheet div.sheet-overview-Runes { 
+    display: grid;
+    grid-area: overview-Runes; 
+    grid-template-areas:
+        "runes-Row-Title"
+        "runes-Row-Memory"
+        "runes-Row-Runes"
+        "runes-Row-Buffer";
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-columns: 1fr;
+}
+.runes-Row-Title { grid-area: runes-Row-Title; display: grid; }
+.runes-Row-Memory { grid-area: runes-Row-Memory; display: grid; }
+.runes-Row-Runes { grid-area: runes-Row-Runes; display: grid; }
+.runes-MRow {
+    display: grid; 
+    grid-template-areas:
+        "runes-Row-MTitle runes-Row-MState";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+.runes-Row {
+    display: grid; 
+    grid-template-areas:
+        "runes-Row-Name runes-Row-Check";
+    grid-template-columns: 1fr 0.1fr;
+    grid-template-rows: auto;
+}
+.runes-Row-Name { grid-area: runes-Row-Name }
+.runes-Row-Check { grid-area: runes-Row-Check }
+.runes-Row-MTitle { grid-area: runes-Row-MTitle }
+.runes-Row-MState { grid-area: runes-Row-MState }
 
 
 .charsheet div.sheet-overview-Attacks { grid-area: overview-Attacks; }
@@ -283,6 +363,18 @@ button.attack-button-two {
 }
 .charsheet div.sheet-stats-Character { grid-area: stats-Character; }
 
+/* Stats Character Grid */
+.charsheet div.sheet-stats-Character { 
+    display: grid;
+    grid-area: stats-Character; 
+    grid-template-areas:
+        "stats-character-Name stats-character-Race";
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+.stats-character-Name { grid-area: stats-character-Name; }
+.stats-character-Race { grid-area: stats-character-Race; }
+
 /* Stats Attributes Grid */
 .charsheet div.sheet-stats-Attributes { 
     display: grid;
@@ -299,8 +391,9 @@ button.attack-button-two {
         "stats-attribute-Row-Arcana"
         "stats-attribute-Row-Faith"
         "stats-attribute-Row-Nature"
-        "stats-attribute-Row-Charisma";
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto;
+        "stats-attribute-Row-Charisma"
+        "state-Row-Buffer";
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
 .stats-attribute-Row-Title { grid-area: stats-attribute-Row-Title; display: grid; }
@@ -328,33 +421,32 @@ button.attack-button-two {
 /* Stats Stats Grid */
 .charsheet div.sheet-stats-Stats { 
     display: grid;
-    grid-area: stats-Attributes; 
+    grid-area: stats-Stats; 
     grid-template-areas:
         "stats-stats-Row-Title"
         "stats-stats-Row-XP"
         "stats-stats-Row-Health"
-        "stats-stats-Row-Vigour"
+        "stats-stats-Row-Vitality"
         "stats-stats-Row-Focus"
         "stats-stats-Row-Stamina"
         "stats-stats-Row-Initiative"
         "stats-stats-Row-Evasion"
         "stats-stats-Row-Speed"
-        "stats-stats-Row-EquipLoad";
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+        "stats-stats-Row-EquipLoad"
+        "state-Row-Buffer";
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
 .stats-stats-Row-Title { grid-area: stats-stats-Row-Title; display: grid; }
 .stats-stats-Row-XP { grid-area: stats-stats-Row-XP; display: grid; }
-.stats-stats-Row-Vigour { grid-area: stats-stats-Row-Vigour; display: grid; }
-.stats-stats-Row-Endurance { grid-area: stats-stats-Row-Endurance; display: grid; }
-.stats-stats-Row-Intelligence { grid-area: stats-stats-Row-Intelligence; display: grid; }
-.stats-stats-Row-Strength { grid-area: stats-stats-Row-Strength; display: grid; }
-.stats-stats-Row-Dexterity { grid-area: stats-stats-Row-Dexterity; display: grid; }
-.stats-stats-Row-Perception { grid-area: stats-stats-Row-Perception; display: grid; }
-.stats-stats-Row-Arcana { grid-area: stats-stats-Row-Arcana; display: grid; }
-.stats-stats-Row-Faith { grid-area: stats-stats-Row-Faith; display: grid; }
-.stats-stats-Row-Nature { grid-area: stats-stats-Row-Nature; display: grid; }
-.stats-stats-Row-Charisma { grid-area: stats-stats-Row-Charisma; display: grid; }
+.stats-stats-Row-Health { grid-area: stats-stats-Row-Health; display: grid; }
+.stats-stats-Row-Vitality { grid-area: stats-stats-Row-Vitality; display: grid; }
+.stats-stats-Row-Focus { grid-area: stats-stats-Row-Focus; display: grid; }
+.stats-stats-Row-Stamina { grid-area: stats-stats-Row-Stamina; display: grid; }
+.stats-stats-Row-Initiative { grid-area: stats-stats-Row-Initiative; display: grid; }
+.stats-stats-Row-Evasion { grid-area: stats-stats-Row-Evasion; display: grid; }
+.stats-stats-Row-Speed { grid-area: stats-stats-Row-Speed; display: grid; }
+.stats-stats-Row-EquipLoad { grid-area: stats-stats-Row-EquipLoad; display: grid; }
 .stats-stats-Row {
     display: grid; 
     grid-template-areas:
@@ -365,9 +457,33 @@ button.attack-button-two {
 .stats-stats-Row-Name { grid-area: stats-stats-Row-Name }
 .stats-stats-Row-Value { grid-area: stats-stats-Row-Value }
 
+/* Stats Armour Grid */
+.charsheet div.sheet-stats-Armour { 
+    display: grid;
+    grid-area: stats-Armour; 
+    grid-template-areas:
+        "stats-armour-Row-Title"
+        "stats-armour-Row-Physical"
+        "stats-armour-Row-Magical"
+        "stats-armour-Row-Resistant"
+        "state-Row-Buffer";
+    grid-template-rows: auto auto auto auto 1fr;
+    grid-template-columns: 1fr;
+}
+.stats-armour-Row-Title { grid-area: stats-armour-Row-Title; display: grid; }
+.stats-armour-Row-Physical { grid-area: stats-armour-Row-Physical; display: grid; }
+.stats-armour-Row-Magical { grid-area: stats-armour-Row-Magical; display: grid; }
+.stats-armour-Row-Resistant { grid-area: stats-armour-Row-Resistant; display: grid; }
+.stats-armour-Row {
+    display: grid; 
+    grid-template-areas:
+        "stats-armour-Row-Name stats-armour-Row-Value";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+.stats-armour-Row-Name { grid-area: stats-armour-Row-Name }
+.stats-armour-Row-Value { grid-area: stats-armour-Row-Value }
 
-.charsheet div.sheet-stats-Stats { grid-area: stats-Stats; }
-.charsheet div.sheet-stats-Armour { grid-area: stats-Armour; }
 
 /*Basic*/
 .charsheet div.sheet-perks,
