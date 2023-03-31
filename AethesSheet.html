@@ -24,121 +24,241 @@
         <input type="number" name="attr_level" value="1" readonly/><br>
     </div>
     <div class="sheet-overview-Attributes sheet-block">
-        <h2>Attributes</h2>
-        <h3> Vigour </h3>
-        <input type="number" name="attr_Vigour" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Vigour} + @{Vigour_bonus} Vigour" name="roll_Vigour"></button>
-        <br>
-        <h3> Endurance </h3>
-        <input type="number" name="attr_Endurance" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Endurance} + @{Endurance_bonus} Endurance" name="roll_Endurance"></button>
-        <br>
-        <h3> Intelligence </h3>
-        <input type="number" name="attr_Intelligence" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Intelligence} + @{Intelligence_bonus} Intelligence" name="roll_Intelligence"></button>
-        <br>
-        <h3> Strength </h3>
-        <input type="number" name="attr_Strength" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Strength} + @{Strength_bonus} Strength" name="roll_Strength"></button>
-        <br>
-        <h3> Dexterity </h3>
-        <input type="number" name="attr_Dexterity" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Dexterity} + @{Dexterity_bonus} Dexterity" name="roll_Dexterity"></button>
-        <br>
-        <h3> Perception </h3>
-        <input type="number" name="attr_Perception" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Perception} + @{Perception_bonus} Perception" name="roll_Perception"></button>
-        <br>
-        <h3> Arcana </h3>
-        <input type="number" name="attr_Arcana" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Arcana} + @{Arcana_bonus} Arcana" name="roll_Arcana"></button>
-        <br>
-        <h3> Faith </h3>
-        <input type="number" name="attr_Faith" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Faith} + @{Faith_bonus} Faith" name="roll_Faith"></button>
-        <br>
-        <h3> Nature </h3>
-        <input type="number" name="attr_Nature" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Nature} + @{Nature_bonus} Nature" name="roll_Nature"></button>
-        <br>
-        <h3> Charisma </h3>
-        <input type="number" name="attr_Charisma" value="1" min="1" readonly/>
-        <button type='roll' value="/roll 1d20 + @{Charisma} + @{Charisma_bonus} Charisma" name="roll_Charisma"></button>
-    </div>
-    <div class="sheet-overview-State sheet-block">
-        <h2>State</h2>
-        <strong> Health: </strong>
-        <input type="number" value="0" name="attr_hp" step="any"/>
-        <text> /</text>
-        <input type="number" value="10" name="attr_hp_max" readonly/>
-        <br>
-
-        <strong> Barrier: </strong>
-        <input type="number" value="0" name="attr_barrier"/>
-        <text> /</text>
-        <input type="number" value="0" name="attr_barrier_max"/>
-        <button type="action" name="act_barrier_reset">⟳</button>
-        <br>
-
-        <strong> Vitality: </strong>
-        <input type="number" value="0" name="attr_vitality"/>
-        <text> /</text>
-        <input type="number" value="10" name="attr_vitality_max" readonly/>
-        <br>
-
-        <strong> Focus: </strong>
-        <input type="number" value="0" name="attr_fp"/>
-        <text> /</text>
-        <input type="number" value="10" name="attr_fp_max" readonly/>
-        <br>
-
-        <strong> Stamina: </strong>
-        <input type="number" value="0" name="attr_sp"/>
-        <text> /</text>
-        <input type="number" value="10" name="attr_sp_max" readonly/>
-        <br>
-        <button type="action" name="act_rest">Rest</button>
-    </div>
-    <div class="sheet-overview-Stats sheet-block">
-        <h2>Stats</h2>
-        <strong> Initiative: </strong>
-        <input type="number" name="attr_initiative_total" value="1" readonly/><br>
-        <strong> Evasion: </strong>
-        <input type="number" name="attr_evasion_total" value="1" readonly/><br>
-        <strong> Speed: </strong>
-        <input type="number" name="attr_speed_total" value="1" readonly/><br>
-        <strong> Equip Load: </strong>
-        <input type="number" value="0" name="attr_equip_load"/>
-        <text> /</text>
-        <input type="number" value="1" name="attr_equip_load_max" readonly/><br>
-        <strong> Physical Resistance: </strong>
-        <input type="number" name="attr_phys_resist_total" value="0" readonly/>
-        <br>
-        <strong> Magical Resistance: </strong>
-        <input type="number" name="attr_mag_resist_total" value="0" readonly/>
-        <br>
-
-        <strong> Resistant to: </strong>
-        <fieldset class="repeating_resistance">
-            <input type="text" name="attr_resistance" readonly/>
-        </fieldset>
-        <input type="hidden" class="prompt-take-damage" name="attr_promptTakeDamage"/>
-        <button type="action" class="prompt-take-damage-button" name="act_promptTakeDamage"> Take Damage </button>
-        <div class="prompt-background">
-            <input type="hidden" class="sheet-prompt" name="attr_promptAttack"/>
-            <div class="prompt-attack">
-                Take Damage<button type="action" name="act_promptClose">Close</button><br>
-                Slashing<input type="number" name="attr_take_slashing" value="0"/><br>
-                Piercing<input type="number" name="attr_take_piercing" value="0"/><br>
-                Bludgeoning<input type="number" name="attr_take_bludgeoning" value="0"/><br>
-                Fire<input type="number" name="attr_take_fire" value="0"/><br>
-                Frost<input type="number" name="attr_take_frost" value="0"/><br>
-                Shadow<input type="number" name="attr_take_shadow" value="0"/><br>
-                Water<input type="number" name="attr_take_water" value="0"/><br>
-                Poison<input type="number" name="attr_take_poison" value="0"/><br>
-                <button type="action" name="act_promptTake">Take Damage</button>
+        <div class="attribute-Row-Title">
+            <h2>Attributes</h2>
+        </div>
+        <div class="attribute-Row attribute-Row-Vigour">
+            <div class="attribute-Row-Name">
+                <h3> Vigour </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Vigour" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Vigour} + @{Vigour_bonus} Vigour" name="roll_Vigour"></button>
             </div>
         </div>
+        <div class="attribute-Row attribute-Row-Endurance">
+            <div class="attribute-Row-Name">
+                <h3> Endurance </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Endurance" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Endurance} + @{Endurance} Endurance" name="roll_Endurance"></button>
+            </div>
+        </div>
+        <div class="attribute-Row attribute-Row-Intelligence">
+            <div class="attribute-Row-Name">
+                <h3> Intelligence </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Intelligence" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Intelligence} + @{Intelligence_bonus} Intelligence" name="roll_Intelligence"></button>
+            </div>
+        </div>
+        <div class="attribute-Row attribute-Row-Strength">
+            <div class="attribute-Row-Name">
+                <h3> Strength </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Strength" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Strength} + @{Strength_bonus} Strength" name="roll_Strength"></button>
+            </div>
+        </div>
+        <div class="attribute-Row attribute-Row-Dexterity">
+            <div class="attribute-Row-Name">
+                <h3> Dexterity </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Dexterity" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Dexterity} + @{Dexterity_bonus} Dexterity" name="roll_Dexterity"></button>
+            </div>
+        </div>
+        <div class="attribute-Row attribute-Row-Perception">
+            <div class="attribute-Row-Name">
+                <h3> Perception </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Perception" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Perception} + @{Perception_bonus} Perception" name="roll_Perception"></button>
+            </div>
+        </div>
+        <div class="attribute-Row attribute-Row-Arcana">
+            <div class="attribute-Row-Name">
+                <h3> Arcana </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Arcana" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Arcana} + @{Arcana_bonus} Arcana" name="roll_Arcana"></button>
+            </div>
+        </div>
+        <div class="attribute-Row attribute-Row-Faith">
+            <div class="attribute-Row-Name">
+                <h3> Faith </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Faith" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Faith} + @{Faith_bonus} Faith" name="roll_Faith"></button>
+            </div>
+        </div>
+        <div class="attribute-Row attribute-Row-Nature">
+            <div class="attribute-Row-Name">
+                <h3> Nature </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Nature" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Nature} + @{Nature_bonus} Nature" name="roll_Nature"></button>
+            </div>
+        </div>
+        <div class="attribute-Row attribute-Row-Charisma">
+            <div class="attribute-Row-Name">
+                <h3> Charisma </h3>
+            </div>
+            <div class="attribute-Row-Value">
+                <input type="number" name="attr_Vigour" value="1" min="1" readonly/>
+                <button type='roll' value="/roll 1d20 + @{Charisma} + @{Charisma_bonus} Charisma" name="roll_Charisma"></button>
+            </div>
+        </div>
+    </div>
+    <div class="sheet-overview-State sheet-block">
+        <div class="state-Row-Title">
+            <h2>State</h2>
+        </div>
+
+        <div class="state-Row state-Row-Health">
+            <div class="state-Row-Name">
+                <strong> Health: </strong>
+            </div>
+            <div class="state-Row-Value">
+                <input type="number" value="0" name="attr_hp" step="any"/>
+                <text> /</text>
+                <input type="number" value="10" name="attr_hp_max" readonly/>
+            </div>
+        </div>
+
+        <div class="state-Row state-Row-Barrier">
+            <div class="state-Row-Name">
+                <strong> Barrier: </strong>
+            </div>
+            <div class="state-Row-Value">
+                <input type="number" value="0" name="attr_barrier" step="any"/>
+                <text> /</text>
+                <input type="number" value="10" name="attr_barrier_max" readonly/>
+            </div>
+        </div>
+
+        <div class="state-Row state-Row-Vitality">
+            <div class="state-Row-Name">
+                <strong> Vitality: </strong>
+            </div>
+            <div class="state-Row-Value">
+                <input type="number" value="0" name="attr_vitality" step="any"/>
+                <text> /</text>
+                <input type="number" value="10" name="attr_vitality_max" readonly/>
+            </div>
+        </div>
+
+        <div class="state-Row state-Row-Focus">
+            <div class="state-Row-Name">
+                <strong> Focus: </strong>
+            </div>
+            <div class="state-Row-Value">
+                <input type="number" value="0" name="attr_fp" step="any"/>
+                <text> /</text>
+                <input type="number" value="10" name="attr_fp_max" readonly/>
+            </div>
+        </div>
+
+        <div class="state-Row state-Row-Stamina">
+            <div class="state-Row-Name">
+                <strong> Stamina: </strong>
+            </div>
+            <div class="state-Row-Value">
+                <input type="number" value="0" name="attr_sp" step="any"/>
+                <text> /</text>
+                <input type="number" value="10" name="attr_sp_max" readonly/>
+            </div>
+        </div>
+        <div class="state-Row-Rest">
+            <button type="action" name="act_rest">Rest</button>
+        </div>
+    </div>
+    <div class="sheet-overview-Stats sheet-block">
+        <div class="stats-Row-Title">
+            <h2>Stats</h2>
+        </div>
+        <div class="stats-Row stats-Row-Initiative">
+            <div class="stats-Row-Name">
+                <strong> Initiative: </strong>
+            </div>
+            <div class="stats-Row-Value">
+                <input type="number" name="attr_initiative_total" value="1" readonly/>
+            </div>
+        </div>
+        <div class="stats-Row stats-Row-Evasion">
+            <div class="stats-Row-Name">
+                <strong> Evasion: </strong>
+            </div>
+            <div class="stats-Row-Value">
+                <input type="number" name="attr_evasion_total" value="1" readonly/>
+            </div>
+        </div>
+        <div class="stats-Row stats-Row-Speed">
+            <div class="stats-Row-Name">
+                <strong> Speed: </strong>
+            </div>
+            <div class="stats-Row-Value">
+                <input type="number" name="attr_speed_total" value="1" readonly/>
+            </div>
+        </div>
+        <div class="stats-Row stats-Row-EquipLoad">
+            <div class="stats-Row-Name">
+                <strong> Equip Load:: </strong>
+            </div>
+            <div class="stats-Row-Value">
+                <input type="number" value="0" name="attr_equip_load"/>
+                <text> /</text>
+                <input type="number" value="1" name="attr_equip_load_max" readonly/>
+            </div>
+        </div>
+        <div class="stats-Row stats-Row-Physical">
+            <div class="stats-Row-Name">
+                <strong> Physical Resist: </strong>
+            </div>
+            <div class="stats-Row-Value">
+        <input type="number" name="attr_phys_resist_total" value="0" readonly/>
+            </div>
+        </div>
+        <div class="stats-Row stats-Row-Magical">
+            <div class="stats-Row-Name">
+                <strong> Magical Resist: </strong>
+            </div>
+            <div class="stats-Row-Value">
+        <input type="number" name="attr_mag_resist_total" value="0" readonly/>
+            </div>
+        </div>
+        <div class="stats-Row stats-Row-Resistant">
+            <strong> Resistant to: </strong>
+            <fieldset class="repeating_resistance">
+                <input type="text" name="attr_resistance" readonly/>
+            </fieldset>
+            <input type="hidden" class="prompt-take-damage" name="attr_promptTakeDamage"/>
+            <button type="action" class="prompt-take-damage-button" name="act_promptTakeDamage"> Take Damage </button>
+            <div class="prompt-background">
+                <input type="hidden" class="sheet-prompt" name="attr_promptAttack"/>
+                <div class="prompt-attack">
+                    Take Damage<button type="action" name="act_promptClose">Close</button><br>
+                    Slashing<input type="number" name="attr_take_slashing" value="0"/><br>
+                    Piercing<input type="number" name="attr_take_piercing" value="0"/><br>
+                    Bludgeoning<input type="number" name="attr_take_bludgeoning" value="0"/><br>
+                    Fire<input type="number" name="attr_take_fire" value="0"/><br>
+                    Frost<input type="number" name="attr_take_frost" value="0"/><br>
+                    Shadow<input type="number" name="attr_take_shadow" value="0"/><br>
+                    Water<input type="number" name="attr_take_water" value="0"/><br>
+                    Poison<input type="number" name="attr_take_poison" value="0"/><br>
+                    <button type="action" name="act_promptTake">Take Damage</button>
+                </div>
+            </div>
+        </div>
+
 
     </div>
     <div class="sheet-overview-Attacks sheet-block">
@@ -225,116 +345,218 @@
         </select>
     </div>
     <div class="sheet-stats-Attributes sheet-block">
-        <h2>Attributes</h2>
-        <strong> XP Used: </strong>
-        <input type="number" value="0" name="attr_xp_used" readonly/>
-        <text> /</text>
-        <input type="number" value="100" name="attr_xp" readonly/>
+        <div class="stats-attribute-Row-Title">
+            <h2>Attributes</h2>
+        </div>
+        <div class="stats-attribute-Row-XP stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <strong> XP Used: </strong>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" value="0" name="attr_xp_used" readonly/>
+                <text> /</text>
+                <input type="number" value="100" name="attr_xp" readonly/>
+            </div>
+        </div>
+        <div class="stats-attribute-Row-Vigour stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Vigour </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Vigour" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Vigour_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-attribute-Row-Endurance stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Endurance </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Endurance" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Endurance_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-attribute-Row-Intelligence stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Intelligence </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Intelligence" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Intelligence_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-attribute-Row-Strength stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Strength </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Strength" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Strength_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-attribute-Row-Dexterity stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Dexterity </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Dexterity" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Dexterity_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-attribute-Row-Perception stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Perception </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Perception" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Perception_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-attribute-Row-Arcana stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Arcana </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Arcana" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Arcana_bonus" value="0"/>
+            </div>
+        </div>
         <br>
-        <h3> Vigour </h3>
-        <input type="number" name="attr_Vigour" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Vigour_bonus" value="0"/>
+        <div class="stats-attribute-Row-Faith stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Faith </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Faith" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Faith_bonus" value="0"/>
+            </div>
+        </div>
         <br>
-        <h3> Endurance </h3>
-        <input type="number" name="attr_Endurance" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Endurance_bonus" value="0"/>
+        <div class="stats-attribute-Row-Nature stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Nature </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Nature" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Nature_bonus" value="0"/>
+            </div>
+        </div>
         <br>
-        <h3> Intelligence </h3>
-        <input type="number" name="attr_Intelligence" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Intelligence_bonus" value="0"/>
-        <br>
-        <h3> Strength </h3>
-        <input type="number" name="attr_Strength" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Strength_bonus" value="0"/>
-        <br>
-        <h3> Dexterity </h3>
-        <input type="number" name="attr_Dexterity" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Dexterity_bonus" value="0"/>
-        <br>
-        <h3> Perception </h3>
-        <input type="number" name="attr_Perception" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Perception_bonus" value="0"/>
-        <br>
-        <h3> Arcana </h3>
-        <input type="number" name="attr_Arcana" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Arcana_bonus" value="0"/>
-        <br>
-        <h3> Faith </h3>
-        <input type="number" name="attr_Faith" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Faith_bonus" value="0"/>
-        <br>
-        <h3> Nature </h3>
-        <input type="number" name="attr_Nature" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Nature_bonus" value="0"/>
-        <br>
-        <h3> Charisma </h3>
-        <input type="number" name="attr_Charisma" value="1" min="1"/>
-        <text>Bonus</text>
-        <input type="number" name="attr_Charisma_bonus" value="0"/>
+        <div class="stats-attribute-Row-Charisma stats-attribute-Row">
+            <div class="stats-attribute-Row-Name">
+                <h3> Charisma </h3>
+            </div>
+            <div class="stats-attribute-Row-Value">
+                <input type="number" name="attr_Charisma" value="1" min="1"/>
+                <text>Bonus</text>
+                <input type="number" name="attr_Charisma_bonus" value="0"/>
+            </div>
+        </div>
     </div>
     <div class="sheet-stats-Stats sheet-block">
-        <h2>Stats</h2>
-        <strong> XP: </strong>
-        <input type="number" name="attr_xp" value="100"/>
-        <strong> Level: </strong>
-        <input type="number" name="attr_level" value="1" readonly/>
-        <br>
+        <div class="stats-stats-Row-Title">
+            <h2>Stats</h2>
+        </div>
 
-        <strong> Health: </strong>
-        <input type="number" value="10" name="attr_hp_base" readonly/>
-        <text>Bonus</text>
-        <input type="number" name="attr_hp_bonus" value="0"/>
-        <br>
-
-        <strong> Vitality: </strong>
-        <input type="number" value="1" name="attr_vitality_base" readonly/>
-        <text>Bonus</text>
-        <input type="number" name="attr_vitality_bonus" value="0"/>
-        <br>
-
-        <strong> Focus: </strong>
-        <input type="number" value="10" name="attr_fp_base" readonly/>
-        <text>Bonus</text>
-        <input type="number" name="attr_focus_bonus" value="0"/>
-        <br>
-
-        <strong> Stamina: </strong>
-        <input type="number" value="1" name="attr_sp_base" readonly/>
-        <text>Bonus</text>
-        <input type="number" name="attr_sp_bonus" value="0"/>
-        <br>
-
-        <strong> Initiative: </strong>
-        <input type="number" value="1" name="attr_initiative_base" readonly/>
-        <text>Bonus</text>
-        <input type="number" name="attr_initiative_bonus" value="0"/>
-        <br>
-
-        <strong> Evasion: </strong>
-        <input type="number" value="1" name="attr_evasion_base" readonly/>
-        <text>Bonus</text>
-        <input type="number" name="attr_evasion_bonus" value="0"/>
-        <br>
-
-        <strong> Speed: </strong>
-        <input type="number" value="20" name="attr_speed_base" readonly/>
-        <text>Bonus</text>
-        <input type="number" name="attr_speed_bonus" value="0"/>
-        <br>
-
-        <strong> Equip Load: </strong>
-        <input type="number" value="1" name="attr_equip_load_base" readonly/>
-        <text>Bonus</text>
-        <input type="number" name="attr_equip_load_bonus" value="0"/>
+        <div class="stats-stats-Row-XP stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> XP: </strong>
+            </div>
+            <div class="stats-stats-Row-Value">
+                <input type="number" value="0" name="attr_xp" readonly/>
+                <text> /</text>
+                <input type="number" value="100" name="attr_level" readonly/>
+            </div>
+        </div>
+        <div class="stats-stats-Row-Health stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> Health: </strong>
+            </div>
+            <div class="stats-stats-Row-Health">
+                <input type="number" value="10" name="attr_hp_base" readonly/>
+                <text>Bonus</text>
+                <input type="number" name="attr_hp_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-stats-Row-Vitality stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> Vitality: </strong>
+            </div>
+            <div class="stats-stats-Row-Vitality">
+                <input type="number" value="1" name="attr_vitality_base" readonly/>
+                <text>Bonus</text>
+                <input type="number" name="attr_vitality_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-stats-Row-Focus stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> Focus: </strong>
+            </div>
+            <div class="stats-stats-Row-Focus">
+                <input type="number" value="10" name="attr_fp_base" readonly/>
+                <text>Bonus</text>
+                <input type="number" name="attr_focus_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-stats-Row-Stamina stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> Stamina: </strong>
+            </div>
+            <div class="stats-stats-Row-Stamina">
+                <input type="number" value="1" name="attr_sp_base" readonly/>
+                <text>Bonus</text>
+                <input type="number" name="attr_sp_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-stats-Row-Initiative stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> Initiative: </strong>
+            </div>
+            <div class="stats-stats-Row-Initiative">
+                <input type="number" value="1" name="attr_initiative_base" readonly/>
+                <text>Bonus</text>
+                <input type="number" name="attr_initiative_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-stats-Row-Evasion stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> Evasion: </strong>
+            </div>
+            <div class="stats-stats-Row-Evasion">
+                <input type="number" value="1" name="attr_evasion_base" readonly/>
+                <text>Bonus</text>
+                <input type="number" name="attr_evasion_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-stats-Row-Speed stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> Speed: </strong>
+            </div>
+            <div class="stats-stats-Row-Speed">
+                <input type="number" value="20" name="attr_speed_base" readonly/>
+                <text>Bonus</text>
+                <input type="number" name="attr_speed_bonus" value="0"/>
+            </div>
+        </div>
+        <div class="stats-stats-Row-Equip-Load stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <strong> Equip Load: </strong>
+            </div>
+            <div class="stats-stats-Row-Equip-Load">
+                <input type="number" value="1" name="attr_equip_load_base" readonly/>
+                <text>Bonus</text>
+                <input type="number" name="attr_equip_load_bonus" value="0"/>
+            </div>
+        </div> 
     </div>
     <div class="sheet-stats-Armour sheet-block">
         <h2>Resistance</h2>
@@ -476,9 +698,9 @@
             <input type="text" name="attr_rs_name"/>
             <strong>Cast:</strong>
             <select name="attr_rs_scaling">
-                <option value="arcane" selected>Arcane</option>
-                <option value="faith">Faith</option>
-                <option value="nature">Nature</option>
+                <option value="Arcana" selected>Arcana</option>
+                <option value="Faith">Faith</option>
+                <option value="Nature">Nature</option>
             </select>
             <strong>AP Cost:</strong>
             <input type="number" name="attr_rs_ap" value="2"/>
@@ -620,11 +842,11 @@
         <br>
         <strong>Cast:</strong>
         <select name="attr_ic_scaling">
-            <option value="arcane" selected>Arcane</option>
-            <option value="faith">Faith</option>
-            <option value="nature">Nature</option>
+            <option value="Arcana" selected>Arcana</option>
+            <option value="Faith">Faith</option>
+            <option value="Nature">Nature</option>
         </select>
-        <input type="hidden" class="sheet-ic_scaling_toggle" name="attr_ic_scaling"  value="arcane"/> 
+        <input type="hidden" class="sheet-ic_scaling_toggle" name="attr_ic_scaling"  value="Arcana"/> 
         <strong>Effect:</strong>
         <div class="sheet-arcane">
         <select name="attr_ic_effect">
@@ -709,8 +931,12 @@
         <input type="text" value="" name="attr_ic_dice" readonly />
         <button>Placeholder CAST</button>
         <br>
-        <input class="ic_warning" type="text" name="attr_ic_warning" readonly/>
-        <br><strong>Description:</strong><br>
+        <input class="ic_warning" type="hidden" name="attr_ic_warning" value="" readonly/>
+        <div class="ic_warning_template"><input type="text" name="attr_ic_warning_template" value="" readonly><br></div>
+        <div class="ic_warning_effect"><input type="text" name="attr_ic_warning_effect" value="" readonly><br></div>
+        <div class="ic_warning_int"><input type="text" name="attr_ic_warning_int" value="" readonly><br></div>
+        <div class="ic_warning_attr"><input type="text" name="attr_ic_warning_attr" value="" readonly><br></div>
+        <strong>Description:</strong><br>
         <textarea name="attr_ic_desc_full" cols="20" rows="2" readonly></textarea>
         <button type="action" name="act_ic_save">Save</button>
         <!--hidden fields-->
@@ -1285,16 +1511,39 @@
 
     function invocationWarning(effect, template, attribute, attr_req, int_req) {
         getAttrs(["ic_ememory", "ic_tmemory",...allAttributes], function(values) {
-
+            console.log(values)
+            console.log(attribute)
+            console.log(values[attribute])
 
             let warning = "";
-            warning += (!values.ic_ememory.includes(effect)) ? `You do not know ${snakeToTitleCase(effect)}\n` : "";
-            warning += (!values.ic_tmemory.includes(template)) ? `You do not know ${snakeToTitleCase(template)}\n` : "";
-            warning += (parseInt(values[attribute]) < attr_req) ? `Your ${attribute} is not high enough\n` : "";
-            warning += (parseInt(values.Intelligence) < int_req) ? `Your Intelligence is not high enough\n` : "";
+            let warningTemplate = "";
+            let warningEffect = "";
+            let warningInt = "";
+            let warningAttr = "";
 
+            if (!values.ic_tmemory.includes(template)) { 
+                warningTemplate = `You do not know ${snakeToTitleCase(template)}\n`;
+                warning += "template "
+            }
+            if (!values.ic_ememory.includes(effect)) { 
+                warningEffect = `You do not know ${snakeToTitleCase(effect)}\n`;
+                warning += "effect "
+            }
+            if (parseInt(values[attribute]) < parseInt(attr_req)) { 
+                warningAttr = `Your ${attribute} is not high enough\n`;
+                warning += "attr "
+            }
+            if (parseInt(values["Intelligence"]) < parseInt(int_req)) { 
+                warningInt = `Your Intelligence is not high enough\n`;
+                warning += "int "
+            }
+            console.log(warning)
             setAttrs({
                 ic_warning: warning,
+                ic_warning_template: warningTemplate,
+                ic_warning_effect: warningEffect,
+                ic_warning_attr: warningAttr,
+                ic_warning_int: warningInt,
             });
         });
     }
@@ -1314,7 +1563,7 @@
             const description = `${template.description.replace("{}", snakeToTitleCase(values.ic_effect))}\n${effect.description}`;
             const descriptionFull = `${description}${contested}\nRange: ${template.range}\nDuration: ${template.duration}`;
 
-            invocationWarning(values.ic_effect, values.ic_template, effect.attr_required + tiered.req_cost);
+            invocationWarning(values.ic_effect, values.ic_template, values.ic_scaling, effect.attr_required + tiered.req_cost, template.int_required);
 
             setAttrs({
                 ic_name: spell_name,

@@ -7,6 +7,10 @@
     color: white;
 }
 
+h3 {
+    display: inline-block;
+}
+
 button {
     border: 3px solid white;
     background-color: black;
@@ -40,6 +44,7 @@ input.headpiece-name {
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
 }
+
 .prompt-attack {
     position: absolute;
     top: 50%;
@@ -50,23 +55,26 @@ input.headpiece-name {
     background-color: black;
     padding: 5px;
 }
+
 .prompt-take-damage[value="promptTakeDamage"] ~ div.prompt-background {
     display: block;
 }
-/* By deafult make attack mode button red*/
+
+/* By deafult hide attack mode button*/
 button.attack-mode-normal,
 button.attack-mode-advantage,
 button.attack-mode-disadvantage {
     display: none;
 }
 
-/* color the selected button */
+/* display selected attack mode */
 .attack-mode[value="normal"] ~ button.attack-mode-normal,
 .attack-mode[value="advantage"] ~ button.attack-mode-advantage,
 .attack-mode[value="disadvantage"] ~ button.attack-mode-disadvantage {
     display: inline-block;
     align-content: right;
 }
+
 .charsheet div.sheet-master {  
     display: grid; 
     grid-gap: 5px;
@@ -125,16 +133,121 @@ button.attack-mode-disadvantage {
     grid-template-areas:
         "overview-Headpiece overview-Headpiece overview-Race"
         "overview-Attributes overview-State overview-Stats"
-        "overview-Weapons overview-Runes overview-Invocations"
+        "overview-Attacks overview-Runes overview-Invocations"
         "overview-Notes overview-Notes overview-Notes";
     grid-template-columns: 1fr 1fr 1fr;
 }
 .charsheet div.sheet-overview-Headpiece { grid-area: overview-Headpiece; }
 .charsheet div.sheet-overview-Race { grid-area: overview-Race; }
-.charsheet div.sheet-overview-Attributes { grid-area: overview-Attributes; }
-.charsheet div.sheet-overview-State { grid-area: overview-State; }
-.charsheet div.sheet-overview-Stats { grid-area: overview-Stats; }
-.charsheet div.sheet-overview-Weapons { grid-area: overview-Weapons; }
+
+
+/* Overview Attributes Grid */
+.charsheet div.sheet-overview-Attributes { 
+    display: grid;
+    grid-area: overview-Attributes; 
+    grid-template-areas:
+        "attribute-Row-Title"
+        "attribute-Row-Vigour"
+        "attribute-Row-Endurance"
+        "attribute-Row-Intelligence"
+        "attribute-Row-Strength"
+        "attribute-Row-Dexterity"
+        "attribute-Row-Perception"
+        "attribute-Row-Arcana"
+        "attribute-Row-Faith"
+        "attribute-Row-Nature"
+        "attribute-Row-Charisma";
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 1fr;
+}
+.attribute-Row-Vigour { grid-area: attribute-Row-Vigour; display: grid; }
+.attribute-Row-Endurance { grid-area: attribute-Row-Endurance; display: grid; }
+.attribute-Row-Intelligence { grid-area: attribute-Row-Intelligence; display: grid; }
+.attribute-Row-Strength { grid-area: attribute-Row-Strength; display: grid; }
+.attribute-Row-Dexterity { grid-area: attribute-Row-Dexterity; display: grid; }
+.attribute-Row-Perception { grid-area: attribute-Row-Perception; display: grid; }
+.attribute-Row-Arcana { grid-area: attribute-Row-Arcana; display: grid; }
+.attribute-Row-Faith { grid-area: attribute-Row-Faith; display: grid; }
+.attribute-Row-Nature { grid-area: attribute-Row-Nature; display: grid; }
+.attribute-Row-Charisma { grid-area: attribute-Row-Charisma; display: grid; }
+.attribute-Row {
+    display: grid; 
+    grid-template-areas:
+        "attribute-Row-Name attribute-Row-Value";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+.attribute-Row-Name { grid-area: attribute-Row-Name }
+.attribute-Row-Value { grid-area: attribute-Row-Value }
+
+/* Overview State Grid */
+.charsheet div.sheet-overview-State { 
+    display: grid;
+    grid-area: overview-State; 
+    grid-template-areas:
+        "state-Row-Title"
+        "state-Row-Health"
+        "state-Row-Barrier"
+        "state-Row-Vitality"
+        "state-Row-Focus"
+        "state-Row-Stamina"
+        "state-Row-Rest";
+    grid-template-rows: auto auto auto auto auto auto auto;
+    grid-template-columns: 1fr;
+}
+.state-Row-Title { grid-area: state-Row-Title; display: grid; }
+.state-Row-Health { grid-area: state-Row-Health; display: grid; }
+.state-Row-Barrier { grid-area: state-Row-Barrier; display: grid; }
+.state-Row-Vitality { grid-area: state-Row-Vitality; display: grid; }
+.state-Row-Focus { grid-area: state-Row-Focus; display: grid; }
+.state-Row-Stamina { grid-area: state-Row-Stamina; display: grid; }
+.state-Row-Rest { grid-area: state-Row-Rest; display: grid; }
+.state-Row {
+    display: grid; 
+    grid-template-areas:
+        "state-Row-Name state-Row-Value";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+.state-Row-Name { grid-area: state-Row-Name }
+.state-Row-Value { grid-area: state-Row-Value }
+
+/* Overview Stats Grid */
+.charsheet div.sheet-overview-Stats { 
+    display: grid;
+    grid-area: overview-Stats; 
+    grid-template-areas:
+        "stats-Row-Title"
+        "stats-Row-Initiative"
+        "stats-Row-Evasion"
+        "stats-Row-Speed"
+        "stats-Row-EquipLoad"
+        "stats-Row-Physical"
+        "stats-Row-Magical"
+        "stats-Row-Resistant";
+    grid-template-rows: auto auto auto auto auto auto auto auto;
+    grid-template-columns: 1fr;
+}
+.stats-Row-Title { grid-area: stats-Row-Title; display: grid; }
+.stats-Row-Initiative { grid-area: stats-Row-Initiative; display: grid; }
+.stats-Row-Evasion { grid-area: stats-Row-Evasion; display: grid; }
+.stats-Row-Speed { grid-area: stats-Row-Speed; display: grid; }
+.stats-Row-EquipLoad { grid-area: stats-Row-EquipLoad; display: grid; }
+.stats-Row-Physical { grid-area: stats-Row-Physical; display: grid; }
+.stats-Row-Magical { grid-area: stats-Row-Magical; display: grid; }
+.stats-Row-Resistant { grid-area: stats-Row-Resistant; display: grid; }
+.stats-Row {
+    display: grid; 
+    grid-template-areas:
+        "stats-Row-Name stats-Row-Value";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+.stats-Row-Name { grid-area: stats-Row-Name }
+.stats-Row-Value { grid-area: stats-Row-Value }
+
+
+.charsheet div.sheet-overview-Attacks { grid-area: overview-Attacks; }
 .charsheet div.sheet-overview-Runes { grid-area: overview-Runes; }
 .charsheet div.sheet-overview-Invocations { grid-area: overview-Invocations; }
 .charsheet div.sheet-overview-Notes { grid-area: overview-Notes; }
@@ -169,7 +282,90 @@ button.attack-button-two {
     grid-template-columns: 1fr 1fr 1fr;
 }
 .charsheet div.sheet-stats-Character { grid-area: stats-Character; }
-.charsheet div.sheet-stats-Attributes { grid-area: stats-Attributes; }
+
+/* Stats Attributes Grid */
+.charsheet div.sheet-stats-Attributes { 
+    display: grid;
+    grid-area: stats-Attributes; 
+    grid-template-areas:
+        "stats-attribute-Row-Title"
+        "stats-attribute-Row-XP"
+        "stats-attribute-Row-Vigour"
+        "stats-attribute-Row-Endurance"
+        "stats-attribute-Row-Intelligence"
+        "stats-attribute-Row-Strength"
+        "stats-attribute-Row-Dexterity"
+        "stats-attribute-Row-Perception"
+        "stats-attribute-Row-Arcana"
+        "stats-attribute-Row-Faith"
+        "stats-attribute-Row-Nature"
+        "stats-attribute-Row-Charisma";
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 1fr;
+}
+.stats-attribute-Row-Title { grid-area: stats-attribute-Row-Title; display: grid; }
+.stats-attribute-Row-XP { grid-area: stats-attribute-Row-XP; display: grid; }
+.stats-attribute-Row-Vigour { grid-area: stats-attribute-Row-Vigour; display: grid; }
+.stats-attribute-Row-Endurance { grid-area: stats-attribute-Row-Endurance; display: grid; }
+.stats-attribute-Row-Intelligence { grid-area: stats-attribute-Row-Intelligence; display: grid; }
+.stats-attribute-Row-Strength { grid-area: stats-attribute-Row-Strength; display: grid; }
+.stats-attribute-Row-Dexterity { grid-area: stats-attribute-Row-Dexterity; display: grid; }
+.stats-attribute-Row-Perception { grid-area: stats-attribute-Row-Perception; display: grid; }
+.stats-attribute-Row-Arcana { grid-area: stats-attribute-Row-Arcana; display: grid; }
+.stats-attribute-Row-Faith { grid-area: stats-attribute-Row-Faith; display: grid; }
+.stats-attribute-Row-Nature { grid-area: stats-attribute-Row-Nature; display: grid; }
+.stats-attribute-Row-Charisma { grid-area: stats-attribute-Row-Charisma; display: grid; }
+.stats-attribute-Row {
+    display: grid; 
+    grid-template-areas:
+        "stats-attribute-Row-Name stats-attribute-Row-Value";
+    grid-template-columns: 0.8fr 1fr;
+    grid-template-rows: auto;
+}
+.stats-attribute-Row-Name { grid-area: stats-attribute-Row-Name }
+.stats-attribute-Row-Value { grid-area: stats-attribute-Row-Value }
+
+/* Stats Stats Grid */
+.charsheet div.sheet-stats-Stats { 
+    display: grid;
+    grid-area: stats-Attributes; 
+    grid-template-areas:
+        "stats-stats-Row-Title"
+        "stats-stats-Row-XP"
+        "stats-stats-Row-Health"
+        "stats-stats-Row-Vigour"
+        "stats-stats-Row-Focus"
+        "stats-stats-Row-Stamina"
+        "stats-stats-Row-Initiative"
+        "stats-stats-Row-Evasion"
+        "stats-stats-Row-Speed"
+        "stats-stats-Row-EquipLoad";
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 1fr;
+}
+.stats-stats-Row-Title { grid-area: stats-stats-Row-Title; display: grid; }
+.stats-stats-Row-XP { grid-area: stats-stats-Row-XP; display: grid; }
+.stats-stats-Row-Vigour { grid-area: stats-stats-Row-Vigour; display: grid; }
+.stats-stats-Row-Endurance { grid-area: stats-stats-Row-Endurance; display: grid; }
+.stats-stats-Row-Intelligence { grid-area: stats-stats-Row-Intelligence; display: grid; }
+.stats-stats-Row-Strength { grid-area: stats-stats-Row-Strength; display: grid; }
+.stats-stats-Row-Dexterity { grid-area: stats-stats-Row-Dexterity; display: grid; }
+.stats-stats-Row-Perception { grid-area: stats-stats-Row-Perception; display: grid; }
+.stats-stats-Row-Arcana { grid-area: stats-stats-Row-Arcana; display: grid; }
+.stats-stats-Row-Faith { grid-area: stats-stats-Row-Faith; display: grid; }
+.stats-stats-Row-Nature { grid-area: stats-stats-Row-Nature; display: grid; }
+.stats-stats-Row-Charisma { grid-area: stats-stats-Row-Charisma; display: grid; }
+.stats-stats-Row {
+    display: grid; 
+    grid-template-areas:
+        "stats-stats-Row-Name stats-stats-Row-Value";
+    grid-template-columns: 0.8fr 1fr;
+    grid-template-rows: auto;
+}
+.stats-stats-Row-Name { grid-area: stats-stats-Row-Name }
+.stats-stats-Row-Value { grid-area: stats-stats-Row-Value }
+
+
 .charsheet div.sheet-stats-Stats { grid-area: stats-Stats; }
 .charsheet div.sheet-stats-Armour { grid-area: stats-Armour; }
 
@@ -244,10 +440,6 @@ button.attack-button-two {
     display: block;
 }
 
-h3 {
-    display: inline-block;
-}
-
 div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
 div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_edit"] {
     display: none;
@@ -261,13 +453,29 @@ div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontr
 }
 
 /* show the selected archetype */
-.charsheet .sheet-ic_scaling_toggle[value="arcane"] ~ div.sheet-arcane,
-.charsheet .sheet-ic_scaling_toggle[value="faith"] ~ div.sheet-faith,
-.charsheet .sheet-ic_scaling_toggle[value="nature"] ~ div.sheet-nature {
+.charsheet .sheet-ic_scaling_toggle[value="Arcana"] ~ div.sheet-arcane,
+.charsheet .sheet-ic_scaling_toggle[value="Faith"] ~ div.sheet-faith,
+.charsheet .sheet-ic_scaling_toggle[value="Nature"] ~ div.sheet-nature {
     display: inline-block;
 }
 
-.ic_warning {
+.ic_warning_template,
+.ic_warning_effect,
+.ic_warning_int,
+.ic_warning_attr {
+    display: none;
+}
+.ic_warning[value*="template"] ~ div.ic_warning_template,
+.ic_warning[value*="effect"] ~ div.ic_warning_effect,
+.ic_warning[value*="int"] ~ div.ic_warning_int,
+.ic_warning[value*="attr"] ~ div.ic_warning_attr {
+    display: block;
+}
+
+.ic_warning_template>input,
+.ic_warning_effect>input,
+.ic_warning_int>input,
+.ic_warning_attr>input {
     color: red;
 }
 
