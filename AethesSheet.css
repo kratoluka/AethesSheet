@@ -1,27 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Caudex');
+
 .charsheet {
     background-image: url("https://media.discordapp.net/attachments/531267211688411146/1089981446602629170/seamless-background-textures-12-780x780.jpg?width=905&height=905");
     background-color: black;
 }
 
-.charsheet, h1, h2, h3 {
+body {
+    font-family: "Caudex";font-size: 15px;margin: 0;
+    color: white;
+}
+.charsheet, h1, h2, h3, p {
+    font-family: "Caudex";margin: 0;font-weight: normal;
     color: white;
 }
 
+p { font-size: 18px; }
+h2 { font-size: 28px; }
+
 h3 {
     display: inline-block;
+    font-family: "Caudex";
 }
 
 button {
-    border: 3px solid white;
-    background-color: black;
+    background-color: #343434;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #fdfdfd;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: #000000;
+    -webkit-box-shadow: 0 0 5px #442424;
+    box-shadow: 0 0 5px #442424;
+}
+
+button:hover {
+    -webkit-box-shadow: 0 0 10px #f0f0f0;
+    box-shadow: 0 0 10px #f0f0f0;
+}
+
+/* this sets the formatting for all repcontrol buttons */
+.charsheet .repcontrol_add,
+.charsheet .repcontrol_edit,
+.charsheet .repcontrol_del {
+    background: #343434;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #fdfdfd;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: #000000;
+    -webkit-box-shadow: 0 0 5px #442424;
+    box-shadow: 0 0 5px #442424;
 }
 
 textarea {
     box-sizing: border-box;
+    margin: 0;
 }
 
 .headpiece-img {
     width: 20%;
+}
+
+input[type="text"], select {
+    width: 100%;
+    margin: 0;
 }
 
 input.headpiece-name {
@@ -30,15 +74,12 @@ input.headpiece-name {
     border-color: transparent;
     min-width: 1px;
     width: 65%;
-    font-size: xxx-large;
+    font-size: 64px;
     outline: none;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     text-align: center;
 }
 
-input[type="text"] {
-    width: 100%;
-}
 
 .prompt-background {
     position: absolute;
@@ -67,27 +108,23 @@ input[type="text"] {
     display: block;
 }
 
-/* By deafult hide attack mode button*/
+
+/* By deafult hide attribute mode button*/
 button.attribute-mode-normal,
 button.attribute-mode-advantage,
 button.attribute-mode-disadvantage{
     display: none;
 }
-button.attack-mode-normal,
-button.attack-mode-advantage,
-button.attack-mode-disadvantage {
-    display: none;
-}
 
-/* display selected attack mode */
+/* display selected attribute mode */
 .attribute-mode[value="normal"] ~ button.attribute-mode-normal,
 .attribute-mode[value="advantage"] ~ button.attribute-mode-advantage,
 .attribute-mode[value="disadvantage"] ~ button.attribute-mode-disadvantage{
     display: inline-block;
 }
-.attack-mode[value="normal"] ~ button.attack-mode-normal
-.attack-mode[value="advantage"] ~ button.attack-mode-advantage,
-.attack-mode[value="disadvantage"] ~ button.attack-mode-disadvantage {
+
+.repcontainer[data-groupname="repeating_attacks"]>.repitem .attack-one[value="show"]  ~ button.attack-button-one,
+.repcontainer[data-groupname="repeating_attacks"]>.repitem .attack-two[value="show"]  ~ button.attack-button-two {
     display: inline-block;
 }
 
@@ -154,8 +191,21 @@ button.attack-mode-disadvantage {
     grid-template-columns: 1fr 1fr 1fr;
 }
 .charsheet div.sheet-overview-Headpiece { grid-area: overview-Headpiece; }
-.charsheet div.sheet-overview-Race { grid-area: overview-Race; }
 
+/* Overview Attributes Grid */
+.charsheet div.sheet-overview-Race { 
+    display: grid;
+    grid-area: overview-Race; 
+    grid-template-areas:
+        "attribute-Row-RaceL attribute-Row-Race"
+        "attribute-Row-LevelL attribute-Row-Level";
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+}
+.attribute-Row-RaceL { grid-area: attribute-Row-RaceL; }
+.attribute-Row-Race { grid-area: attribute-Row-Race; }
+.attribute-Row-LevelL { grid-area: attribute-Row-LevelL; }
+.attribute-Row-Level { grid-area: attribute-Row-Level; }
 
 /* Overview Attributes Grid */
 .charsheet div.sheet-overview-Attributes { 
@@ -173,7 +223,7 @@ button.attack-mode-disadvantage {
         "attribute-Row-Faith"
         "attribute-Row-Nature"
         "attribute-Row-Charisma"
-        "state-Row-Buffer";
+        "attribute-Row-Buffer";
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
@@ -224,7 +274,7 @@ button.attack-mode-disadvantage {
     display: grid; 
     grid-template-areas:
         "state-Row-Name state-Row-Value";
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
     grid-template-rows: auto;
 }
 .state-Row-Name { grid-area: state-Row-Name }
@@ -275,7 +325,7 @@ button.attack-mode-disadvantage {
     grid-template-areas:
         "attacks-Row-Title"
         "attacks-Row-Attacks"
-        "state-Row-Buffer";
+        "attacks-Row-Buffer";
     grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr;
 }
@@ -332,7 +382,7 @@ button.attack-mode-disadvantage {
 .charsheet div.sheet-overview-Invocations { grid-area: overview-Invocations; }
 .charsheet div.sheet-overview-Notes { grid-area: overview-Notes; }
 
-/* By deafult make attack mode button red*/
+/* By deafult hide the attack button*/
 button.attack-mode-normal,
 button.attack-mode-advantage,
 button.attack-mode-disadvantage,
@@ -341,7 +391,7 @@ button.attack-button-two {
     display: none;
 }
 
-/* color the selected button */
+/* Show the selected button */
 .attack-mode[value="normal"] ~ button.attack-mode-normal,
 .attack-mode[value="advantage"] ~ button.attack-mode-advantage,
 .attack-mode[value="disadvantage"] ~ button.attack-mode-disadvantage {
@@ -374,6 +424,15 @@ button.attack-button-two {
 }
 .stats-character-Name { grid-area: stats-character-Name; }
 .stats-character-Race { grid-area: stats-character-Race; }
+.stats-character-Row {
+    display: grid; 
+    grid-template-areas:
+        "stats-character-Row-Title stats-character-Row-Value";
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: auto;
+}
+.stats-character-Row-Title { grid-area: stats-character-Row-Title }
+.stats-character-Row-Value { grid-area: stats-character-Row-Value }
 
 /* Stats Attributes Grid */
 .charsheet div.sheet-stats-Attributes { 
@@ -392,7 +451,7 @@ button.attack-button-two {
         "stats-attribute-Row-Faith"
         "stats-attribute-Row-Nature"
         "stats-attribute-Row-Charisma"
-        "state-Row-Buffer";
+        "stats-attribute-Row-Buffer";
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
@@ -433,7 +492,7 @@ button.attack-button-two {
         "stats-stats-Row-Evasion"
         "stats-stats-Row-Speed"
         "stats-stats-Row-EquipLoad"
-        "state-Row-Buffer";
+        "stats-stats-Row-Buffer";
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
@@ -466,7 +525,7 @@ button.attack-button-two {
         "stats-armour-Row-Physical"
         "stats-armour-Row-Magical"
         "stats-armour-Row-Resistant"
-        "state-Row-Buffer";
+        "stats-armour-Row-Buffer";
     grid-template-rows: auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
@@ -484,33 +543,308 @@ button.attack-button-two {
 .stats-armour-Row-Name { grid-area: stats-armour-Row-Name }
 .stats-armour-Row-Value { grid-area: stats-armour-Row-Value }
 
-
-/*Basic*/
-.charsheet div.sheet-perks,
-.charsheet div.sheet-weapons,
-.charsheet div.sheet-rune-spells,
-.charsheet div.sheet-inventory {
+/* Perks Grid */
+.charsheet div.sheet-perks { 
     grid-template-areas:
-        "Basic";
+        "perks-Title "
+        "perks-Perks"
+        "perks-Buffer";
+    grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr;
 }
-.charsheet div.sheet-basic { grid-area: Basic; }
 
-/*Invocation*/
-.charsheet div.sheet-invocation {
+.perks-Title { grid-area: perks-Title; }
+.perks-Perks { grid-area: perks-Perks; }
+.perks-Row { 
+    display: grid;
+    margin-bottom: 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas:
-        "invocation-Tabs"
-        "invocation-Sheet";
+        "perks-NameL perks-RequirementsL perks-SourceL"
+        "perks-Name perks-Requirements perks-Source"
+        "perks-DescriptionL perks-DescriptionL perks-DescriptionL"
+        "perks-Description perks-Description perks-Description";
+}
+
+.perks-NameL { grid-area: perks-NameL; }
+.perks-Name { grid-area: perks-Name; }
+.perks-RequirementsL { grid-area: perks-RequirementsL; }
+.perks-Requirements { grid-area: perks-Requirements; }
+.perks-SourceL { grid-area: perks-SourceL; }
+.perks-Source { grid-area: perks-Source; }
+.perks-DescriptionL { grid-area: perks-DescriptionL; }
+.perks-Description { grid-area: perks-Description; }
+
+/* Weapons Grid */
+.charsheet div.sheet-weapons { 
+    grid-template-areas:
+        "weapons-Row-Title "
+        "weapons-Row-Attacks"
+        "weapons-Row-Buffer";
+    grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr;
 }
-.charsheet div.sheet-invocation-Tabs { 
-    grid-area: invocation-Tabs; 
+
+.weapons-Row-Title { grid-area: weapons-Row-Title; }
+.weapons-Row-Attacks { grid-area: weapons-Row-Attacks; display: grid; }
+.weapons-Row {
+    display: grid; 
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: auto auto auto;
+    grid-gap: 5px;
+    grid-template-areas:
+        "weapons-Row-Left weapons-Row-Right"
+        "weapons-Row-Description weapons-Row-Description"
+        "weapons-Row-Buffer weapons-Row-Buffer";
+    border: 3px solid white;
+    margin-bottom: 5px;
+    padding: 5px;
 }
-.charsheet div.sheet-invocation-Memory,
-.charsheet div.sheet-invocation-Caster,
-.charsheet div.sheet-invocation-Saved {
-    grid-area: invocation-Sheet; 
+.weapons-Row-Left {
+    display: grid; 
+    grid-area: weapons-Row-Left;
+    grid-template-areas:
+        "weapons-Row-Name weapons-Row-Name"
+        "weapons-Row-Scaling weapons-Row-Scaling"
+        "weapons-Row-Acc weapons-Row-Dmg"
+        "weapons-Row-Crit weapons-Row-Ranged"
+        "weapons-Row-Buffer weapons-Row-Buffer";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto 1fr;
 }
+.weapons-Row-Right {
+    display: grid; 
+    grid-area: weapons-Row-Right;
+    grid-template-areas:
+        "weapons-Row-OneHanded weapons-Row-OneHanded weapons-Row-OneHanded"
+        "weapons-Row-DiceOne weapons-Row-TypeOne weapons-Row-RangeOne"
+        "weapons-Row-TwoHanded weapons-Row-TwoHanded weapons-Row-TwoHanded"
+        "weapons-Row-DiceTwo weapons-Row-TypeTwo weapons-Row-RangeTwo"
+        "weapons-Row-Secondary weapons-Row-Secondary ."
+        "weapons-Row-DiceSecondary weapons-Row-TypeSecondary ."
+        "weapons-Row-Buffer weapons-Row-Buffer weapons-Row-Buffer";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+}
+
+.weapons-Row-Name { grid-area: weapons-Row-Name } 
+.weapons-Row-Acc { grid-area: weapons-Row-Acc } 
+.weapons-Row-Dmg { grid-area: weapons-Row-Dmg } 
+.weapons-Row-Crit { grid-area: weapons-Row-Crit }  
+.weapons-Row-Scaling { grid-area: weapons-Row-Scaling } 
+.weapons-Row-OneHanded { grid-area: weapons-Row-OneHanded } 
+.weapons-Row-DiceOne { grid-area: weapons-Row-DiceOne } 
+.weapons-Row-TypeOne { grid-area: weapons-Row-TypeOne } 
+.weapons-Row-RangeOne { grid-area: weapons-Row-RangeOne } 
+.weapons-Row-TwoHanded { grid-area: weapons-Row-TwoHanded } 
+.weapons-Row-DiceTwo { grid-area: weapons-Row-DiceTwo } 
+.weapons-Row-TypeTwo { grid-area: weapons-Row-TypeTwo } 
+.weapons-Row-RangeTwo { grid-area: weapons-Row-RangeTwo } 
+.weapons-Row-Ranged { grid-area: weapons-Row-Ranged } 
+.weapons-Row-Secondary { grid-area: weapons-Row-Secondary } 
+.weapons-Row-DiceSecondary { grid-area: weapons-Row-DiceSecondary } 
+.weapons-Row-TypeSecondary { grid-area: weapons-Row-TypeSecondary } 
+.weapons-Row-Description { grid-area: weapons-Row-Description } 
+.weapons-Field {
+    border: 1px solid white;
+    padding: 2px;
+} 
+.weapons-FieldN {
+    display: grid; 
+    grid-template-areas:
+        "weapons-Field-Name weapons-Field-Value"
+        "weapons-Field-Buffer weapons-Field-Buffer";
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr;
+    border: 1px solid white;
+    padding: 2px;
+}
+.weapons-FieldT {
+    display: grid; 
+    grid-template-areas:
+        "weapons-Field-Name weapons-Field-Value"
+        "weapons-Field-Buffer weapons-Field-Buffer";
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr;
+    border: 1px solid white;
+    padding: 2px;
+}
+
+/* Rune Spells Grid */
+.charsheet div.sheet-rune-spells { 
+    grid-template-areas:
+        "rune-spells-Row-Title "
+        "rune-spells-Row-Spells"
+        "rune-spells-Row-Buffer";
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+}
+
+.rune-spells-Title { grid-area: rune-spells-Row-Title; }
+.rune-spells-Row-Spells { grid-area: rune-spells-Row-Spells; }
+.rune-spells-Row { 
+    display: grid;
+    margin-bottom: 5px; 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    grid-template-areas:
+        "rune-spells-NameL rune-spells-NameL rune-spells-CastL rune-spells-RangeL"
+        "rune-spells-Name rune-spells-Name rune-spells-Cast rune-spells-Range"
+        "rune-spells-DiceL rune-spells-DiceL rune-spells-APL rune-spells-FPL"
+        "rune-spells-Dice rune-spells-Dice rune-spells-AP rune-spells-FP"
+        "rune-spells-ConcentrationL rune-spells-Concentration rune-spells-ReadyL rune-spells-Ready"
+        "rune-spells-DescriptionL rune-spells-DescriptionL rune-spells-DescriptionL rune-spells-DescriptionL"
+        "rune-spells-Description rune-spells-Description rune-spells-Description rune-spells-Description";
+}
+
+.rune-spells-NameL { grid-area: rune-spells-NameL; }
+.rune-spells-Name { grid-area: rune-spells-Name; }
+.rune-spells-CastL { grid-area: rune-spells-CastL; }
+.rune-spells-Cast { grid-area: rune-spells-Cast; }
+.rune-spells-RangeL { grid-area: rune-spells-RangeL; }
+.rune-spells-Range { grid-area: rune-spells-Range; }
+.rune-spells-DiceL { grid-area: rune-spells-DiceL; }
+.rune-spells-Dice { grid-area: rune-spells-Dice; }
+.rune-spells-APL { grid-area: rune-spells-APL; }
+.rune-spells-AP { grid-area: rune-spells-AP; }
+.rune-spells-FPL { grid-area: rune-spells-FPL; }
+.rune-spells-FP { grid-area: rune-spells-FP; }
+.rune-spells-ConcentrationL { grid-area: rune-spells-ConcentrationL; }
+.rune-spells-Concentration { grid-area: rune-spells-Concentration; }
+.rune-spells-ReadyL { grid-area: rune-spells-ReadyL; }
+.rune-spells-Ready { grid-area: rune-spells-Ready; }
+.rune-spells-DescriptionL { grid-area: rune-spells-DescriptionL; }
+.rune-spells-Description { grid-area: rune-spells-Description; }
+
+/* Invocation Grid */
+.charsheet div.sheet-invocation { 
+    grid-template-areas:
+        "invocation-Menu"
+        "invocation-Tab"
+        "invocation-Buffer";
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+}
+
+.invocation-Menu { grid-area: invocation-Menu; }
+.invocation-Tab { grid-area: invocation-Tab; }
+
+/* Invocation Grid Memory */
+.sheet-invocation-Memory { 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "invocation-Memory-Title invocation-Memory-Title"
+        "invocation-Memory-Templates invocation-Memory-Effects";
+}
+.invocation-Memory-Title { grid-area: invocation-Memory-Title; }
+.invocation-Memory-Templates { grid-area: invocation-Memory-Templates; }
+.invocation-Memory-Effects { grid-area: invocation-Memory-Effects; }
+.invocation-Memory-Block {  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "invocation-Memory-CounterL invocation-Memory-Counter"
+    "invocation-Memory-List invocation-Memory-List";
+  grid-area: invocation-Memory-Templates;
+}
+.invocation-Memory-CounterL { grid-area: invocation-Memory-CounterL; }
+.invocation-Memory-Counter { grid-area: invocation-Memory-Counter; }
+.invocation-Memory-List {  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 0px 0px;
+  grid-template-areas:
+    "invocation-Memory-List-Item"
+    "invocation-Memory-List-Buffer"
+    "invocation-Memory-List-RepContorl";
+  grid-area: invocation-Memory-List;
+}
+.invocation-Memory-List-Item { grid-area: invocation-Memory-List-Item; }
+.invocation-Memory-List>.repcontrol { grid-area: invocation-Memory-List-RepContorl; align-content: flex-end; }
+.invocation-Memory-Effects { grid-area: invocation-Memory-Effects; }
+
+/* Invocation Grid Caster */
+.sheet-invocation-Caster { 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: auto auto auto auto auto auto auto auto auto; 
+  grid-template-areas: 
+    "invocation-Caster-Title invocation-Caster-Title invocation-Caster-Title invocation-Caster-Title"
+    "invocation-Caster-TemplateL invocation-Caster-TemplateL invocation-Caster-TierL invocation-Caster-TierL"
+    "invocation-Caster-Template invocation-Caster-Template invocation-Caster-Tier invocation-Caster-Tier"
+    "invocation-Caster-CastL invocation-Caster-CastL invocation-Caster-EffectL invocation-Caster-EffectL"
+    "invocation-Caster-Cast invocation-Caster-Cast invocation-Caster-Effect invocation-Caster-Effect"
+    "invocation-Caster-NameL invocation-Caster-Name invocation-Caster-DiceL invocation-Caster-Dice"
+    "invocation-Caster-IntL invocation-Caster-Int invocation-Caster-APL invocation-Caster-AP"
+    "invocation-Caster-AttrL invocation-Caster-Attr invocation-Caster-FPL invocation-Caster-FP"
+    "invocation-Caster-Warning invocation-Caster-Warning invocation-Caster-Warning invocation-Caster-Warning"
+    "invocation-Caster-Description invocation-Caster-Description invocation-Caster-Description invocation-Caster-Description"
+    "invocation-Caster-Save invocation-Caster-Save invocation-Caster-Save invocation-Caster-Save"; 
+}
+.invocation-Caster-Title { grid-area: invocation-Caster-Title; }
+.invocation-Caster-TemplateL { grid-area: invocation-Caster-TemplateL; }
+.invocation-Caster-Template { grid-area: invocation-Caster-Template; }
+.invocation-Caster-TierL { grid-area: invocation-Caster-TierL; }
+.invocation-Caster-Tier { grid-area: invocation-Caster-Tier; }
+.invocation-Caster-CastL { grid-area: invocation-Caster-CastL; }
+.invocation-Caster-Cast { grid-area: invocation-Caster-Cast; }
+.invocation-Caster-EffectL { grid-area: invocation-Caster-EffectL; }
+.invocation-Caster-Effect { grid-area: invocation-Caster-Effect; }
+.invocation-Caster-NameL { grid-area: invocation-Caster-NameL; }
+.invocation-Caster-Name { grid-area: invocation-Caster-Name; }
+.invocation-Caster-DiceL { grid-area: invocation-Caster-DiceL; }
+.invocation-Caster-Dice { grid-area: invocation-Caster-Dice; }
+.invocation-Caster-IntL { grid-area: invocation-Caster-IntL; }
+.invocation-Caster-Int { grid-area: invocation-Caster-Int; }
+.invocation-Caster-APL { grid-area: invocation-Caster-APL; }
+.invocation-Caster-AP { grid-area: invocation-Caster-AP; }
+.invocation-Caster-AttrL { grid-area: invocation-Caster-AttrL; }
+.invocation-Caster-Attr { grid-area: invocation-Caster-Attr; }
+.invocation-Caster-FPL { grid-area: invocation-Caster-FPL; }
+.invocation-Caster-FP { grid-area: invocation-Caster-FP; }
+.invocation-Caster-Warning { grid-area: invocation-Caster-Warning; }
+.invocation-Caster-Description { grid-area: invocation-Caster-Description; }
+.invocation-Caster-Save { grid-area: invocation-Caster-Save; }
+
+/* Invocation Grid Saved */
+.sheet-invocation-Saved { 
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "invocation-Saved-Title"
+        "invocation-Saved-Spells";
+}
+.invocation-Saved-Title { grid-area: invocation-Saved-Title; margin-bottom: 5px;  }
+.invocation-Saved-Spells { grid-area: invocation-Saved-Spells; }
+.invocation-Saved-Block { 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: auto auto auto auto auto auto auto auto auto;
+    margin-bottom: 5px; 
+    grid-template-areas: 
+        "invocation-Saved-NameL invocation-Saved-Name invocation-Saved-DiceL invocation-Saved-Dice"
+        "invocation-Saved-IntL invocation-Saved-Int invocation-Saved-APL invocation-Saved-AP"
+        "invocation-Saved-AttrL invocation-Saved-Attr invocation-Saved-FPL invocation-Saved-FP"
+        "invocation-Saved-Description invocation-Saved-Description invocation-Saved-Description invocation-Saved-Description";
+}
+.invocation-Saved-Title { grid-area: invocation-Saved-Title; }
+.invocation-Saved-NameL { grid-area: invocation-Saved-NameL; }
+.invocation-Saved-Name { grid-area: invocation-Saved-Name; }
+.invocation-Saved-DiceL { grid-area: invocation-Saved-DiceL; }
+.invocation-Saved-Dice { grid-area: invocation-Saved-Dice; }
+.invocation-Saved-IntL { grid-area: invocation-Saved-IntL; }
+.invocation-Saved-Int { grid-area: invocation-Saved-Int; }
+.invocation-Saved-APL { grid-area: invocation-Saved-APL; }
+.invocation-Saved-AP { grid-area: invocation-Saved-AP; }
+.invocation-Saved-AttrL { grid-area: invocation-Saved-AttrL; }
+.invocation-Saved-Attr { grid-area: invocation-Saved-Attr; }
+.invocation-Saved-FPL { grid-area: invocation-Saved-FPL; }
+.invocation-Saved-FP { grid-area: invocation-Saved-FP; }
+.invocation-Saved-Warning { grid-area: invocation-Saved-Warning; }
+.invocation-Saved-Description { grid-area: invocation-Saved-Description; }
+.invocation-Saved-Save { grid-area: invocation-Saved-Save; }
 
 /*Configure the invocation tab buttons*/
 .charsheet .sheet-invocation-Memory,
@@ -520,40 +854,190 @@ button.attack-button-two {
 }
 
 /*Show the selected invocation tab*/
-.charsheet .sheet-tabstoggle[value="invocation-Memory"] ~ div.sheet-invocation-Memory,
-.charsheet .sheet-tabstoggle[value="invocation-Caster"] ~ div.sheet-invocation-Caster,
-.charsheet .sheet-tabstoggle[value="invocation-Saved"] ~ div.sheet-invocation-Saved {
-    display: block;
+.charsheet .sheet-tabstoggle[value="invocation-Memory"] ~ .sheet-invocation-Memory,
+.charsheet .sheet-tabstoggle[value="invocation-Caster"] ~ .sheet-invocation-Caster,
+.charsheet .sheet-tabstoggle[value="invocation-Saved"] ~ .sheet-invocation-Saved {
+    display: grid;
 }
 
-/*Equipment*/
-.charsheet div.sheet-character {
+/* Inventory Grid */
+.charsheet div.sheet-inventory { 
     grid-template-areas:
-        "equipment-Tabs"
-        "equipment-Sheet";
+        "inventory-Title"
+        "inventory-Inventory"
+        "inventory-Buffer";
+    grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr;
 }
-.charsheet div.sheet-character-Tabs { 
-    grid-area: equipment-Tabs; 
-}
-.charsheet div.sheet-character-Armour,
-.charsheet div.sheet-character-Equipment,
-.charsheet div.sheet-character-Info {
-    grid-area: equipment-Sheet; 
+
+.inventory-Title { grid-area: inventory-Title; }
+.inventory-Inventory { grid-area: inventory-Inventory; }
+.inventory-Row { 
+    display: grid;
+    margin-bottom: 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+        "inventory-NameL inventory-RequirementsL inventory-SourceL"
+        "inventory-Name inventory-Requirements inventory-Source"
+        "inventory-DescriptionL inventory-DescriptionL inventory-DescriptionL"
+        "inventory-Description inventory-Description inventory-Description";
 }
 
+.inventory-NameL { grid-area: inventory-NameL; }
+.inventory-Name { grid-area: inventory-Name; }
+.inventory-RequirementsL { grid-area: inventory-RequirementsL; }
+.inventory-Requirements { grid-area: inventory-Requirements; }
+.inventory-SourceL { grid-area: inventory-SourceL; }
+.inventory-Source { grid-area: inventory-Source; }
+.inventory-DescriptionL { grid-area: inventory-DescriptionL; }
+.inventory-Description { grid-area: inventory-Description; }
+
+/*Equipment*/
+.charsheet .sheet-character { 
+    grid-template-areas:
+        "character-Menu"
+        "character-Tab"
+        "character-Buffer";
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+}
+
+.character-Menu { grid-area: character-Menu; }
+.charsheet .character-Armour { grid-area: character-Tab; display: grid; }
+.charsheet .character-Equipment { grid-area: character-Tab; display: grid; }
+.charsheet .character-Info { grid-area: character-Tab; display: grid; }
+
+.character-Info {  
+    grid-template-columns: 1fr;
+    padding: 0;
+    grid-template-areas:
+        "info-Appearance"
+        "info-Traits"
+        "info-Proficiencies"
+        "info-Backstory";
+    text-align: center;
+}
+
+.character-Armour { 
+     display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-areas: 
+    "character-Armour-Title character-Armour-Title character-Armour-Title character-Armour-Title"
+    "character-Armour-NameL character-Armour-Name character-Armour-Name character-Armour-Name"
+    "character-Armour-PhysL character-Armour-Phys character-Armour-SpeedL character-Armour-Speed"
+    "character-Armour-MagL character-Armour-Mag character-Armour-WeightL character-Armour-Weight"
+    "character-Armour-EvasionL character-Armour-Evasion character-Armour-EvasionMod ."
+    "character-Armour-NoteL character-Armour-NoteL character-Armour-NoteL character-Armour-NoteL"
+    "character-Armour-Note character-Armour-Note character-Armour-Note character-Armour-Note"
+}
+.character-Armour-NameL { grid-area: character-Armour-NameL; }
+.character-Armour-Name { grid-area: character-Armour-Name; }
+.character-Armour-PhysL { grid-area: character-Armour-PhysL; }
+.character-Armour-Phys { grid-area: character-Armour-Phys; }
+.character-Armour-MagL { grid-area: character-Armour-MagL; }
+.character-Armour-Mag { grid-area: character-Armour-Mag; }
+.character-Armour-SpeedL { grid-area: character-Armour-SpeedL; }
+.character-Armour-Speed { grid-area: character-Armour-Speed; }
+.character-Armour-WeightL { grid-area: character-Armour-WeightL; }
+.character-Armour-Weight { grid-area: character-Armour-Weight; }
+.character-Armour-EvasionL { grid-area: character-Armour-EvasionL; }
+.character-Armour-Evasion { grid-area: character-Armour-Evasion; }
+.character-Armour-EvasionMod { grid-area: character-Armour-EvasionMod; }
+.character-Armour-NoteL { grid-area: character-Armour-NoteL; }
+.character-Armour-Note { grid-area: character-Armour-Note; }
+
+.info-Appearance {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title"
+        "info-Gender info-Age info-Height info-Weight info-Eyes info-Hair info-Size"
+        "info-Vision info-Languages info-Languages info-Languages info-Languages info-Languages info-Alignment";
+    grid-area: info-Appearance;
+}
+.info-Vision { grid-area: info-Vision; }
+.info-Languages { grid-area: info-Languages; }
+.info-Alignment { grid-area: info-Alignment; }
+.info-Gender { grid-area: info-Gender; }
+.info-Age { grid-area: info-Age; }
+.info-Height { grid-area: info-Height; }
+.info-Weight { grid-area: info-Weight; }
+.info-Eyes { grid-area: info-Eyes; }
+.info-Hair { grid-area: info-Hair; }
+.info-Size { grid-area: info-Size; }
+.info-Appearance-Title { grid-area: info-Appearance-Title; }
+.info-Traits {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "info-Traits-Banner info-Traits-Banner info-Traits-Banner"
+        "info-Racial info-Personality info-Background"
+        "info-Racial info-Personality info-Background";
+    grid-area: info-Traits;
+}
+.info-Traits-Banner { grid-area: info-Traits-Banner; }
+.info-Racial { grid-area: info-Racial; }
+.info-Personality { grid-area: info-Personality; }
+.info-Background { grid-area: info-Background; }
+.info-Proficiencies {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "info-Proficiencies-Banner info-Proficiencies-Banner info-Proficiencies-Banner"
+        "info-Armour info-Weapon info-Tool"
+        "info-Armour info-Weapon info-Tool";
+    grid-area: info-Proficiencies;
+}
+.info-Proficiencies-Banner { grid-area: info-Proficiencies-Banner; }
+.info-Armour { grid-area: info-Armour; }
+.info-Weapon { grid-area: info-Weapon; }
+.info-Tool { grid-area: info-Tool; }
+.info-Backstory { grid-area: info-Backstory; }
+
+.character-Equipment { 
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "character-Equipment-Title"
+        "character-Equipment-Block";
+}
+.character-Equipment-Title { grid-area: character-Equipment-Title; margin-bottom: 5px; }
+.character-Equipment-Block { grid-area: character-Equipment-Block; }
+.character-Equipment-Row { 
+    display: grid;
+    margin-bottom: 5px;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "character-NameL character-WeightL"
+        "character-Name character-Weight"
+        "character-NoteL character-NoteL"
+        "character-Note character-Note";
+}
+.character-NameL { grid-area: character-NameL; }
+.character-Name { grid-area: character-Name; }
+.character-WeightL { grid-area: character-WeightL; }
+.character-Weight { grid-area: character-Weight; }
+.character-NoteL { grid-area: character-NoteL; }
+.character-Note { grid-area: character-Note; }
+
 /*Configure the equipment tab buttons*/
-.charsheet .sheet-character-Armour,
-.charsheet .sheet-character-Equipment,
-.charsheet .sheet-character-Info {
+.charsheet .character-Armour,
+.charsheet .character-Equipment,
+.charsheet .character-Info {
     display: none;
 }
 
 /*Show the selected equipment tab*/
-.charsheet .sheet-tabstoggle[value="equipment-Armour"] ~ div.sheet-character-Armour,
-.charsheet .sheet-tabstoggle[value="equipment-Equipment"] ~ div.sheet-character-Equipment,
-.charsheet .sheet-tabstoggle[value="equipment-Info"] ~ div.sheet-character-Info {
-    display: block;
+.charsheet .sheet-tabstoggle[value="equipment-Armour"] ~ div.character-Armour,
+.charsheet .sheet-tabstoggle[value="equipment-Equipment"] ~ div.character-Equipment,
+.charsheet .sheet-tabstoggle[value="equipment-Info"] ~ div.character-Info {
+    display: grid;
 }
 
 div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
@@ -612,69 +1096,6 @@ div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn 
     resize: vertical;
     box-sizing: border-box;
 }
-.charsheet div.sheet-character-Info {  
-    grid-template-columns: 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "info-Appearance"
-        "info-Traits"
-        "info-Proficiencies"
-        "info-Backstory";
-    text-align: center;
-}
-
-.info-Appearance {  
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title info-Appearance-Title"
-        "info-Gender info-Age info-Height info-Weight info-Eyes info-Hair info-Size"
-        "info-Vision info-Languages info-Languages info-Languages info-Languages info-Languages info-Alignment";
-    grid-area: info-Appearance;
-}
-
-.info-Vision { grid-area: info-Vision; }
-.info-Languages { grid-area: info-Languages; }
-.info-Alignment { grid-area: info-Alignment; }
-.info-Gender { grid-area: info-Gender; }
-.info-Age { grid-area: info-Age; }
-.info-Height { grid-area: info-Height; }
-.info-Weight { grid-area: info-Weight; }
-.info-Eyes { grid-area: info-Eyes; }
-.info-Hair { grid-area: info-Hair; }
-.info-Size { grid-area: info-Size; }
-.info-Appearance-Title { grid-area: info-Appearance-Title; }
-.info-Traits {  
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "info-Traits-Banner info-Traits-Banner info-Traits-Banner"
-        "info-Racial info-Personality info-Background"
-        "info-Racial info-Personality info-Background";
-    grid-area: info-Traits;
-}
-
-.info-Traits-Banner { grid-area: info-Traits-Banner; }
-.info-Racial { grid-area: info-Racial; }
-.info-Personality { grid-area: info-Personality; }
-.info-Background { grid-area: info-Background; }
-.info-Proficiencies {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "info-Proficiencies-Banner info-Proficiencies-Banner info-Proficiencies-Banner"
-        "info-Armour info-Weapon info-Tool"
-        "info-Armour info-Weapon info-Tool";
-    grid-area: info-Proficiencies;
-}
-
-.info-Proficiencies-Banner { grid-area: info-Proficiencies-Banner; }
-.info-Armour { grid-area: info-Armour; }
-.info-Weapon { grid-area: info-Weapon; }
-.info-Tool { grid-area: info-Tool; }
-.info-Backstory { grid-area: info-Backstory; }
 
 
 /* 5e ROLL TEMPLATES */
@@ -685,9 +1106,9 @@ div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn 
     width: 95%;
     background-color: #FFFFFF;
     font-size: 11px;
-    -webkit-border-radius: 5px;
+    -webkit-border-radius: 10px;
     -moz-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: black 1px solid;
     padding: 5px 0px;
     -webkit-box-sizing: border-box;
@@ -701,26 +1122,23 @@ div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn 
     width: 95%;
     background-color: #FFFFFF;
     font-size: 11px;
-    -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     border: black 1px solid;
     padding: 5px 0px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin-top: 3%;
 }
 
 .sheet-rolltemplate-atk .sheet-rt-card {
     width: 95%;
     background-color: #FFFFFF;
     font-size: 11px;
-    -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border: black 1px solid;
     padding: 5px 0px;
     -webkit-box-sizing: border-box;
