@@ -14,7 +14,7 @@ body {
     color: white;
 }
 
-p { font-size: 18px; }
+p { font-size: 17px;overflow: hidden; white-space: nowrap;}
 h2 { font-size: 28px; }
 
 h3 {
@@ -59,11 +59,16 @@ textarea {
     margin: 0;
 }
 
+.sheet-overview-Headpiece sheet-block {
+    align-items: center;
+}
+
 .headpiece-img {
     width: 20%;
 }
 
 input[type="text"], select {
+    min-width: 50px;
     width: 100%;
     margin: 0;
 }
@@ -73,8 +78,9 @@ input.headpiece-name {
     background-color: transparent;
     border-color: transparent;
     min-width: 1px;
-    width: 65%;
-    font-size: 64px;
+    width: 75%;
+    font-size: 6.5vb;
+    margin-left: 1%;
     outline: none;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     text-align: center;
@@ -224,8 +230,12 @@ button.attribute-mode-disadvantage{
         "attribute-Row-Nature"
         "attribute-Row-Charisma"
         "attribute-Row-Buffer";
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
+}   
+.attribute-Row-Title {
+    justify-items: center;
+    align-items: center; 
 }
 .attribute-Row-Vigour { grid-area: attribute-Row-Vigour; display: grid; }
 .attribute-Row-Endurance { grid-area: attribute-Row-Endurance; display: grid; }
@@ -238,7 +248,8 @@ button.attribute-mode-disadvantage{
 .attribute-Row-Nature { grid-area: attribute-Row-Nature; display: grid; }
 .attribute-Row-Charisma { grid-area: attribute-Row-Charisma; display: grid; }
 .attribute-Row {
-    display: grid; 
+    display: grid;
+    min-width: 220px;
     grid-template-areas:
         "attribute-Row-Name attribute-Row-Value";
     grid-template-columns: 1fr 1fr;
@@ -258,9 +269,10 @@ button.attribute-mode-disadvantage{
         "state-Row-Vitality"
         "state-Row-Focus"
         "state-Row-Stamina"
+        "state-Row-Space"
         "state-Row-Rest"
         "state-Row-Buffer";
-    grid-template-rows: auto auto auto auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
 .state-Row-Title { grid-area: state-Row-Title; display: grid; }
@@ -271,7 +283,8 @@ button.attribute-mode-disadvantage{
 .state-Row-Stamina { grid-area: state-Row-Stamina; display: grid; }
 .state-Row-Rest { grid-area: state-Row-Rest; display: grid; }
 .state-Row {
-    display: grid; 
+    display: grid;
+    min-width: 180px;
     grid-template-areas:
         "state-Row-Name state-Row-Value";
     grid-template-columns: 1fr 1.5fr;
@@ -293,9 +306,10 @@ button.attribute-mode-disadvantage{
         "stats-Row-Physical"
         "stats-Row-Magical"
         "stats-Row-Resistant"
+        "stats-Row-Space"
         "stats-Row-TakeDamage"
         "state-Row-Buffer";
-    grid-template-rows: auto auto auto auto auto auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto auto 4% auto 1fr;
     grid-template-columns: 1fr;
 }
 .stats-Row-Title { grid-area: stats-Row-Title; display: grid; }
@@ -308,7 +322,8 @@ button.attribute-mode-disadvantage{
 .stats-Row-Resistant { grid-area: stats-Row-Resistant; display: grid; }
 .stats-Row-TakeDamage { grid-area: stats-Row-TakeDamage; display: grid; }
 .stats-Row {
-    display: grid; 
+    display: grid;
+    min-width: 250px;
     grid-template-areas:
         "stats-Row-Name stats-Row-Value";
     grid-template-columns: 4fr 3fr;
@@ -329,7 +344,9 @@ button.attribute-mode-disadvantage{
     grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr;
 }
-.attacks-Row-Title { grid-area: attacks-Row-Title; display: grid; }
+.attacks-Row-Title {
+    grid-area: attacks-Row-Title;
+    display: grid;}
 .attacks-Row-Attacks { grid-area: attacks-Row-Attacks; display: grid; }
 .attacks-Row {
     display: grid; 
@@ -337,6 +354,8 @@ button.attribute-mode-disadvantage{
         "attacks-Row-Name attacks-Row-Buttons";
     grid-template-columns: 1fr 0.5fr;
     grid-template-rows: auto;
+    justify-items: center;
+    align-items: center;
 }
 .attacks-Row-Name { grid-area: attacks-Row-Name }
 .attacks-Row-Button { grid-area: attacks-Row-Buttons } }
@@ -354,11 +373,12 @@ button.attribute-mode-disadvantage{
     grid-template-rows: auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
-.runes-Row-Title { grid-area: runes-Row-Title; display: grid; }
+.runes-Row-Title { grid-area: runes-Row-Title; display: grid; justify-items: center; align-items: center;}
 .runes-Row-Memory { grid-area: runes-Row-Memory; display: grid; }
 .runes-Row-Runes { grid-area: runes-Row-Runes; display: grid; }
 .runes-MRow {
     display: grid; 
+    min-width: 220px;
     grid-template-areas:
         "runes-Row-MTitle runes-Row-MState";
     grid-template-columns: 1fr 1fr;
@@ -379,7 +399,7 @@ button.attribute-mode-disadvantage{
 
 .charsheet div.sheet-overview-Attacks { grid-area: overview-Attacks; }
 .charsheet div.sheet-overview-Runes { grid-area: overview-Runes; }
-.charsheet div.sheet-overview-Invocations { grid-area: overview-Invocations; }
+.charsheet div.sheet-overview-Invocations { grid-area: overview-Invocations; text-align: center;}
 .charsheet div.sheet-overview-Notes { grid-area: overview-Notes; }
 
 /* By deafult hide the attack button*/
@@ -716,6 +736,27 @@ button.attack-button-two {
 .rune-spells-Ready { grid-area: rune-spells-Ready; }
 .rune-spells-DescriptionL { grid-area: rune-spells-DescriptionL; }
 .rune-spells-Description { grid-area: rune-spells-Description; }
+.rune-spells-FieldV {
+    display: grid; 
+    grid-template-areas:
+        "rune-spells-Field-Name"
+        "rune-spells-Field-Value"
+        "rune-spells-Field-Buffer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    border: 1px solid white;
+    padding: 2px;
+}
+.rune-spells-FieldH {
+    display: grid; 
+    grid-template-areas:
+        "rune-spells-Field-Name rune-spells-Field-Value"
+        "rune-spells-Field-Buffer rune-spells-Field-Buffer";
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr;
+    border: 1px solid white;
+    padding: 2px;
+}
 
 /* Invocation Grid */
 .charsheet div.sheet-invocation { 
@@ -1201,6 +1242,10 @@ div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn 
 .sheet-rolltemplate-dmg .sheet-rt-title,
 .sheet-rolltemplate-atk .sheet-rt-title,
 .sheet-rolltemplate-simple .sheet-rt-title {
+    -webkit-text-fill-color: #ffffff;
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: #ffffff;
+    color: #fff;
     font-size: 1.5em; }
 .sheet-rolltemplate-desc .sheet-rt-subheader,
 .sheet-rolltemplate-atkdmg .sheet-rt-subheader,

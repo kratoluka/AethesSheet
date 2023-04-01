@@ -19,12 +19,12 @@
     </div>
     <div class="sheet-overview-Race sheet-block">
         <div class="attribute-Row-RaceL">
-            <h2> Race: </h2></div>
+            <h2> Race </h2></div>
         <div class="attribute-Row-Race">
             <input type="text" name="attr_race" value="" readonly/>
         </div>
         <div class="attribute-Row-LevelL">
-            <h2> Level: </h2></div>
+            <h2> Level </h2></div>
         <div class="attribute-Row-Level">
             <input type="number" name="attr_level" value="1" readonly/>
         </div>
@@ -129,7 +129,7 @@
                 <p> Charisma </p>
             </div>
             <div class="attribute-Row-Value">
-                <input type="number" name="attr_Vigour" value="1" min="1" readonly/>
+                <input type="number" name="attr_Charisma" value="1" min="1" readonly/>
                 <button type="action" name="act_rollCharisma">✍️</button>
             </div>
         </div>
@@ -157,7 +157,7 @@
             <div class="state-Row-Value">
                 <input type="number" value="0" name="attr_barrier" step="any"/>
                 <text> /</text>
-                <input type="number" value="10" name="attr_barrier_max" readonly/>
+                <input type="number" value="10" name="attr_barrier_max"/>
             </div>
         </div>
 
@@ -193,6 +193,7 @@
                 <input type="number" value="10" name="attr_sp_max" readonly/>
             </div>
         </div>
+        <div class="state-Row state-Row-Space">&nbsp;</div>
         <div class="state-Row-Rest">
             <button type="action" name="act_rest">Rest</button>
         </div>
@@ -203,7 +204,7 @@
         </div>
         <div class="stats-Row stats-Row-Initiative">
             <div class="stats-Row-Name">
-                <p> Initiative: </p>
+                <p> Initiative </p>
             </div>
             <div class="stats-Row-Value">
                 <input type="number" name="attr_initiative_total" value="1" readonly/>
@@ -211,7 +212,7 @@
         </div>
         <div class="stats-Row stats-Row-Evasion">
             <div class="stats-Row-Name">
-                <p> Evasion: </p>
+                <p> Evasion </p>
             </div>
             <div class="stats-Row-Value">
                 <input type="number" name="attr_evasion_total" value="1" readonly/>
@@ -219,7 +220,7 @@
         </div>
         <div class="stats-Row stats-Row-Speed">
             <div class="stats-Row-Name">
-                <p> Speed: </p>
+                <p> Speed </p>
             </div>
             <div class="stats-Row-Value">
                 <input type="number" name="attr_speed_total" value="1" readonly/>
@@ -237,7 +238,7 @@
         </div>
         <div class="stats-Row stats-Row-Physical">
             <div class="stats-Row-Name">
-                <p> Physical Resist: </p>
+                <p> Physical Resist </p>
             </div>
             <div class="stats-Row-Value">
         <input type="number" name="attr_phys_resist_total" value="0" readonly/>
@@ -245,7 +246,7 @@
         </div>
         <div class="stats-Row stats-Row-Magical">
             <div class="stats-Row-Name">
-                <p> Magical Resist: </p>
+                <p> Magical Resist </p>
             </div>
             <div class="stats-Row-Value">
         <input type="number" name="attr_mag_resist_total" value="0" readonly/>
@@ -253,7 +254,7 @@
         </div>
         <div class="stats-Row stats-Row-Resistant">
             <div class="stats-Row-Name">
-                <p> Resistant to: </p>
+                <p> Resistant to </p>
             </div>
             <div class="stats-Row-Value">
                 <fieldset class="repeating_resistance">
@@ -261,6 +262,7 @@
                 </fieldset>
             </div>
         </div>
+        <div class="stats-Row stats-Row-Space">&nbsp;</div>
         <div class="stats-Row-TakeDamage">
             <input type="hidden" class="prompt-take-damage" name="attr_promptTakeDamage"/>
             <button type="action" class="prompt-take-damage-button" name="act_promptTakeDamage"> Take Damage </button>
@@ -295,7 +297,7 @@
         </div>
         <div class="attacks-Row-Attacks">
             <fieldset class="repeating_attacks" readonly>
-                <div class="attacks-Row">
+                <div class="attacks-Row"> 
                     <div class="attacks-Row-Name">
                         <input type="text" name="attr_attack_name" readonly/>
                     </div>
@@ -333,7 +335,7 @@
         </div>
         <div class="runes-MRow runes-Row-Memory">
             <div class="runes-Row-MTitle">
-                <p> Memory: </p>
+                <p> Memory </p>
             </div>
             <div class="runes-Row-MState">
                 <input type="number" value="0" name="attr_rs_memory_used" readonly/>
@@ -420,104 +422,104 @@
         </div>
         <div class="stats-attribute-Row-Vigour stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Vigour </p>
+                <p> Vigour: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Vigour" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Vigour_bonus" value="0"/>
             </div>
         </div>
         <div class="stats-attribute-Row-Endurance stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Endurance </p>
+                <p> Endurance: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Endurance" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Endurance_bonus" value="0"/>
             </div>
         </div>
         <div class="stats-attribute-Row-Intelligence stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Intelligence </p>
+                <p> Intelligence: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Intelligence" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Intelligence_bonus" value="0"/>
             </div>
         </div>
         <div class="stats-attribute-Row-Strength stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Strength </p>
+                <p> Strength: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Strength" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Strength_bonus" value="0"/>
             </div>
         </div>
         <div class="stats-attribute-Row-Dexterity stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Dexterity </p>
+                <p> Dexterity: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Dexterity" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Dexterity_bonus" value="0"/>
             </div>
         </div>
         <div class="stats-attribute-Row-Perception stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Perception </p>
+                <p> Perception: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Perception" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Perception_bonus" value="0"/>
             </div>
         </div>
         <div class="stats-attribute-Row-Arcana stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Arcana </p>
+                <p> Arcana: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Arcana" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Arcana_bonus" value="0"/>
             </div>
         </div>
         <br>
         <div class="stats-attribute-Row-Faith stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Faith </p>
+                <p> Faith: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Faith" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Faith_bonus" value="0"/>
             </div>
         </div>
         <br>
         <div class="stats-attribute-Row-Nature stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Nature </p>
+                <p> Nature: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Nature" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Nature_bonus" value="0"/>
             </div>
         </div>
         <br>
         <div class="stats-attribute-Row-Charisma stats-attribute-Row">
             <div class="stats-attribute-Row-Name">
-                <p> Charisma </p>
+                <p> Charisma: </p>
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Charisma" value="1" min="1"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_Charisma_bonus" value="0"/>
             </div>
         </div>
@@ -543,7 +545,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="10" name="attr_hp_base" readonly/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_hp_bonus" value="0"/>
             </div>
         </div>
@@ -553,7 +555,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_vitality_base" readonly/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_vitality_bonus" value="0"/>
             </div>
         </div>
@@ -563,7 +565,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="10" name="attr_fp_base" readonly/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_focus_bonus" value="0"/>
             </div>
         </div>
@@ -573,7 +575,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_sp_base" readonly/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_sp_bonus" value="0"/>
             </div>
         </div>
@@ -583,7 +585,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_initiative_base" readonly/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_initiative_bonus" value="0"/>
             </div>
         </div>
@@ -593,7 +595,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_evasion_base" readonly/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_evasion_bonus" value="0"/>
             </div>
         </div>
@@ -603,7 +605,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="20" name="attr_speed_base" readonly/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_speed_bonus" value="0"/>
             </div>
         </div>
@@ -613,7 +615,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_equip_load_base" readonly/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_equip_load_bonus" value="0"/>
             </div>
         </div> 
@@ -624,27 +626,27 @@
         </div>
         <div class="stats-armour-Row-Physical stats-stats-Row">
             <div class="stats-stats-Row-Name">
-                <p> Physical </p>
+                <p> Physical: </p>
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" name="attr_phys_resist" value="0"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_phys_resist_bonus" value="0"/>
             </div>
         </div> 
         <div class="stats-armour-Row-Magical stats-stats-Row">
             <div class="stats-stats-Row-Name">
-                <p> Magical </p>
+                <p> Magical: </p>
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" name="attr_mag_resist" value="0"/>
-                <text>Bonus</text>
+                <text>Bonus:</text>
                 <input type="number" name="attr_mag_resist_bonus" value="0"/>
             </div>
         </div>
 
         <div class="stats-armour-Row-Resistant">
-            <p> Add resistance </p>
+            <p> Add resistance: </p>
             <fieldset class="repeating_resistance">
                 <select name="attr_resistance">
                     <option selected>-</option>
@@ -709,7 +711,7 @@
                 <div class="weapons-Row-Left">
                     <div class="weapons-Row-Name weapons-FieldT">
                         <div class="weapons-Field-Name">
-                            Name
+                            <p> Name: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="text" name="attr_weapon_name" />
@@ -717,7 +719,7 @@
                     </div>
                     <div class="weapons-Row-Scaling weapons-FieldT">
                         <div class="weapons-Field-Name">
-                            Scaling
+                            <p> Scaling: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <select name="attr_weapon_scaling">
@@ -737,7 +739,7 @@
                     </div>
                     <div class="weapons-Row-Acc weapons-FieldN">
                         <div class="weapons-Field-Name">
-                            Acc Bonus
+                            <p> Acc Bonus: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="number" name="attr_weapon_acc_bonus" value="0"/>
@@ -745,7 +747,7 @@
                     </div>
                     <div class="weapons-Row-Dmg  weapons-FieldN">
                         <div class="weapons-Field-Name">
-                            Dmg Bonus
+                            <p> Dmg Bonus: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="number" name="attr_weapon_dmg_bonus" value="0"/>
@@ -753,7 +755,7 @@
                     </div>
                     <div class="weapons-Row-Crit weapons-FieldN">
                         <div class="weapons-Field-Name">
-                            Crit Chance %
+                            <p> Crit Chance %: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="number" name="attr_weapon_crit_chance" value="5" min="5" step="5" />
@@ -761,7 +763,7 @@
                     </div>
                     <div class="weapons-Row-Ranged weapons-FieldN">
                         <div class="weapons-Field-Name">
-                            Ranged
+                            <p> Ranged: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="checkbox" name="attr_weapon_ranged"/>
@@ -770,11 +772,11 @@
                 </div>
                 <div class="weapons-Row-Right">
                     <div class="weapons-Row-OneHanded weapons-Field">
-                        One Handed
+                        <p> One Handed
                     </div>
                     <div class="weapons-Row-DiceOne weapons-FieldT">
                         <div class="weapons-Field-Name">
-                            Dice
+                            <p> Dice: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="text" name="attr_weapon_dice_one"/>
@@ -782,7 +784,7 @@
                     </div>
                     <div class="weapons-Row-TypeOne weapons-FieldT">
                         <div class="weapons-Field-Name">
-                            Type
+                            <p> Type: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <select name="attr_weapon_type_one">
@@ -801,26 +803,26 @@
                     </div>
                     <div class="weapons-Row-RangeOne weapons-FieldT">
                         <div class="weapons-Field-Name">
-                        Range
+                        <p> Range: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="text" name="attr_weapon_range_one"/>
                         </div>
                     </div>
                     <div class="weapons-Row-TwoHanded weapons-Field">
-                        Two Handed
+                        <p> Two Handed </p>
                     </div>
                     <div class="weapons-Row-DiceTwo weapons-FieldT">
                         <div class="weapons-Field-Name">
-                        Dice
-                        </div>
+                        <p> Dice: </p>
+                    </div>
                         <div class="weapons-Field-Value">
                             <input type="text" name="attr_weapon_dice_two"/>
                         </div>
                     </div>
                     <div class="weapons-Row-TypeTwo weapons-FieldT">
                         <div class="weapons-Field-Name">
-                            Type
+                            <p> Type: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <select name="attr_weapon_type_two">
@@ -839,18 +841,18 @@
                     </div>
                     <div class="weapons-Row-RangeTwo weapons-FieldT">
                         <div class="weapons-Field-Name">
-                        Range
+                        <p> Range: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="text" name="attr_weapon_range_two"/>
                         </div>
                     </div>
                     <div class="weapons-Row-Secondary weapons-Field">
-                        Secondary
+                        <p> Secondary: </p>
                     </div>
                     <div class="weapons-Row-DiceSecondary weapons-FieldT">
                         <div class="weapons-Field-Name">
-                            Dice
+                            <p> Dice: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <input type="text" name="attr_weapon_dice_secondary"/>
@@ -858,7 +860,7 @@
                     </div>
                     <div class="weapons-Row-TypeSecondary weapons-FieldT">
                         <div class="weapons-Field-Name">
-                            Type
+                            <p> Type: </p>
                         </div>
                         <div class="weapons-Field-Value">
                             <select name="attr_weapon_type_secondary">
@@ -878,7 +880,7 @@
                 </div>
                 <div class="weapons-Row-Description weapons-FieldV">
                     <div class="weapons-Field-Name">
-                        Description
+                        <p> Description: </p>
                     </div>
                     <div class="weapons-Field-Value">
                         <textarea name="attr_weapon_desc" cols="20" rows="2"/>
@@ -897,13 +899,13 @@
         <fieldset class="repeating_rune-spells">
             <div class="rune-spells-Row sheet-block">
                 <div class="rune-spells-NameL">
-                    <p>Name</p>
+                    <p>Name:</p>
                 </div>
                 <div class="rune-spells-Name">
                     <input type="text" name="attr_rs_name"/>
                 </div>
                 <div class="rune-spells-CastL">
-                    <p>Cast</p>
+                    <p>Cast:</p>
                 </div>
                 <div class="rune-spells-Cast">
                     <select name="attr_rs_scaling">
@@ -919,19 +921,19 @@
                     <input type="text" name="attr_rs_range"/>
                 </div>
                 <div class="rune-spells-DiceL">
-                    <p>Damage</p>
+                    <p>Damage:</p>
                 </div>
                 <div class="rune-spells-Dice">
                     <input type="text" name="attr_rs_dice"/>
                 </div>
                 <div class="rune-spells-APL">
-                    <p>AP Cost</p>
+                    <p>AP Cost:</p>
                 </div>
                 <div class="rune-spells-AP">
                     <input type="number" name="attr_rs_ap" value="2"/>
                 </div>
                 <div class="rune-spells-FPL">
-                    <p>FP Cost</p>
+                    <p>FP Cost:</p>
                 </div>
                 <div class="rune-spells-FP">
                     <input type="number" name="attr_rs_fp" value="0"/>
@@ -1062,6 +1064,7 @@
                         <option value="mending">Mending</option>
                         <option value="eagle's_wings">Eagle's Wings</option>
                         <option value="petrify">Petrify</option>
+                        <option value="cleanse">Cleanse</option>
                     </select>
                 </fieldset>
             </div>
@@ -1164,6 +1167,7 @@
                 <option value="invisibility">Invisibility</option>
                 <option value="ward">Ward</option>
                 <option value="divine_sense">Divine Sense</option>
+                <option value="cleanse">Cleanse</option>
             </select>
             </div>
             <div class="sheet-nature">
@@ -1190,7 +1194,7 @@
         </div>
         <div class="invocation-Caster-NameL">
             <hr>
-            <p>Name:</p>
+            <p>Name</p>
         </div>
         <div class="invocation-Caster-Name">
             <hr>
@@ -1198,32 +1202,32 @@
         </div>
         <div class="invocation-Caster-DiceL">
             <hr>
-            <p>Dice:</p>
+            <p>Dice</p>
         </div>
         <div class="invocation-Caster-Dice">
             <hr>
             <input type="text" value="" name="attr_ic_dice" readonly />
         </div>
         <div class="invocation-Caster-IntL">
-            <p>Intelligence Required:</p>
+            <p>Intelligence Required</p>
         </div>
         <div class="invocation-Caster-Int">
             <input type="number" value="0" name="attr_ic_int_req" readonly />
         </div>
         <div class="invocation-Caster-APL">
-            <p>AP Cost:</p>
+            <p>AP Cost</p>
         </div>
         <div class="invocation-Caster-AP">
             <input type="number" value="0" name="attr_ic_ap" readonly />
         </div>
         <div class="invocation-Caster-AttrL">        
-            <p>Attribute Required:</p>
+            <p>Attribute Required</p>
         </div>
         <div class="invocation-Caster-Attr">
             <input type="number" value="0" name="attr_ic_attr_req" readonly />
         </div>
         <div class="invocation-Caster-FPL">
-            <p>FP Cost:</p>
+            <p>FP Cost</p>
         </div>
         <div class="invocation-Caster-FP">
             <input type="number" value="0" name="attr_ic_fp" readonly />
@@ -1236,7 +1240,7 @@
             <div class="ic_warning_attr"><input type="text" name="attr_ic_warning_attr" value="" readonly><br></div>
         </div>
         <div class="invocation-Caster-Description">
-            <p>Description:</p>
+            <p>Description</p>
             <textarea name="attr_ic_desc_full" cols="20" rows="2" readonly></textarea>
         </div>
         <div class="invocation-Caster-Save">
@@ -1251,43 +1255,43 @@
             <fieldset class="repeating_ic-saved">
                 <div class="invocation-Saved-Block sheet-block">
                     <div class="invocation-Saved-NameL">
-                        <p>Name:</p>
+                        <p>Name</p>
                     </div>
                     <div class="invocation-Saved-Name">
                         <input type="text" name="attr_ic_name" value="" readonly />
                     </div>
                     <div class="invocation-Saved-DiceL">
-                        <p>Dice:</p>
+                        <p>Dice</p>
                     </div>
                     <div class="invocation-Saved-Dice">
                         <input type="text" value="" name="attr_ic_dice" readonly />
                     </div>
                     <div class="invocation-Saved-IntL">
-                        <p>Intelligence Required:</p>
+                        <p>Intelligence Required</p>
                     </div>
                     <div class="invocation-Saved-Int">
                         <input type="number" value="0" name="attr_ic_int_req" readonly />
                     </div>
                     <div class="invocation-Saved-APL">
-                        <p>AP Cost:</p>
+                        <p>AP Cost</p>
                     </div>
                     <div class="invocation-Saved-AP">
                         <input type="number" value="0" name="attr_ic_ap" readonly />
                     </div>
                     <div class="invocation-Saved-AttrL">        
-                        <p>Attribute Required:</p>
+                        <p>Attribute Required</p>
                     </div>
                     <div class="invocation-Saved-Attr">
                         <input type="number" value="0" name="attr_ic_attr_req" readonly />
                     </div>
                     <div class="invocation-Saved-FPL">
-                        <p>FP Cost:</p>
+                        <p>FP Cost</p>
                     </div>
                     <div class="invocation-Saved-FP">
                         <input type="number" value="0" name="attr_ic_fp" readonly />
                     </div>
                     <div class="invocation-Saved-Description">
-                        <p>Description:</p>
+                        <p>Description</p>
                         <textarea name="attr_ic_desc_full" cols="20" rows="2" readonly></textarea>
                     </div>
                     <!--hidden fields-->
@@ -1310,7 +1314,7 @@
         <fieldset class="repeating_inventory">
             <div class="inventory-Row sheet-block">
                 <div class="inventory-NameL">
-                    <p>Name</p>
+                    <p>Name:</p>
                 </div>
                 <div class="inventory-Name">
                     <input type="text" name="attr_item_name"/>
@@ -1405,19 +1409,19 @@
             <fieldset class="repeating_equipment">
                 <div class="character-Equipment-Row sheet-block">
                     <div class="character-NameL">
-                        <p>Name</p>
+                        <p>Name:</p>
                     </div>
                     <div class="character-Name">
                         <input type="text" name="attr_eq_name"/>
                     </div>
                     <div class="character-WeightL">
-                        <p>Weight</p>
+                        <p>Weight:</p>
                     </div>
                     <div class="character-Weight">
                         <input type="number" name="attr_eq_weight" value="0"/>
                     </div>
                     <div class="character-NoteL">
-                        <p>Note</p>
+                        <p>Note:</p>
                     </div>
                     <div class="character-Note">
                         <textarea name="attr_eq_note" cols="20" rows="2"></textarea>
@@ -1691,19 +1695,19 @@
         getAttrs(["character_name", "attackMode", `${attack}_name`,`${attack}_acc_bonus`,`${attack}_crit_chance`,`${attack}_scaling`,`${attack}_ranged`,`${attack}_range`,`${attack}_spell`,`${attack}_dmg_bonus`,`${attack}_dice_one`,`${attack}_type_one`,`${attack}_dice_two`,`${attack}_type_two`,`${attack}_dice_secondary`,`${attack}_type_secondary`,...allAttributes], async (values) => {
 
             const scaling = values[`${attack}_scaling`]
-            const acc = jsSum(values[`${scaling}`], values[`${scaling}_bonus`], values[`${attack}_acc_bonus`])
+            const acc = jsSum(values[scaling], values[`${scaling}_bonus`], values[`${attack}_acc_bonus`])
 
 
             const type = (values[`${attack}_spell`] != 0) ? "{{spell=1}}" : "{{weapon=1}}"
             const category = (values[`${attack}_spell`] != 0) ? `{{category=${scaling}}}` : ((values[`${attack}_ranged`] != 0) ? `{{category=Ranged Attack}}` : `{{category=Melee Attack}}`)
 
-            const critThreshold = 20 - jsSum(values[`${attack}_crit_chance`], -5) / 5
+            const critThreshold = 20 - parseInt(values[`${attack}_crit_chance`]) / 5
             const rollString = `&{template:atk} {{charname=${values.character_name}}} {{title=${values[`${attack}_name`]}}} ${type} ${category} {{r1=[[1d20cs>${critThreshold}+${acc}]]}} {{r2=[[1d20cs>${critThreshold}${(acc>0)?`+${acc}`:""}]]}} {{${values.attackMode}=1}} {{damage=${`~${values.character_name}|${attack}_dmg`}}}`
 
             // Send the roll to the parser
             const results = await startRoll(rollString);
 
-            let damage = (hand == "attack-one") ? `{{dmg1flag=1}} {{dmg1=[[${values[`${attack}_dice_one`]}${(values[`${attack}_dmg_bonus`] != "")? "+"+values[`${attack}_dmg_bonus`]:""}]]}} {{dmg1type=${values[`${attack}_type_one`]}}}` : `{{dmg1flag=1}} {{dmg1=[[${values[`${attack}_dice_two`]}${(values[`${attack}_dmg_bonus`] != "")? "+"+values[`${attack}_dmg_bonus`]:""}]]}} {{dmg1type=${values[`${attack}_type_two`]}}}`
+            let damage = (hand == "attack-one") ? `{{dmg1flag=1}} {{dmg1=[[${values[`${attack}_dice_one`]}+${values[scaling]}${(values[`${attack}_dmg_bonus`] != "")? "+"+values[`${attack}_dmg_bonus`]:""}]]}} {{dmg1type=${values[`${attack}_type_one`]}}}` : `{{dmg1flag=1}} {{dmg1=[[${values[`${attack}_dice_two`]}+${values[scaling]}${(values[`${attack}_dmg_bonus`] != "")? "+"+values[`${attack}_dmg_bonus`]:""}]]}} {{dmg1type=${values[`${attack}_type_two`]}}}`
             damage += (values[`${attack}_dice_secondary`] != "") ? ` {{dmg2flag=1}} {{dmg2=[[${values[`${attack}_dice_secondary`]}]]}} {{dmg2type=${values[`${attack}_type_secondary`]}}}` : ""
 
             const r1 = results.results.r1.dice[0]
@@ -1864,6 +1868,7 @@
             "mending": [4, 1, 4, false, "", "Object Regains 20 + Nature Hit Points.\nOverheal."],
             "eagle's_wings": [7, 2, 7, false, "", "Fly Speed equal to Movement Speed."],
             "petrify": [9, 2, 12, false, "Vigour", "Petrifies characters with 0 Hit Points."],
+            "cleanse": [2, 2, 2, false, "", "The caster pressed their hand on the target and draws out a sickness afflicting them."],
         };
 
         const effectDetails = spellEffects[effectName];
@@ -2062,7 +2067,7 @@
                         attack_dice_secondary: values[`repeating_weapons_${id}_weapon_dice_secondary`],
                         attack_type_secondary: values[`repeating_weapons_${id}_weapon_type_secondary`],
                         attack_desc: values[`repeating_weapons_${id}_weapon_desc`],
-                        attack_ranged: (values[`repeating_weapons_${id}_weapon_ranged`] == "0") ? values[`repeating_weapons_${id}_weapon_dmg_bonus`] : "1",
+                        attack_ranged: (values[`repeating_weapons_${id}_weapon_ranged`] == "0") ? values[`repeating_weapons_${id}_weapon_ranged`] : "1",
                         attack_one: (values[`repeating_weapons_${id}_weapon_dice_one`] != "") ? "show" : "hide",
                         attack_two: (values[`repeating_weapons_${id}_weapon_dice_two`] != "") ? "show" : "hide",
                         attack_roll_dmg: `&{template:default} {{name=${values[`repeating_weapons_${id}_weapon_name`]}}} `
@@ -2136,12 +2141,12 @@
 
             function getRaceSpeed(race) {
                 const raceValues = {
-                    "Dwarf": 15,
-                    "Smallfolk": 15,
-                    "Turtlefolk": 15,
-                    "Demi-Giant": 25,
+                    "Dwarf": 10,
+                    "Smallfolk": 10,
+                    "Turtlefolk": 10,
+                    "Felis": 20,
                 };
-                return raceValues[race] || 20;
+                return raceValues[race] || 15;
             }
 
             function getAttributeCost(attribute) {
