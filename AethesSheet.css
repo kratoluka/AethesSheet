@@ -192,7 +192,8 @@ div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcont
     display: none;
 }
 
-.charsheet div.sheet-master {  
+.charsheet div.sheet-master {
+    min-width: 590px;
     display: grid; 
     grid-gap: 5px;
     grid-template-areas:
@@ -267,10 +268,31 @@ div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcont
     grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr;
 }
-.attribute-Row-RaceL { grid-area: attribute-Row-RaceL; }
+
+.attribute-Row-RaceL {
+    grid-area: attribute-Row-RaceL;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.attribute-Row-LevelL {
+    grid-area: attribute-Row-LevelL;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .attribute-Row-Race { grid-area: attribute-Row-Race; }
-.attribute-Row-LevelL { grid-area: attribute-Row-LevelL; }
 .attribute-Row-Level { grid-area: attribute-Row-Level; }
+
+.attribute-Row-Level,
+.attribute-Row-Race {
+    display: flex;
+    align-items: center;
+}
+
+.attribute-Row-Race input {
+    width: 90%;
+}
 
 /* Overview Attributes Grid */
 .charsheet div.sheet-overview-Attributes { 
@@ -309,7 +331,7 @@ div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcont
 .attribute-Row {
     display: grid;
     vertical-align: middle;
-    min-width: 240px;
+    min-width: 250px;
     grid-template-areas:
         "attribute-Row-Name attribute-Row-Value";
     grid-template-columns: 1fr 1fr;
@@ -344,7 +366,7 @@ div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcont
 .state-Row-Rest { grid-area: state-Row-Rest; display: grid; }
 .state-Row {
     display: grid;
-    min-width: 180px;
+    min-width: 250px;
     grid-template-areas:
         "state-Row-Name state-Row-Value";
     grid-template-columns: 1fr 1.5fr;
@@ -383,7 +405,7 @@ div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcont
 .stats-Row-TakeDamage { grid-area: stats-Row-TakeDamage; display: grid; }
 .stats-Row {
     display: grid;
-    min-width: 250px;
+    min-width: 300px;
     grid-template-areas:
         "stats-Row-Name stats-Row-Value";
     grid-template-columns: 4fr 3fr;
@@ -638,8 +660,9 @@ button.attack-button-two {
         "stats-stats-Row-Evasion"
         "stats-stats-Row-Speed"
         "stats-stats-Row-EquipLoad"
+        "stats-stats-Row-EmptyThree"
         "stats-stats-Row-Buffer";
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
 .stats-stats-Row-Title { grid-area: stats-stats-Row-Title; display: grid; }
@@ -655,6 +678,7 @@ button.attack-button-two {
 .stats-stats-Row-Evasion { grid-area: stats-stats-Row-Evasion; display: grid; }
 .stats-stats-Row-Speed { grid-area: stats-stats-Row-Speed; display: grid; }
 .stats-stats-Row-EquipLoad { grid-area: stats-stats-Row-EquipLoad; display: grid; }
+.stats-stats-Row-EmptyThree { grid-area: stats-stats-Row-EmptyThree; display: grid; }
 .stats-stats-Row {
     display: grid;
     min-width: 250px;
