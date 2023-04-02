@@ -14,7 +14,7 @@
 
 <div class="sheet-overview">
     <div class="sheet-overview-Headpiece sheet-block">
-        <img class="headpiece-img" name="attr_character_token">
+        <img class="headpiece-img" name="attr_character_avatar">
         <input class="headpiece-name" type="text" name="attr_character_name" readonly/>
     </div>
     <div class="sheet-overview-Race sheet-block">
@@ -112,7 +112,7 @@
             <div class="attribute-Row-Value">
                 <input type="number" name="attr_Faith" value="1" min="1" readonly/>
                 <button type="action" name="act_rollFaith">✍️</button>
-                <button type="action" name="act_rollFortune">?</button>
+                <button type="action" name="act_rollFortune">&#x1F36A;</button>
             </div>
         </div>
         <div class="attribute-Row attribute-Row-Nature">
@@ -131,6 +131,7 @@
             <div class="attribute-Row-Value">
                 <input type="number" name="attr_Charisma" value="1" min="1" readonly/>
                 <button type="action" name="act_rollCharisma">✍️</button>
+                <button type="action" name="act_rollFortune">&#x1F36A;</button>
             </div>
         </div>
     </div>
@@ -268,17 +269,67 @@
             <button type="action" class="prompt-take-damage-button" name="act_promptTakeDamage"> Take Damage </button>
             <div class="prompt-background">
                 <input type="hidden" class="sheet-prompt" name="attr_promptAttack"/>
-                <div class="prompt-attack">
-                    Take Damage<button type="action" name="act_promptClose">Close</button><br>
-                    Slashing<input type="number" name="attr_take_slashing" value="0"/><br>
-                    Piercing<input type="number" name="attr_take_piercing" value="0"/><br>
-                    Bludgeoning<input type="number" name="attr_take_bludgeoning" value="0"/><br>
-                    Fire<input type="number" name="attr_take_fire" value="0"/><br>
-                    Frost<input type="number" name="attr_take_frost" value="0"/><br>
-                    Shadow<input type="number" name="attr_take_shadow" value="0"/><br>
-                    Water<input type="number" name="attr_take_water" value="0"/><br>
-                    Poison<input type="number" name="attr_take_poison" value="0"/><br>
-                    <button type="action" name="act_promptTake">Take Damage</button>
+                <div class="prompt-damage">
+                    <div class="prompt-damage-Title">
+                        Take Damage
+                    </div>
+                    <div class="prompt-damage-Close">
+                        <button type="action" name="act_promptClose">Close</button>
+                    </div>
+                    <div class="prompt-damage-SlashingL">
+                        Slashing
+                    </div>
+                    <div class="prompt-damage-Slashing">
+                        <input type="number" name="attr_take_slashing" value="0"/>
+                    </div>
+                    <div class="prompt-damage-PiercingL">
+                        Piercing
+                    </div>
+                    <div class="prompt-damage-Piercing">
+                        <input type="number" name="attr_take_piercing" value="0"/>
+                    </div>
+                    <div class="prompt-damage-BludgeoningL">
+                        Bludgeoning
+                    </div>
+                    <div class="prompt-damage-Bludgeoning">
+                        <input type="number" name="attr_take_bludgeoning" value="0"/>
+                    </div>
+                    <div class="prompt-damage-FireL">
+                        Fire
+                    </div>
+                    <div class="prompt-damage-Fire">
+                        <input type="number" name="attr_take_fire" value="0"/>
+                    </div>
+                    <div class="prompt-damage-FrostL">
+                        Frost
+                    </div>
+                    <div class="prompt-damage-Frost">
+                        <input type="number" name="attr_take_frost" value="0"/>
+                    </div>
+                    <div class="prompt-damage-ShadowL">
+                        Shadow
+                    </div>
+                    <div class="prompt-damage-Shadow">
+                        <input type="number" name="attr_take_shadow" value="0"/>
+                    </div>
+                    <div class="prompt-damage-WaterL">
+                        Water
+                    </div>
+                    <div class="prompt-damage-Water">
+                        <input type="number" name="attr_take_water" value="0"/>
+                    </div>
+                    <div class="prompt-damage-PoisonL">
+                        Poison
+                    </div>
+                    <div class="prompt-damage-Poison">
+                        <input type="number" name="attr_take_poison" value="0"/>
+                    </div>
+                    <div class="prompt-damage-HP">
+                        - <span name="attr_calc_take_damage"></span> HP
+                    </div>
+                    <div class="prompt-damage-Take">
+                        <button type="action" name="act_promptTake">Take</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -364,6 +415,43 @@
         <p>Notes:</p><br>
         <textarea name="attr_notes"></textarea>
     </div>
+    <div class="sheet-overview-Resources sheet-block">
+        <div class="resources-Title">
+            <h2>Resources</h2>
+        </div>
+        <div class="resources-Labels resources-Row">
+            <div class="resources-Row-Name">
+                <p>Name</p>
+            </div>
+            <div class="resources-Row-Amount">
+                <p>Amount</p>
+            </div>
+            <div class="resources-Row-Total">
+                <p>Total</p>
+            </div>
+            <div class="resources-Row-Note">
+                <p>Note</p>
+            </div>
+        </div>
+        <div class="resources-Block">
+            <fieldset class="repeating_resources">
+                <div class="resources-Row">
+                    <div class="resources-Row-Name">
+                        <input type="text" name="attr_resource_name"/>
+                    </div>
+                    <div class="resources-Row-Amount">
+                        <input type="number" name="attr_resource_amount"/>
+                    </div>
+                    <div class="resources-Row-Total">
+                        <input type="number" name="attr_resource_total"/>
+                    </div>
+                    <div class="resources-Row-Note">
+                        <input type="text" name="attr_resource_note"/>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 </div>
 
 <div class="sheet-stats">
@@ -426,7 +514,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Vigour" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Vigour_bonus" value="0"/>
             </div>
         </div>
@@ -436,7 +524,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Endurance" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Endurance_bonus" value="0"/>
             </div>
         </div>
@@ -446,7 +534,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Intelligence" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Intelligence_bonus" value="0"/>
             </div>
         </div>
@@ -456,7 +544,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Strength" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Strength_bonus" value="0"/>
             </div>
         </div>
@@ -466,7 +554,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Dexterity" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Dexterity_bonus" value="0"/>
             </div>
         </div>
@@ -476,7 +564,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Perception" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Perception_bonus" value="0"/>
             </div>
         </div>
@@ -486,7 +574,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Arcana" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Arcana_bonus" value="0"/>
             </div>
         </div>
@@ -497,7 +585,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Faith" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Faith_bonus" value="0"/>
             </div>
         </div>
@@ -508,7 +596,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Nature" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Nature_bonus" value="0"/>
             </div>
         </div>
@@ -519,7 +607,7 @@
             </div>
             <div class="stats-attribute-Row-Value">
                 <input type="number" name="attr_Charisma" value="1" min="1"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_Charisma_bonus" value="0"/>
             </div>
         </div>
@@ -545,7 +633,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="10" name="attr_hp_base" readonly/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_hp_bonus" value="0"/>
             </div>
         </div>
@@ -555,7 +643,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_vitality_base" readonly/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_vitality_bonus" value="0"/>
             </div>
         </div>
@@ -565,7 +653,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="10" name="attr_fp_base" readonly/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_focus_bonus" value="0"/>
             </div>
         </div>
@@ -575,7 +663,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_sp_base" readonly/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_sp_bonus" value="0"/>
             </div>
         </div>
@@ -585,7 +673,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_initiative_base" readonly/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_initiative_bonus" value="0"/>
             </div>
         </div>
@@ -595,7 +683,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_evasion_base" readonly/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_evasion_bonus" value="0"/>
             </div>
         </div>
@@ -605,7 +693,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="20" name="attr_speed_base" readonly/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_speed_bonus" value="0"/>
             </div>
         </div>
@@ -615,7 +703,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_equip_load_base" readonly/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_equip_load_bonus" value="0"/>
             </div>
         </div> 
@@ -630,7 +718,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" name="attr_phys_resist" value="0"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_phys_resist_bonus" value="0"/>
             </div>
         </div> 
@@ -640,7 +728,7 @@
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" name="attr_mag_resist" value="0"/>
-                <text>Bonus:</text>
+                <text>+</text>
                 <input type="number" name="attr_mag_resist_bonus" value="0"/>
             </div>
         </div>
@@ -690,6 +778,10 @@
                 <div class="perks-Source">
                     <input type="text" name="attr_perk_source"/>
                 </div>
+                <div class="perks-Fold">
+                    <button type="action" name="act_fold">&#x1F6C8;</button>
+                </div>
+                <input type="hidden" class="perks-Toggle" name="attr_row_toggle" value="open" /> 
                 <div class="perks-DescriptionL">
                     <p>Description:</p>
                 </div>
@@ -702,188 +794,197 @@
 </div>
 
 <div class="sheet-weapons">
-    <div class="weapons-Row-Title sheet-block">
+    <div class="weapons-Title sheet-block">
         <h2>Weapons</h2>
     </div>
-    <div class="weapons-Row-Attacks">
+    <div class="weapons-Attacks">
         <fieldset class="repeating_weapons">
             <div class="weapons-Row">
-                <div class="weapons-Row-Left">
-                    <div class="weapons-Row-Name weapons-FieldT">
-                        <div class="weapons-Field-Name">
-                            <p> Name: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <input type="text" name="attr_weapon_name" />
-                        </div>
-                    </div>
-                    <div class="weapons-Row-Scaling weapons-FieldT">
-                        <div class="weapons-Field-Name">
-                            <p> Scaling: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <select name="attr_weapon_scaling">
-                                <option selected>-</option>
-                                <option value="Vigour">Vigour</option>
-                                <option value="Endurance">Endurance</option>
-                                <option value="Intelligence">Intelligence</option>
-                                <option value="Strength">Strength</option>
-                                <option value="Dexterity">Dexterity</option>
-                                <option value="Perception">Perception</option>
-                                <option value="Arcana">Arcana</option>
-                                <option value="Faith">Faith</option>
-                                <option value="Nature">Nature</option>
-                                <option value="Charisma">Charisma</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="weapons-Row-Acc weapons-FieldN">
-                        <div class="weapons-Field-Name">
-                            <p> Acc Bonus: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <input type="number" name="attr_weapon_acc_bonus" value="0"/>
-                        </div>
-                    </div>
-                    <div class="weapons-Row-Dmg  weapons-FieldN">
-                        <div class="weapons-Field-Name">
-                            <p> Dmg Bonus: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <input type="number" name="attr_weapon_dmg_bonus" value="0"/>
-                        </div>
-                    </div>
-                    <div class="weapons-Row-Crit weapons-FieldN">
-                        <div class="weapons-Field-Name">
-                            <p> Crit Chance %: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <input type="number" name="attr_weapon_crit_chance" value="5" min="5" step="5" />
-                        </div>
-                    </div>
-                    <div class="weapons-Row-Ranged weapons-FieldN">
-                        <div class="weapons-Field-Name">
-                            <p> Ranged: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <input type="checkbox" name="attr_weapon_ranged"/>
-                        </div>
-                    </div>
+                <div class="weapons-Row-Title">
+                    <span class="repeating-Title" name="attr_weapon_name"></span>
                 </div>
-                <div class="weapons-Row-Right">
-                    <div class="weapons-Row-OneHanded weapons-Field">
-                        <p> One Handed
+                <div class="weapons-Row-Fold">
+                    <button type="action" name="act_fold">&#x1F6E0;</button>
+                </div>
+                <input type="hidden" class="weapons-Row-Toggle" name="attr_row_toggle" value="open" /> 
+                <div class="weapons-Row-Form">
+                    <div class="weapons-Row-Left">
+                        <div class="weapons-Row-Name weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                                <p> Name: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="text" name="attr_weapon_name" />
+                            </div>
+                        </div>
+                        <div class="weapons-Row-Scaling weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                                <p> Scaling: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <select name="attr_weapon_scaling">
+                                    <option selected>-</option>
+                                    <option value="Vigour">Vigour</option>
+                                    <option value="Endurance">Endurance</option>
+                                    <option value="Intelligence">Intelligence</option>
+                                    <option value="Strength">Strength</option>
+                                    <option value="Dexterity">Dexterity</option>
+                                    <option value="Perception">Perception</option>
+                                    <option value="Arcana">Arcana</option>
+                                    <option value="Faith">Faith</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Charisma">Charisma</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-Acc weapons-FieldN">
+                            <div class="weapons-Field-Name">
+                                <p> Acc Bonus: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="number" name="attr_weapon_acc_bonus" value="0"/>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-Dmg  weapons-FieldN">
+                            <div class="weapons-Field-Name">
+                                <p> Dmg Bonus: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="number" name="attr_weapon_dmg_bonus" value="0"/>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-Crit weapons-FieldN">
+                            <div class="weapons-Field-Name">
+                                <p> Crit Chance %: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="number" name="attr_weapon_crit_chance" value="5" min="5" step="5" />
+                            </div>
+                        </div>
+                        <div class="weapons-Row-Ranged weapons-FieldN">
+                            <div class="weapons-Field-Name">
+                                <p> Ranged: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="checkbox" name="attr_weapon_ranged"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="weapons-Row-DiceOne weapons-FieldT">
-                        <div class="weapons-Field-Name">
+                    <div class="weapons-Row-Right">
+                        <div class="weapons-Row-OneHanded weapons-Field">
+                            <p> One Handed
+                        </div>
+                        <div class="weapons-Row-DiceOne weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                                <p> Dice: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="text" name="attr_weapon_dice_one"/>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-TypeOne weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                                <p> Type: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <select name="attr_weapon_type_one">
+                                    <option selected>-</option>
+                                    <option value="Slashing">Slashing</option>
+                                    <option value="Piercing">Piercing</option>
+                                    <option value="Bludgeoning">Bludgeoning</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Frost">Frost</option>
+                                    <option value="Lightning">Lightning</option>
+                                    <option value="Shadow">Shadow</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Poison">Poison</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-RangeOne weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                            <p> Range: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="text" name="attr_weapon_range_one"/>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-TwoHanded weapons-Field">
+                            <p> Two Handed </p>
+                        </div>
+                        <div class="weapons-Row-DiceTwo weapons-FieldT">
+                            <div class="weapons-Field-Name">
                             <p> Dice: </p>
                         </div>
-                        <div class="weapons-Field-Value">
-                            <input type="text" name="attr_weapon_dice_one"/>
+                            <div class="weapons-Field-Value">
+                                <input type="text" name="attr_weapon_dice_two"/>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-TypeTwo weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                                <p> Type: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <select name="attr_weapon_type_two">
+                                    <option selected>-</option>
+                                    <option value="Slashing">Slashing</option>
+                                    <option value="Piercing">Piercing</option>
+                                    <option value="Bludgeoning">Bludgeoning</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Frost">Frost</option>
+                                    <option value="Lightning">Lightning</option>
+                                    <option value="Shadow">Shadow</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Poison">Poison</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-RangeTwo weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                            <p> Range: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="text" name="attr_weapon_range_two"/>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-Secondary weapons-Field">
+                            <p> Secondary: </p>
+                        </div>
+                        <div class="weapons-Row-DiceSecondary weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                                <p> Dice: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <input type="text" name="attr_weapon_dice_secondary"/>
+                            </div>
+                        </div>
+                        <div class="weapons-Row-TypeSecondary weapons-FieldT">
+                            <div class="weapons-Field-Name">
+                                <p> Type: </p>
+                            </div>
+                            <div class="weapons-Field-Value">
+                                <select name="attr_weapon_type_secondary">
+                                    <option selected>-</option>
+                                    <option value="Slashing">Slashing</option>
+                                    <option value="Piercing">Piercing</option>
+                                    <option value="Bludgeoning">Bludgeoning</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Frost">Frost</option>
+                                    <option value="Lightning">Lightning</option>
+                                    <option value="Shadow">Shadow</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Poison">Poison</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="weapons-Row-TypeOne weapons-FieldT">
+                    <div class="weapons-Row-Description weapons-FieldV">
                         <div class="weapons-Field-Name">
-                            <p> Type: </p>
+                            <p> Description: </p>
                         </div>
                         <div class="weapons-Field-Value">
-                            <select name="attr_weapon_type_one">
-                                <option selected>-</option>
-                                <option value="Slashing">Slashing</option>
-                                <option value="Piercing">Piercing</option>
-                                <option value="Bludgeoning">Bludgeoning</option>
-                                <option value="Fire">Fire</option>
-                                <option value="Frost">Frost</option>
-                                <option value="Lightning">Lightning</option>
-                                <option value="Shadow">Shadow</option>
-                                <option value="Water">Water</option>
-                                <option value="Poison">Poison</option>
-                            </select>
+                            <textarea name="attr_weapon_desc" cols="20" rows="2"/>
                         </div>
-                    </div>
-                    <div class="weapons-Row-RangeOne weapons-FieldT">
-                        <div class="weapons-Field-Name">
-                        <p> Range: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <input type="text" name="attr_weapon_range_one"/>
-                        </div>
-                    </div>
-                    <div class="weapons-Row-TwoHanded weapons-Field">
-                        <p> Two Handed </p>
-                    </div>
-                    <div class="weapons-Row-DiceTwo weapons-FieldT">
-                        <div class="weapons-Field-Name">
-                        <p> Dice: </p>
-                    </div>
-                        <div class="weapons-Field-Value">
-                            <input type="text" name="attr_weapon_dice_two"/>
-                        </div>
-                    </div>
-                    <div class="weapons-Row-TypeTwo weapons-FieldT">
-                        <div class="weapons-Field-Name">
-                            <p> Type: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <select name="attr_weapon_type_two">
-                                <option selected>-</option>
-                                <option value="Slashing">Slashing</option>
-                                <option value="Piercing">Piercing</option>
-                                <option value="Bludgeoning">Bludgeoning</option>
-                                <option value="Fire">Fire</option>
-                                <option value="Frost">Frost</option>
-                                <option value="Lightning">Lightning</option>
-                                <option value="Shadow">Shadow</option>
-                                <option value="Water">Water</option>
-                                <option value="Poison">Poison</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="weapons-Row-RangeTwo weapons-FieldT">
-                        <div class="weapons-Field-Name">
-                        <p> Range: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <input type="text" name="attr_weapon_range_two"/>
-                        </div>
-                    </div>
-                    <div class="weapons-Row-Secondary weapons-Field">
-                        <p> Secondary: </p>
-                    </div>
-                    <div class="weapons-Row-DiceSecondary weapons-FieldT">
-                        <div class="weapons-Field-Name">
-                            <p> Dice: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <input type="text" name="attr_weapon_dice_secondary"/>
-                        </div>
-                    </div>
-                    <div class="weapons-Row-TypeSecondary weapons-FieldT">
-                        <div class="weapons-Field-Name">
-                            <p> Type: </p>
-                        </div>
-                        <div class="weapons-Field-Value">
-                            <select name="attr_weapon_type_secondary">
-                                <option selected>-</option>
-                                <option value="Slashing">Slashing</option>
-                                <option value="Piercing">Piercing</option>
-                                <option value="Bludgeoning">Bludgeoning</option>
-                                <option value="Fire">Fire</option>
-                                <option value="Frost">Frost</option>
-                                <option value="Lightning">Lightning</option>
-                                <option value="Shadow">Shadow</option>
-                                <option value="Water">Water</option>
-                                <option value="Poison">Poison</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="weapons-Row-Description weapons-FieldV">
-                    <div class="weapons-Field-Name">
-                        <p> Description: </p>
-                    </div>
-                    <div class="weapons-Field-Value">
-                        <textarea name="attr_weapon_desc" cols="20" rows="2"/>
                     </div>
                 </div>
             </div>
@@ -898,63 +999,72 @@
     <div class="rune-spells-Row-Spells">
         <fieldset class="repeating_rune-spells">
             <div class="rune-spells-Row sheet-block">
-                <div class="rune-spells-NameL">
-                    <p>Name:</p>
+                <div class="rune-spells-Row-Title">
+                    <span class="repeating-Title" name="attr_rs_name"></span>
                 </div>
-                <div class="rune-spells-Name">
-                    <input type="text" name="attr_rs_name"/>
+                <div class="rune-spells-Fold">
+                    <button type="action" name="act_fold">&#x1F6E0;</button>
                 </div>
-                <div class="rune-spells-CastL">
-                    <p>Cast:</p>
-                </div>
-                <div class="rune-spells-Cast">
-                    <select name="attr_rs_scaling">
-                        <option value="Arcana" selected>Arcana</option>
-                        <option value="Faith">Faith</option>
-                        <option value="Nature">Nature</option>
-                    </select>
-                </div>
-                <div class="rune-spells-RangeL">
-                    <p>Range:</p>
-                </div>
-                <div class="rune-spells-Range">
-                    <input type="text" name="attr_rs_range"/>
-                </div>
-                <div class="rune-spells-DiceL">
-                    <p>Damage:</p>
-                </div>
-                <div class="rune-spells-Dice">
-                    <input type="text" name="attr_rs_dice"/>
-                </div>
-                <div class="rune-spells-APL">
-                    <p>AP Cost:</p>
-                </div>
-                <div class="rune-spells-AP">
-                    <input type="number" name="attr_rs_ap" value="2"/>
-                </div>
-                <div class="rune-spells-FPL">
-                    <p>FP Cost:</p>
-                </div>
-                <div class="rune-spells-FP">
-                    <input type="number" name="attr_rs_fp" value="0"/>
-                </div>
-                <div class="rune-spells-ConcentrationL">
-                    <p>Concentration:</p>
-                </div>
-                <div class="rune-spells-Concentration">
-                    <input type="checkbox" name="attr_rs_conc"/>
-                </div>
-                <div class="rune-spells-ReadyL">
-                    <p>Ready:</p>
-                </div>
-                <div class="rune-spells-Ready">
-                    <input type="checkbox" name="attr_rs_ready"/>
-                </div>
-                <div class="rune-spells-DescriptionL">
-                    <p>Description:</p>
-                </div>
-                <div class="rune-spells-Description">
-                    <textarea name="attr_rs_note" cols="20" rows="2"></textarea>
+                <input type="hidden" class="rune-spells-Row-Toggle" name="attr_row_toggle" value="open" /> 
+                <div class="rune-spells-Form">
+                    <div class="rune-spells-NameL">
+                        <p>Name:</p>
+                    </div>
+                    <div class="rune-spells-Name">
+                        <input type="text" name="attr_rs_name"/>
+                    </div>
+                    <div class="rune-spells-CastL">
+                        <p>Cast:</p>
+                    </div>
+                    <div class="rune-spells-Cast">
+                        <select name="attr_rs_scaling">
+                            <option value="Arcana" selected>Arcana</option>
+                            <option value="Faith">Faith</option>
+                            <option value="Nature">Nature</option>
+                        </select>
+                    </div>
+                    <div class="rune-spells-RangeL">
+                        <p>Range:</p>
+                    </div>
+                    <div class="rune-spells-Range">
+                        <input type="text" name="attr_rs_range"/>
+                    </div>
+                    <div class="rune-spells-DiceL">
+                        <p>Damage:</p>
+                    </div>
+                    <div class="rune-spells-Dice">
+                        <input type="text" name="attr_rs_dice"/>
+                    </div>
+                    <div class="rune-spells-APL">
+                        <p>AP Cost:</p>
+                    </div>
+                    <div class="rune-spells-AP">
+                        <input type="number" name="attr_rs_ap" value="2"/>
+                    </div>
+                    <div class="rune-spells-FPL">
+                        <p>FP Cost:</p>
+                    </div>
+                    <div class="rune-spells-FP">
+                        <input type="number" name="attr_rs_fp" value="0"/>
+                    </div>
+                    <div class="rune-spells-ConcentrationL">
+                        <p>Concentration:</p>
+                    </div>
+                    <div class="rune-spells-Concentration">
+                        <input type="checkbox" name="attr_rs_conc"/>
+                    </div>
+                    <div class="rune-spells-ReadyL">
+                        <p>Ready:</p>
+                    </div>
+                    <div class="rune-spells-Ready">
+                        <input type="checkbox" name="attr_rs_ready"/>
+                    </div>
+                    <div class="rune-spells-DescriptionL">
+                        <p>Description:</p>
+                    </div>
+                    <div class="rune-spells-Description">
+                        <textarea name="attr_rs_note" cols="20" rows="2"></textarea>
+                    </div>
                 </div>
             </div>
         </fieldset>
@@ -1124,72 +1234,72 @@
         </div>
             <div class="invocation-Caster-Effect">
                 <input type="hidden" class="sheet-ic_scaling_toggle" name="attr_ic_scaling"  value="Arcana"/> 
-            <div class="sheet-arcane">
-            <select name="attr_ic_effect">
-                <option selected>-</option>
-                <option value="fire_damage">Fire Damage</option>
-                <option value="ice_damage">Ice Damage</option>
-                <option value="shadow_damage">Shadow Damage</option>
-                <option value="force_damage">Force Damage</option>
-                <option value="dispel">Dispel</option>
-                <option value="slow">Slow</option>
-                <option value="haste">Haste</option>
-                <option value="freeze">Freeze</option>
-                <option value="resist_fire">Resist Fire</option>
-                <option value="resist_frost">Resist Frost</option>
-                <option value="alarm">Alarm</option>
-                <option value="levitation">Levitation</option>
-                <option value="arcane_flight">Arcane Flight</option>
-                <option value="charm">Charm</option>
-                <option value="reveal">Reveal</option>
-                <option value="arcane_eye">Arcane Eye</option>
-                <option value="telekinesis">Telekinesis</option>
-            </select>
-            </div>
-            <div class="sheet-faith">
-            <select name="attr_ic_effect">
-                <option selected>-</option>
-                <option value="fire_damage">Fire Damage</option>
-                <option value="lightning_damage">Lightning Damage</option>
-                <option value="shadow_damage">Shadow Damage</option>
-                <option value="poison_damage">Poison Damage</option>
-                <option value="water_damage">Water Damage</option>
-                <option value="healing_light">Healing Light</option>
-                <option value="terrify">Terrify</option>
-                <option value="truth">Truth</option>
-                <option value="light">Light</option>
-                <option value="darkness">Darkness</option>
-                <option value="resist_lightning">Resist Lightning</option>
-                <option value="destroy_undead">Destroy Undead</option>
-                <option value="silence">Silence</option>
-                <option value="celestial_flight">Celestial Flight</option>
-                <option value="become_incorporeal">Become Incorporeal</option>
-                <option value="invisibility">Invisibility</option>
-                <option value="ward">Ward</option>
-                <option value="divine_sense">Divine Sense</option>
-                <option value="cleanse">Cleanse</option>
-            </select>
-            </div>
-            <div class="sheet-nature">
-            <select name="attr_ic_effect">
-                <option selected>-</option>
-                <option value="lightning_damage">Lightning Damage</option>
-                <option value="ice_damage">Ice Damage</option>
-                <option value="poison_damage">Poison Damage</option>
-                <option value="force_damage">Force Damage</option>
-                <option value="water_damage">Water Damage</option>
-                <option value="balm_of_nature">Balm of Nature</option>
-                <option value="pull">Pull</option>
-                <option value="resist_poison">Resist Poison</option>
-                <option value="feather_fall">Feather Fall</option>
-                <option value="entangle">Entangle</option>
-                <option value="water_breathing">Water Breathing</option>
-                <option value="bark_skin">Bark Skin</option>
-                <option value="reinforce_object">Reinforce Object</option>
-                <option value="mending">Mending</option>
-                <option value="eagle's_wings">Eagle's Wings</option>
-                <option value="petrify">Petrify</option>
-            </select>
+                <div class="sheet-arcane">
+                <select name="attr_ic_effect">
+                    <option selected>-</option>
+                    <option value="fire_damage">Fire Damage</option>
+                    <option value="ice_damage">Ice Damage</option>
+                    <option value="shadow_damage">Shadow Damage</option>
+                    <option value="force_damage">Force Damage</option>
+                    <option value="dispel">Dispel</option>
+                    <option value="slow">Slow</option>
+                    <option value="haste">Haste</option>
+                    <option value="freeze">Freeze</option>
+                    <option value="resist_fire">Resist Fire</option>
+                    <option value="resist_frost">Resist Frost</option>
+                    <option value="alarm">Alarm</option>
+                    <option value="levitation">Levitation</option>
+                    <option value="arcane_flight">Arcane Flight</option>
+                    <option value="charm">Charm</option>
+                    <option value="reveal">Reveal</option>
+                    <option value="arcane_eye">Arcane Eye</option>
+                    <option value="telekinesis">Telekinesis</option>
+                </select>
+                </div>
+                <div class="sheet-faith">
+                <select name="attr_ic_effect">
+                    <option selected>-</option>
+                    <option value="fire_damage">Fire Damage</option>
+                    <option value="lightning_damage">Lightning Damage</option>
+                    <option value="shadow_damage">Shadow Damage</option>
+                    <option value="poison_damage">Poison Damage</option>
+                    <option value="water_damage">Water Damage</option>
+                    <option value="healing_light">Healing Light</option>
+                    <option value="terrify">Terrify</option>
+                    <option value="truth">Truth</option>
+                    <option value="light">Light</option>
+                    <option value="darkness">Darkness</option>
+                    <option value="resist_lightning">Resist Lightning</option>
+                    <option value="destroy_undead">Destroy Undead</option>
+                    <option value="silence">Silence</option>
+                    <option value="celestial_flight">Celestial Flight</option>
+                    <option value="become_incorporeal">Become Incorporeal</option>
+                    <option value="invisibility">Invisibility</option>
+                    <option value="ward">Ward</option>
+                    <option value="divine_sense">Divine Sense</option>
+                    <option value="cleanse">Cleanse</option>
+                </select>
+                </div>
+                <div class="sheet-nature">
+                <select name="attr_ic_effect">
+                    <option selected>-</option>
+                    <option value="lightning_damage">Lightning Damage</option>
+                    <option value="ice_damage">Ice Damage</option>
+                    <option value="poison_damage">Poison Damage</option>
+                    <option value="force_damage">Force Damage</option>
+                    <option value="water_damage">Water Damage</option>
+                    <option value="balm_of_nature">Balm of Nature</option>
+                    <option value="pull">Pull</option>
+                    <option value="resist_poison">Resist Poison</option>
+                    <option value="feather_fall">Feather Fall</option>
+                    <option value="entangle">Entangle</option>
+                    <option value="water_breathing">Water Breathing</option>
+                    <option value="bark_skin">Bark Skin</option>
+                    <option value="reinforce_object">Reinforce Object</option>
+                    <option value="mending">Mending</option>
+                    <option value="eagle's_wings">Eagle's Wings</option>
+                    <option value="petrify">Petrify</option>
+                </select>
             </div>
         </div>
         <div class="invocation-Caster-NameL">
@@ -1253,53 +1363,62 @@
         </div>
         <div class="invocation-Saved-Spells">
             <fieldset class="repeating_ic-saved">
-                <div class="invocation-Saved-Block sheet-block">
-                    <div class="invocation-Saved-NameL">
-                        <p>Name</p>
+                <div class="invocation-Saved-Row sheet-block">
+                    <div class="invocation-Saved-Row-Title">
+                        <span class="repeating-Title" name="attr_ic_name"></span>
                     </div>
-                    <div class="invocation-Saved-Name">
-                        <input type="text" name="attr_ic_name" value="" readonly />
+                    <div class="invocation-Saved-Row-Fold">
+                        <button type="action" name="act_fold">&#x1F6E0;</button>
                     </div>
-                    <div class="invocation-Saved-DiceL">
-                        <p>Dice</p>
+                    <input type="hidden" class="invocation-Saved-Row-Toggle" name="attr_row_toggle" value="open" /> 
+                    <div class="invocation-Saved-Block">
+                        <div class="invocation-Saved-NameL">
+                            <p>Name</p>
+                        </div>
+                        <div class="invocation-Saved-Name">
+                            <input type="text" name="attr_ic_name" value="" readonly />
+                        </div>
+                        <div class="invocation-Saved-DiceL">
+                            <p>Dice</p>
+                        </div>
+                        <div class="invocation-Saved-Dice">
+                            <input type="text" value="" name="attr_ic_dice" readonly />
+                        </div>
+                        <div class="invocation-Saved-IntL">
+                            <p>Intelligence Required</p>
+                        </div>
+                        <div class="invocation-Saved-Int">
+                            <input type="number" value="0" name="attr_ic_int_req" readonly />
+                        </div>
+                        <div class="invocation-Saved-APL">
+                            <p>AP Cost</p>
+                        </div>
+                        <div class="invocation-Saved-AP">
+                            <input type="number" value="0" name="attr_ic_ap" readonly />
+                        </div>
+                        <div class="invocation-Saved-AttrL">        
+                            <p>Attribute Required</p>
+                        </div>
+                        <div class="invocation-Saved-Attr">
+                            <input type="number" value="0" name="attr_ic_attr_req" readonly />
+                        </div>
+                        <div class="invocation-Saved-FPL">
+                            <p>FP Cost</p>
+                        </div>
+                        <div class="invocation-Saved-FP">
+                            <input type="number" value="0" name="attr_ic_fp" readonly />
+                        </div>
+                        <div class="invocation-Saved-Description">
+                            <p>Description</p>
+                            <textarea name="attr_ic_desc_full" cols="20" rows="2" readonly></textarea>
+                        </div>
+                        <!--hidden fields-->
+                        <input type="text" value="" name="attr_ic_scaling" readonly hidden/>
+                        <input type="text" value="" name="attr_ic_range" readonly hidden/>
+                        <input type="text" value="" name="attr_ic_duration" readonly hidden/>
+                        <input type="text" value="" name="attr_ic_contested" readonly hidden/>
+                        <input type="text" value="" name="attr_ic_desc" readonly hidden/><!--roll display description-->
                     </div>
-                    <div class="invocation-Saved-Dice">
-                        <input type="text" value="" name="attr_ic_dice" readonly />
-                    </div>
-                    <div class="invocation-Saved-IntL">
-                        <p>Intelligence Required</p>
-                    </div>
-                    <div class="invocation-Saved-Int">
-                        <input type="number" value="0" name="attr_ic_int_req" readonly />
-                    </div>
-                    <div class="invocation-Saved-APL">
-                        <p>AP Cost</p>
-                    </div>
-                    <div class="invocation-Saved-AP">
-                        <input type="number" value="0" name="attr_ic_ap" readonly />
-                    </div>
-                    <div class="invocation-Saved-AttrL">        
-                        <p>Attribute Required</p>
-                    </div>
-                    <div class="invocation-Saved-Attr">
-                        <input type="number" value="0" name="attr_ic_attr_req" readonly />
-                    </div>
-                    <div class="invocation-Saved-FPL">
-                        <p>FP Cost</p>
-                    </div>
-                    <div class="invocation-Saved-FP">
-                        <input type="number" value="0" name="attr_ic_fp" readonly />
-                    </div>
-                    <div class="invocation-Saved-Description">
-                        <p>Description</p>
-                        <textarea name="attr_ic_desc_full" cols="20" rows="2" readonly></textarea>
-                    </div>
-                    <!--hidden fields-->
-                    <input type="text" value="" name="attr_ic_scaling" readonly hidden/>
-                    <input type="text" value="" name="attr_ic_range" readonly hidden/>
-                    <input type="text" value="" name="attr_ic_duration" readonly hidden/>
-                    <input type="text" value="" name="attr_ic_contested" readonly hidden/>
-                    <input type="text" value="" name="attr_ic_desc" readonly hidden/><!--roll display description-->
                 </div>
             </fieldset>
         </div>
@@ -1331,6 +1450,10 @@
                 <div class="inventory-Source">
                     <input type="text" name="attr_item_type"/>
                 </div>
+                <div class="inventory-Fold">
+                    <button type="action" name="act_fold">&#x1F6C8;</button>
+                </div>
+                <input type="hidden" class="inventory-Toggle" name="attr_row_toggle" value="open" /> 
                 <div class="inventory-DescriptionL">
                     <p>Note:</p>
                 </div>
@@ -1390,7 +1513,8 @@
                 <option selected value="1">None</option>
                 <option value="0.5">Halved</option>
                 <option value="0">Full</option>
-            </select></div>
+            </select>
+        </div>
         <div class="character-Armour-EvasionMod">
             <input type="number" name="attr_armour_evasion_mod" value="0"/>
         </div>
@@ -1414,12 +1538,33 @@
                     <div class="character-Name">
                         <input type="text" name="attr_eq_name"/>
                     </div>
+                    <div class="character-TypeL">
+                        <p>Type:</p>
+                    </div>
+                    <div class="character-Type">
+                        <select name="attr_eq_type">
+                            <option selected>-</option>
+                            <option value="weapon">Weapon</option>
+                            <option value="armour">Armour</option>
+                            <option value="helmet">Helmet</option>
+                            <option value="gloves">Gloves</option>
+                            <option value="boots">Boots</option>
+                            <option value="mask">Mask</option>
+                            <option value="ring">Ring</option>
+                            <option value="necklace">Necklace</option>
+                            <option value="bracelet">Bracelet</option>
+                        </select>
+                    </div>
                     <div class="character-WeightL">
                         <p>Weight:</p>
                     </div>
                     <div class="character-Weight">
                         <input type="number" name="attr_eq_weight" value="0"/>
                     </div>
+                    <div class="character-Fold">
+                        <button type="action" name="act_fold">&#x1F6C8;</button>
+                    </div>
+                    <input type="hidden" class="character-Toggle" name="attr_row_toggle" value="open" /> 
                     <div class="character-NoteL">
                         <p>Note:</p>
                     </div>
@@ -1497,6 +1642,7 @@
         <div class="info-Backstory info-field">
             Bio
             <textarea name="attr_info_backstory" cols="20" rows="2"></textarea>
+            <span class="hint">Aethes sheet version 1.2</span>
         </div>
     </div>
 </div>
@@ -1650,13 +1796,15 @@
     // calculate used invocation effects memory
     on('sheet:opened change:repeating_ic-effects remove:repeating_ic-effects', function() {
         getSectionIDs('repeating_ic-effects', idArray => {
-            setAttrs({
-                ic_effects_memory_used: idArray.length,
+            getAttrs(idArray.map((id) => `repeating_ic-effects_${id}_ic_effect_memory`), function(values) {
+                setAttrs({
+                    ic_effects_memory_used: idArray.filter(id => !values[`repeating_ic-effects_${id}_ic_effect_memory`].includes("damage")).length,
+                });
             });
         });
     });
 
-    // calculate used invocation effects memory
+    // calculate used invocation template memory
     on('sheet:opened change:repeating_ic-templates remove:repeating_ic-templates', function() {
         getSectionIDs('repeating_ic-templates', idArray => {
             setAttrs({
@@ -1682,6 +1830,18 @@
         match.shift();
         return match;
     };
+
+    // weapons fold
+    on("clicked:repeating_weapons:fold clicked:repeating_rune-spells:fold clicked:repeating_ic-saved:fold clicked:repeating_perks:fold clicked:repeating_inventory:fold clicked:repeating_equipment:fold",(event) => {
+        const [section,rowID] = parseTriggerName(event.triggerName);
+        const row = `${section}_${rowID}`;
+        getAttrs([`${row}_row_toggle`], (values) => {
+            let toggle = {}
+            toggle[`${row}_row_toggle`] = (values[`${row}_row_toggle`] == "open") ? "close" : "open";
+            console.log(toggle)
+            setAttrs(Object.assign(toggle));
+        })
+    })
 
     // roll attack hit
     on("clicked:repeating_attacks:attack-one clicked:repeating_attacks:attack-two",(event) => {
@@ -1781,26 +1941,45 @@
         });
     });
 
-    // take damage
-    on("clicked:promptTake", function() {
-        getAttrs(["hp", "barrier", "phys_resist_total", "mag_resist_total", "resistances_list", ...damageTypes.map((damage) => `take_${damage}`)], function(values) {
+    // calculate damage to be taken
+    on(damageTypes.map((damage) => `change:take_${damage}`).join(" "), function() {
+        getAttrs(["phys_resist_total", "mag_resist_total", "resistances_list", ...damageTypes.map((damage) => `take_${damage}`)], function(values) {
 
             const physicalDamageTypes = ["slashing","piercing","bludgeoning"]
 
             // for all damage types -> (DamageToTake - phys/mag resistance) / 2(if resistant)
             let calcDamage = damageTypes.reduce((sum, damage) => {
                 let takeDamage = minusToZero(values[`take_${damage}`], parseInt((damage in physicalDamageTypes) ? values.phys_resist_total : values.mag_resist_total))
-                takeDamage = (values.resistances_list.includes(damage)) ? takeDamage / 2 : takeDamage
+                takeDamage = (values.resistances_list.includes(damage)) ? Math.floor(takeDamage / 2) : takeDamage
                 return sum + ((values[`take_${damage}`] > 0 & takeDamage == 0) ? 1 : takeDamage);
             }, 0);
+
+            setAttrs({
+                calc_take_damage: calcDamage,
+            });
+        });
+    });
+
+    // take damage
+    on("clicked:promptTake", function() {
+        getAttrs(["hp", "barrier", "phys_resist_total", "mag_resist_total", "calc_take_damage"], function(values) {
+
+            const physicalDamageTypes = ["slashing","piercing","bludgeoning"]
+
+            let calcDamage = values.calc_take_damage
 
             const calcBarrier = parseInt(values.barrier) - calcDamage
             calcDamage = (calcBarrier < 0) ? -calcBarrier : 0
 
-            setAttrs({
+            const takeReset = damageTypes.reduce((obj, damage) => {
+              obj[`take_${damage}`] = 0;
+              return obj;
+            }, {});
+
+            setAttrs(Object.assign({
                 barrier: (calcBarrier < 0) ? 0 : calcBarrier,
                 hp: minusToZero(values.hp, calcDamage),
-            });
+            }, takeReset));
         });
     });
 
@@ -1823,54 +2002,6 @@
     });
 
     function getEffectDetails(effectName) { 
-        const spellEffects = {
-            "fire_damage": [1, 0, 1, false, "Dexterity", "Disadvantage to Contests against Wet characters."],
-            "ice_damage": [1, 0, 1, false, "Endurance", "Freezes wet Characters."],
-            "shadow_damage": [1, 0, 1, false, "Vigour", "Advantage to Attack Rolls and Contests against Characters in Darkness."],
-            "force_damage": [1, 0, 1, false, "Strength", "Deals 2 x Damage to Structures."],
-            "lightning_damage": [1, 0, 1, false, "Dexterity", "Advantage to Attack Rolls and Contests against Wet characters."],
-            "poison_damage": [1, 0, 1, false, "Vigour", "Contest against Target to avoid Poisoning."],
-            "water_damage": [1, 0, 1, false, "Endurance", "Allies are instead Healed equal to Damage Roll. Characters Damaged or Healed become Wet."],
-            "dispel": [5, 1, 3, false, "", "This magic unravels all magic it touches.\nDispel 1 in AOE."],
-            "slow": [3, 1, 1, true, "", "Slows all in range > Halves Base Movement Speed."],
-            "haste": [3, 1, 4, true, "", "Adds +10ft Base Movement Speed\nOvercharge 2: +5ft Base Movement Speed (Max 3)"],
-            "freeze": [5, 1, 3, true, "", "Freezes all Wet Characters."],
-            "resist_fire": [5, 1, 4, true, "", "Resistance to Fire Damage."],
-            "resist_frost": [5, 1, 4, true, "", "Resistance to Frost Damage + Cannot be Frozen."],
-            "alarm": [4, 1, 4, true, "", "Caster becomes aware when objects within AoE are moved or touched by another Character."],
-            "levitation": [5, 2, 6, true, "", "Allows the casters to levitate. \nLevitate – 5ft\nOvercharge 2: +5ft (Max 4)"],
-            "arcane_flight": [8, 2, 8, true, "", "Fly Speed equal to Movement Speed."],
-            "charm": [5, 1, 6, true, "Charisma", "Enthrals the target with a mystical mist. "],
-            "reveal": [6, 1, 5, false, "", "Reveals and Dispels all illusions."],
-            "arcane_eye": [9, 1, 10, true, "", "30ft Magic Sight"],
-            "telekinesis": [8, 2, 10, true, "", "Allows the caster to move objects with their mind. "],
-            "healing_light": [4, 1, 3, false, "", "A golden light cleanses the wounded. Restores 1D10 Hit Points.\nOvercharge 2: +1D10 Healing (Max 6)"],
-            "terrify": [5, 1, 5, true, "Charisma", "Scary shadows frighten those afflicted."],
-            "truth": [8, 1, 5, true, "", "Characters within this effect cannot lie. If they attempt to lie, they are Silenced for 1 Minute. If they believe something to be true, then it is not considered a lie by this spell."],
-            "light": [4, 1, 3, true, "", "A glowing light illuminates the area."],
-            "darkness": [5, 1, 5, true, "", "Covers the area in thick shadow."],
-            "resist_lightning": [6, 1, 4, true, "", "Resistance to Lightning Damage."],
-            "destroy_undead": [5, 1, 2, false, "", "Destroys Level 1 Undead instantly.\nOvercharge 2: +1 Undead Level destroyed (Max 9)"],
-            "silence": [5, 1, 5, true, "", "All sounds is silenced."],
-            "celestial_flight": [9, 2, 7, true, "", "Fly Speed equal to Movement Speed."],
-            "become_incorporeal": [9, 2, 8, false, "", "Characters within the effect take on a ghostly visage, allowing them to move through solid objects."],
-            "invisibility": [9, 2, 7, true, "", "Bends the light to grant invisibility."],
-            "ward": [8, 2, 6, true, "", "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nTarget Creature Type takes 3D10 Lightning Damage in AoE. \nOvercharge 3: +1 Creature Type (Max 4)"],
-            "divine_sense": [6, 2, 5, true, "", "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nCaster is aware of all creatures of that type in range.\nOvercharge 3: +1 Creature Type (Max 4)"],
-            "balm_of_nature": [4, 1, 3, false, "", "Restores 1D6 Hit Points\nOverheal\nOvercharge 2: +1D6 Healing (Max 6)"],
-            "pull": [4, 1, 3, false, "Strength or Dexterity", "Pulls 10ft toward Caster.\nOvercharge 1: +5ft Pull Distance (Max 6)"],
-            "resist_poison": [5, 1, 4, false, "", "Resistance to Poison Damage.\nCannot be Poisoned."],
-            "feather_fall": [5, 1, 4, false, "", "Nullifies all Fall Damage. "],
-            "entangle": [5, 1, 4, false, "Dexterity", "Movement Speed reduced to 0."],
-            "water_breathing": [5, 1, 1, false, "", "Characters gain Water Breathing"],
-            "bark_skin": [5, 1, 1, false, "", "Characters gain: \n+5 Physical Armour\n-2 Magical Armour"],
-            "reinforce_object": [4, 1, 4, false, "", "Objects gains 20 + Nature Hit Points for the duration."],
-            "mending": [4, 1, 4, false, "", "Object Regains 20 + Nature Hit Points.\nOverheal."],
-            "eagle's_wings": [7, 2, 7, false, "", "Fly Speed equal to Movement Speed."],
-            "petrify": [9, 2, 12, false, "Vigour", "Petrifies characters with 0 Hit Points."],
-            "cleanse": [2, 2, 2, false, "", "The caster pressed their hand on the target and draws out a sickness afflicting them."],
-        };
-
         const effectDetails = spellEffects[effectName];
         return {
             attr_required: effectDetails[0],
@@ -1883,25 +2014,6 @@
     }
 
     function getTemplateDetails(templateName) {
-        const spellTemplates = {
-            "touch": [1, 1, 0, false, "Touch", "Instant", "The caster reaches out and touches the target with {}."],
-            "dart": [2, 1, 1, false, "30ft", "Instant", "The caster shoots a small burst of {} toward the target."],
-            "bolt": [4, 1, 3, false, "60ft", "Instant", "The caster shoots a bolt of {} toward their target."],
-            "orb": [5, 2, 4, false, "40ft", "Instant", "The caster hurls an orb of {} at a target, which then bursts in the area around them."],
-            "cone": [4, 2, 4, false, "10ft Cone", "Instant", "The caster shoots a cone of {} from their hands and applies the spell effect to the target."],
-            "rebuttal": [5, 0, 3, false, "60ft", "Instant", "The caster retaliates with a blast of {}."],
-            "cloud": [4, 2, 4, true, "10x10ft Cloud up to 30ft away", "10 Minutes", "The caster conjures a lingering cloud of {}."],
-            "buff": [4, 1, 3, true, "30ft", "10 Minutes", "The caster empowers a character within range with {}."],
-            "enchantment": [4, 1, 3, true, "Touch", "10 Minutes", "The caster empowers an object within range with {}."],
-            "cloak": [5, 2, 5, true, "Self", "5 Minutes", "The caster surrounds themselves in a small aura of {}."],
-            "aura": [8, 2, 8, true, "Self", "5 Minutes", "The caster surrounds themselves in a large aura of {}."],
-            "beam": [8, 2, 8, false, "60ft line", "Instant", "The caster shoots a beam of {} from their hand."],
-            "wall": [9, 2, 9, true, "60ft line", "10 Minutes", "The caster lifts a wall of {} up from the floor, blocking access to an area."],
-            "wave": [8, 2, 8, true, "Self", "5 Minutes", "The caster surrounds themselves in a large aura of {} which spreads for the duration."],
-            "explosion": [9, 2, 9, false, "60ft", "Instant", "The caster chooses a location, and an enormous blast of {} bursts in that spot."],
-            "glyph": [6, 2, 10, false, "Touch", "Instant", "The caster etches an invisible rune into a location as a trap ready to spring."]
-        };
-
         const spellTemplate = spellTemplates[templateName];
         return {
             int_required: spellTemplate[0],
@@ -1923,22 +2035,6 @@
             "balm_of_nature": {dice:"1d6", tier:"", fp_cost:0, ap_cost:0, req_cost:0},
         }
         if (effectName in specialCases) {return specialCases[effectName];}
-        const diceMap = {
-            "fire_damage": ["2d6","4d6","6d6","9d6","12d6"],
-            "ice_damage": ["1d8","2d8","3d8","5d8","7d8"],
-            "shadow_damage": ["1d12","2d12","3d12","5d12","7d12"],
-            "force_damage": ["1d8","2d8","3d8","5d8","7d8"],
-            "lightning_damage": ["1d10","2d10","3d10","5d10","7d10"],
-            "poison_damage": ["1d6","2d6","3d6","5d6","7d6"],
-            "water_damage": ["1d6","2d6","3d6","5d6","7d6"],
-        };
-        const tierMap = [
-            ["I", 1, 0, 1],
-            ["II", 2, 1, 3],
-            ["III", 4, 1, 5],
-            ["IV", 6, 2, 8],
-            ["V", 8, 2, 11]
-        ];
 
         return {
             dice: (effectName in diceMap) ? diceMap[effectName][index] : "",
@@ -2108,7 +2204,7 @@
                     }, {});
                     newAttackList.push(newAttack);
                 });
-                console.log(newAttackList)
+
                 setAttrs(Object.assign({}, ...newAttackList));
             });
         }); 
@@ -2198,6 +2294,90 @@
             });
         });
     });
+
+// Definitions
+
+const diceMap = {
+"fire_damage": ["2d6","4d6","6d6","9d6","12d6"],
+"ice_damage": ["1d8","2d8","3d8","5d8","7d8"],
+"shadow_damage": ["1d12","2d12","3d12","5d12","7d12"],
+"force_damage": ["1d8","2d8","3d8","5d8","7d8"],
+"lightning_damage": ["1d10","2d10","3d10","5d10","7d10"],
+"poison_damage": ["1d6","2d6","3d6","5d6","7d6"],
+"water_damage": ["1d6","2d6","3d6","5d6","7d6"],
+};
+const tierMap = [
+["I", 1, 0, 1],
+["II", 2, 1, 3],
+["III", 4, 1, 5],
+["IV", 6, 2, 8],
+["V", 8, 2, 11]
+];
+const spellEffects = {
+"fire_damage": [1, 0, 1, false, "Dexterity", "Disadvantage to Contests against Wet characters."],
+"ice_damage": [1, 0, 1, false, "Endurance", "Freezes wet Characters."],
+"shadow_damage": [1, 0, 1, false, "Vigour", "Advantage to Attack Rolls and Contests against Characters in Darkness."],
+"force_damage": [1, 0, 1, false, "Strength", "Deals 2 x Damage to Structures."],
+"lightning_damage": [1, 0, 1, false, "Dexterity", "Advantage to Attack Rolls and Contests against Wet characters."],
+"poison_damage": [1, 0, 1, false, "Vigour", "Contest against Target to avoid Poisoning."],
+"water_damage": [1, 0, 1, false, "Endurance", "Allies are instead Healed equal to Damage Roll. Characters Damaged or Healed become Wet."],
+"dispel": [5, 1, 3, false, "", "This magic unravels all magic it touches.\nDispel 1 in AOE."],
+"slow": [3, 1, 1, true, "", "Slows all in range > Halves Base Movement Speed."],
+"haste": [3, 1, 4, true, "", "Adds +10ft Base Movement Speed\nOvercharge 2: +5ft Base Movement Speed (Max 3)"],
+"freeze": [5, 1, 3, true, "", "Freezes all Wet Characters."],
+"resist_fire": [5, 1, 4, true, "", "Resistance to Fire Damage."],
+"resist_frost": [5, 1, 4, true, "", "Resistance to Frost Damage + Cannot be Frozen."],
+"alarm": [4, 1, 4, true, "", "Caster becomes aware when objects within AoE are moved or touched by another Character."],
+"levitation": [5, 2, 6, true, "", "Allows the casters to levitate. \nLevitate – 5ft\nOvercharge 2: +5ft (Max 4)"],
+"arcane_flight": [8, 2, 8, true, "", "Fly Speed equal to Movement Speed."],
+"charm": [5, 1, 6, true, "Charisma", "Enthrals the target with a mystical mist. "],
+"reveal": [6, 1, 5, false, "", "Reveals and Dispels all illusions."],
+"arcane_eye": [9, 1, 10, true, "", "30ft Magic Sight"],
+"telekinesis": [8, 2, 10, true, "", "Allows the caster to move objects with their mind. "],
+"healing_light": [4, 1, 3, false, "", "A golden light cleanses the wounded. Restores 1D10 Hit Points.\nOvercharge 2: +1D10 Healing (Max 6)"],
+"terrify": [5, 1, 5, true, "Charisma", "Scary shadows frighten those afflicted."],
+"truth": [8, 1, 5, true, "", "Characters within this effect cannot lie. If they attempt to lie, they are Silenced for 1 Minute. If they believe something to be true, then it is not considered a lie by this spell."],
+"light": [4, 1, 3, true, "", "A glowing light illuminates the area."],
+"darkness": [5, 1, 5, true, "", "Covers the area in thick shadow."],
+"resist_lightning": [6, 1, 4, true, "", "Resistance to Lightning Damage."],
+"destroy_undead": [5, 1, 2, false, "", "Destroys Level 1 Undead instantly.\nOvercharge 2: +1 Undead Level destroyed (Max 9)"],
+"silence": [5, 1, 5, true, "", "All sounds is silenced."],
+"celestial_flight": [9, 2, 7, true, "", "Fly Speed equal to Movement Speed."],
+"become_incorporeal": [9, 2, 8, false, "", "Characters within the effect take on a ghostly visage, allowing them to move through solid objects."],
+"invisibility": [9, 2, 7, true, "", "Bends the light to grant invisibility."],
+"ward": [8, 2, 6, true, "", "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nTarget Creature Type takes 3D10 Lightning Damage in AoE. \nOvercharge 3: +1 Creature Type (Max 4)"],
+"divine_sense": [6, 2, 5, true, "", "Choose 1 Creature Type from: Undead, Devil, Demon, Celestial, Aberration. \nCaster is aware of all creatures of that type in range.\nOvercharge 3: +1 Creature Type (Max 4)"],
+"balm_of_nature": [4, 1, 3, false, "", "Restores 1D6 Hit Points\nOverheal\nOvercharge 2: +1D6 Healing (Max 6)"],
+"pull": [4, 1, 3, false, "Strength or Dexterity", "Pulls 10ft toward Caster.\nOvercharge 1: +5ft Pull Distance (Max 6)"],
+"resist_poison": [5, 1, 4, false, "", "Resistance to Poison Damage.\nCannot be Poisoned."],
+"feather_fall": [5, 1, 4, false, "", "Nullifies all Fall Damage. "],
+"entangle": [5, 1, 4, false, "Dexterity", "Movement Speed reduced to 0."],
+"water_breathing": [5, 1, 1, false, "", "Characters gain Water Breathing"],
+"bark_skin": [5, 1, 1, false, "", "Characters gain: \n+5 Physical Armour\n-2 Magical Armour"],
+"reinforce_object": [4, 1, 4, false, "", "Objects gains 20 + Nature Hit Points for the duration."],
+"mending": [4, 1, 4, false, "", "Object Regains 20 + Nature Hit Points.\nOverheal."],
+"eagle's_wings": [7, 2, 7, false, "", "Fly Speed equal to Movement Speed."],
+"petrify": [9, 2, 12, false, "Vigour", "Petrifies characters with 0 Hit Points."],
+"cleanse": [4, 1, 4, false, "", "A golden light curses an affliction on the target."],
+}; 
+const spellTemplates = {
+"touch": [1, 1, 0, false, "Touch", "Instant", "The caster reaches out and touches the target with {}."],
+"dart": [2, 1, 1, false, "30ft", "Instant", "The caster shoots a small burst of {} toward the target."],
+"bolt": [4, 1, 3, false, "60ft", "Instant", "The caster shoots a bolt of {} toward their target."],
+"orb": [5, 2, 4, false, "40ft", "Instant", "The caster hurls an orb of {} at a target, which then bursts in the area around them."],
+"cone": [4, 2, 4, false, "10ft Cone", "Instant", "The caster shoots a cone of {} from their hands and applies the spell effect to the target."],
+"rebuttal": [5, 0, 3, false, "60ft", "Instant", "The caster retaliates with a blast of {}."],
+"cloud": [4, 2, 4, true, "10x10ft Cloud up to 30ft away", "10 Minutes", "The caster conjures a lingering cloud of {}."],
+"buff": [4, 1, 3, true, "30ft", "10 Minutes", "The caster empowers a character within range with {}."],
+"enchantment": [4, 1, 3, true, "Touch", "10 Minutes", "The caster empowers an object within range with {}."],
+"cloak": [5, 2, 5, true, "Self", "5 Minutes", "The caster surrounds themselves in a small aura of {}."],
+"aura": [8, 2, 8, true, "Self", "5 Minutes", "The caster surrounds themselves in a large aura of {}."],
+"beam": [8, 2, 8, false, "60ft line", "Instant", "The caster shoots a beam of {} from their hand."],
+"wall": [9, 2, 9, true, "60ft line", "10 Minutes", "The caster lifts a wall of {} up from the floor, blocking access to an area."],
+"wave": [8, 2, 8, true, "Self", "5 Minutes", "The caster surrounds themselves in a large aura of {} which spreads for the duration."],
+"explosion": [9, 2, 9, false, "60ft", "Instant", "The caster chooses a location, and an enormous blast of {} bursts in that spot."],
+"glyph": [6, 2, 10, false, "Touch", "Instant", "The caster etches an invisible rune into a location as a trap ready to spring."]
+};
 
 const fortunes = [
 "Good things come to those who wait.",

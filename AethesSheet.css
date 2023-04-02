@@ -16,10 +16,16 @@ body {
 
 p { font-size: 17px;overflow: hidden; white-space: nowrap;}
 h2 { font-size: 28px; }
+span.repeating-Title { font-size: 28px; }
 
 h3 {
     display: inline-block;
     font-family: "Caudex";
+}
+
+.hint {
+    font-size: 15px;
+    color: gray;
 }
 
 button {
@@ -99,7 +105,7 @@ input.headpiece-name {
     background: rgba(0, 0, 0, 0.4);
 }
 
-.prompt-attack {
+.prompt-damage {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -132,6 +138,17 @@ button.attribute-mode-disadvantage{
 .repcontainer[data-groupname="repeating_attacks"]>.repitem .attack-one[value="show"]  ~ button.attack-button-one,
 .repcontainer[data-groupname="repeating_attacks"]>.repitem .attack-two[value="show"]  ~ button.attack-button-two {
     display: inline-block;
+}
+
+div[class^="attacks-Row-Attacks"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
+div[class^="attacks-Row-Attacks"] div[class^="repcontrol"] button[class="btn repcontrol_edit"],
+div[class^="sheet-overview-Runes"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
+div[class^="sheet-overview-Runes"] div[class^="repcontrol"] button[class="btn repcontrol_edit"],
+div[class^="sheet-overview-Invocations"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
+div[class^="sheet-overview-Invocations"] div[class^="repcontrol"] button[class="btn repcontrol_edit"],
+div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
+div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcontrol_edit"] {
+    display: none;
 }
 
 .charsheet div.sheet-master {  
@@ -193,8 +210,9 @@ button.attribute-mode-disadvantage{
         "overview-Headpiece overview-Headpiece overview-Race"
         "overview-Attributes overview-State overview-Stats"
         "overview-Attacks overview-Runes overview-Invocations"
-        "overview-Notes overview-Notes overview-Notes";
+        "overview-Resources overview-Resources overview-Notes";
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
 }
 .charsheet div.sheet-overview-Headpiece { grid-area: overview-Headpiece; }
 
@@ -331,7 +349,42 @@ button.attribute-mode-disadvantage{
 }
 .stats-Row-Name { grid-area: stats-Row-Name }
 .stats-Row-Value { grid-area: stats-Row-Value }
-
+.prompt-damage {
+    display: grid;
+    grid-template-areas:
+        "prompt-damage-Title prompt-damage-Close"
+        "prompt-damage-SlashingL prompt-damage-Slashing"
+        "prompt-damage-PiercingL prompt-damage-Piercing"
+        "prompt-damage-BludgeoningL prompt-damage-Bludgeoning"
+        "prompt-damage-FireL prompt-damage-Fire"
+        "prompt-damage-FrostL prompt-damage-Frost"
+        "prompt-damage-ShadowL prompt-damage-Shadow"
+        "prompt-damage-WaterL prompt-damage-Water"
+        "prompt-damage-PoisonL prompt-damage-Poison"
+        "prompt-damage-HP prompt-damage-Take";
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+}
+.prompt-damage-Title { grid-area: prompt-damage-Title }
+.prompt-damage-Close { grid-area: prompt-damage-Close }
+.prompt-damage-SlashingL { grid-area: prompt-damage-SlashingL }
+.prompt-damage-Slashing { grid-area: prompt-damage-Slashing }
+.prompt-damage-PiercingL { grid-area: prompt-damage-PiercingL }
+.prompt-damage-Piercing { grid-area: prompt-damage-Piercing }
+.prompt-damage-BludgeoningL { grid-area: prompt-damage-BludgeoningL }
+.prompt-damage-Bludgeoning { grid-area: prompt-damage-Bludgeoning }
+.prompt-damage-FireL { grid-area: prompt-damage-FireL }
+.prompt-damage-Fire { grid-area: prompt-damage-Fire }
+.prompt-damage-FrostL { grid-area: prompt-damage-FrostL }
+.prompt-damage-Frost { grid-area: prompt-damage-Frost }
+.prompt-damage-ShadowL { grid-area: prompt-damage-ShadowL }
+.prompt-damage-Shadow { grid-area: prompt-damage-Shadow }
+.prompt-damage-WaterL { grid-area: prompt-damage-WaterL }
+.prompt-damage-Water { grid-area: prompt-damage-Water }
+.prompt-damage-PoisonL { grid-area: prompt-damage-PoisonL }
+.prompt-damage-Poison { grid-area: prompt-damage-Poison }
+.prompt-damage-HP { grid-area: prompt-damage-HP }
+.prompt-damage-Take { grid-area: prompt-damage-Take }
 
 /* Overview Attacks Grid */
 .charsheet div.sheet-overview-Attacks { 
@@ -396,6 +449,33 @@ button.attribute-mode-disadvantage{
 .runes-Row-MTitle { grid-area: runes-Row-MTitle }
 .runes-Row-MState { grid-area: runes-Row-MState }
 
+/* Resources Grid */
+.charsheet div.sheet-overview-Resources { 
+    display: grid;
+    grid-area: overview-Resources; 
+    grid-template-areas:
+        "resources-Title"
+        "resources-Label"
+        "resources-Block"
+        "resources-Buffer";
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-columns: 1fr;
+}
+.resources-Title { grid-area: resources-Title; display: grid; justify-items: center; align-items: center;}
+.resources-Label { grid-area: resources-Label; display: grid; }
+.resources-Block { grid-area: resources-Block; display: grid; }
+.resources-Row {
+    display: grid; 
+    min-width: 220px;
+    grid-template-areas:
+        "resources-Row-Name resources-Row-Amount resources-Row-Total resources-Row-Note";
+    grid-template-columns: 8fr 4fr 3fr 12fr;
+    grid-template-rows: auto;
+}
+.resources-Row-Name { grid-area: resources-Row-Name }
+.resources-Row-Amount { grid-area: resources-Row-Amount }
+.resources-Row-Total { grid-area: resources-Row-Total }
+.resources-Row-Note { grid-area: resources-Row-Note }
 
 .charsheet div.sheet-overview-Attacks { grid-area: overview-Attacks; }
 .charsheet div.sheet-overview-Runes { grid-area: overview-Runes; }
@@ -535,6 +615,13 @@ button.attack-button-two {
 }
 .stats-stats-Row-Name { grid-area: stats-stats-Row-Name }
 .stats-stats-Row-Value { grid-area: stats-stats-Row-Value }
+.tak-Row {
+    display: grid; 
+    grid-template-areas:
+        "stats-stats-Row-Name stats-stats-Row-Value";
+    grid-template-columns: 0.8fr 1fr;
+    grid-template-rows: auto;
+}
 
 /* Stats Armour Grid */
 .charsheet div.sheet-stats-Armour { 
@@ -578,38 +665,55 @@ button.attack-button-two {
 .perks-Row { 
     display: grid;
     margin-bottom: 5px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 0.2fr;
     grid-template-rows: auto auto auto auto;
     grid-template-areas:
-        "perks-NameL perks-RequirementsL perks-SourceL"
-        "perks-Name perks-Requirements perks-Source"
-        "perks-DescriptionL perks-DescriptionL perks-DescriptionL"
-        "perks-Description perks-Description perks-Description";
+        "perks-NameL perks-RequirementsL perks-SourceL perks-Fold"
+        "perks-Name perks-Requirements perks-Source perks-Fold"
+        "perks-DescriptionL perks-DescriptionL perks-DescriptionL perks-DescriptionL"
+        "perks-Description perks-Description perks-Description perks-Description";
 }
-
+.repcontainer[data-groupname="repeating_perks"]>.repitem .perks-Toggle[value="open"]  ~ div.perks-DescriptionL,
+.repcontainer[data-groupname="repeating_perks"]>.repitem .perks-Toggle[value="open"]  ~ div.perks-Description {
+    display: grid;
+}
 .perks-NameL { grid-area: perks-NameL; }
 .perks-Name { grid-area: perks-Name; }
 .perks-RequirementsL { grid-area: perks-RequirementsL; }
 .perks-Requirements { grid-area: perks-Requirements; }
 .perks-SourceL { grid-area: perks-SourceL; }
 .perks-Source { grid-area: perks-Source; }
-.perks-DescriptionL { grid-area: perks-DescriptionL; }
-.perks-Description { grid-area: perks-Description; }
+.perks-Fold { grid-area: perks-Fold; }
+.perks-DescriptionL { grid-area: perks-DescriptionL; display: none;}
+.perks-Description { grid-area: perks-Description; display: none; }
 
 /* Weapons Grid */
 .charsheet div.sheet-weapons { 
     grid-template-areas:
-        "weapons-Row-Title "
-        "weapons-Row-Attacks"
-        "weapons-Row-Buffer";
+        "weapons-Title "
+        "weapons-Attacks"
+        "weapons-Buffer";
     grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr;
 }
 
-.weapons-Row-Title { grid-area: weapons-Row-Title; }
-.weapons-Row-Attacks { grid-area: weapons-Row-Attacks; display: grid; }
+.weapons-Title { grid-area: weapons-Title; }
+.weapons-Attacks { grid-area: weapons-Attacks; display: grid; }
 .weapons-Row {
     display: grid; 
+    grid-template-columns: 5fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "weapons-Row-Title weapons-Row-Fold"
+        "weapons-Row-Form weapons-Row-Form";
+    border: 3px solid white;
+    margin-bottom: 5px;
+}
+.weapons-Row-Title { grid-area: weapons-Row-Title; }
+.weapons-Row-Fold { grid-area: weapons-Row-Fold; }
+.weapons-Row-Form {
+    display: none; 
+    grid-area: weapons-Row-Form;
     grid-template-columns: 2fr 3fr;
     grid-template-rows: auto auto auto;
     grid-gap: 5px;
@@ -617,9 +721,10 @@ button.attack-button-two {
         "weapons-Row-Left weapons-Row-Right"
         "weapons-Row-Description weapons-Row-Description"
         "weapons-Row-Buffer weapons-Row-Buffer";
-    border: 3px solid white;
-    margin-bottom: 5px;
     padding: 5px;
+}
+.repcontainer[data-groupname="repeating_weapons"]>.repitem .weapons-Row-Toggle[value="open"]  ~ div.weapons-Row-Form {
+    display: grid;
 }
 .weapons-Row-Left {
     display: grid; 
@@ -706,6 +811,18 @@ button.attack-button-two {
 .rune-spells-Row { 
     display: grid;
     margin-bottom: 5px; 
+    grid-template-columns: 5fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "rune-spells-Row-Title rune-spells-Fold"
+        "rune-spells-Form rune-spells-Form";
+}
+.rune-spells-Row-Title { grid-area: rune-spells-Row-Title; }
+.rune-spells-Fold { grid-area: rune-spells-Fold; }
+.rune-spells-Form { 
+    display: none;
+    grid-area: rune-spells-Form;
+    margin-bottom: 5px; 
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto auto auto auto auto auto auto;
     grid-template-areas:
@@ -717,7 +834,9 @@ button.attack-button-two {
         "rune-spells-DescriptionL rune-spells-DescriptionL rune-spells-DescriptionL rune-spells-DescriptionL"
         "rune-spells-Description rune-spells-Description rune-spells-Description rune-spells-Description";
 }
-
+.repcontainer[data-groupname="repeating_rune-spells"]>.repitem .rune-spells-Row-Toggle[value="open"]  ~ div.rune-spells-Form {
+    display: grid;
+}
 .rune-spells-NameL { grid-area: rune-spells-NameL; }
 .rune-spells-Name { grid-area: rune-spells-Name; }
 .rune-spells-CastL { grid-area: rune-spells-CastL; }
@@ -859,9 +978,21 @@ button.attack-button-two {
 }
 .invocation-Saved-Title { grid-area: invocation-Saved-Title; margin-bottom: 5px;  }
 .invocation-Saved-Spells { grid-area: invocation-Saved-Spells; }
-.invocation-Saved-Block { 
+.invocation-Saved-Row { 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 5fr 1fr; 
+    grid-template-rows: auto auto;
+    margin-bottom: 5px; 
+    grid-template-areas: 
+        "invocation-Saved-Row-Title invocation-Saved-Row-Fold"
+        "invocation-Saved-Block invocation-Saved-Block";
+}
+.invocation-Saved-Row-Title { grid-area: invocation-Saved-Row-Title; }
+.invocation-Saved-Row-Fold { grid-area: invocation-Saved-Row-Fold; }
+.invocation-Saved-Block { 
+    display: none;
+    grid-area: invocation-Saved-Block;
+    grid-template-columns: 1.5fr 2fr 1fr 1fr; 
     grid-template-rows: auto auto auto auto auto auto auto auto auto;
     margin-bottom: 5px; 
     grid-template-areas: 
@@ -869,6 +1000,9 @@ button.attack-button-two {
         "invocation-Saved-IntL invocation-Saved-Int invocation-Saved-APL invocation-Saved-AP"
         "invocation-Saved-AttrL invocation-Saved-Attr invocation-Saved-FPL invocation-Saved-FP"
         "invocation-Saved-Description invocation-Saved-Description invocation-Saved-Description invocation-Saved-Description";
+}
+.repcontainer[data-groupname="repeating_ic-saved"]>.repitem .invocation-Saved-Row-Toggle[value="open"]  ~ div.invocation-Saved-Block {
+    display: grid;
 }
 .invocation-Saved-Title { grid-area: invocation-Saved-Title; }
 .invocation-Saved-NameL { grid-area: invocation-Saved-NameL; }
@@ -916,23 +1050,27 @@ button.attack-button-two {
 .inventory-Row { 
     display: grid;
     margin-bottom: 5px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr auto;
     grid-template-rows: auto auto auto auto;
     grid-template-areas:
-        "inventory-NameL inventory-RequirementsL inventory-SourceL"
-        "inventory-Name inventory-Requirements inventory-Source"
-        "inventory-DescriptionL inventory-DescriptionL inventory-DescriptionL"
-        "inventory-Description inventory-Description inventory-Description";
+        "inventory-NameL inventory-RequirementsL inventory-SourceL inventory-Fold"
+        "inventory-Name inventory-Requirements inventory-Source inventory-Fold"
+        "inventory-DescriptionL inventory-DescriptionL inventory-DescriptionL inventory-DescriptionL"
+        "inventory-Description inventory-Description inventory-Description inventory-Description";
 }
-
+.repcontainer[data-groupname="repeating_inventory"]>.repitem .inventory-Toggle[value="open"]  ~ div.inventory-DescriptionL,
+.repcontainer[data-groupname="repeating_inventory"]>.repitem .inventory-Toggle[value="open"]  ~ div.inventory-Description {
+    display: grid;
+}
 .inventory-NameL { grid-area: inventory-NameL; }
 .inventory-Name { grid-area: inventory-Name; }
 .inventory-RequirementsL { grid-area: inventory-RequirementsL; }
 .inventory-Requirements { grid-area: inventory-Requirements; }
 .inventory-SourceL { grid-area: inventory-SourceL; }
 .inventory-Source { grid-area: inventory-Source; }
-.inventory-DescriptionL { grid-area: inventory-DescriptionL; }
-.inventory-Description { grid-area: inventory-Description; }
+.inventory-Fold { grid-area: inventory-Fold; }
+.inventory-DescriptionL { grid-area: inventory-DescriptionL; display: none; }
+.inventory-Description { grid-area: inventory-Description; display: none; }
 
 /*Equipment*/
 .charsheet .sheet-character { 
@@ -1052,20 +1190,26 @@ button.attack-button-two {
 .character-Equipment-Row { 
     display: grid;
     margin-bottom: 5px;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 4fr 2fr 1fr 1fr;
     grid-template-rows: auto auto;
     grid-template-areas:
-        "character-NameL character-WeightL"
-        "character-Name character-Weight"
-        "character-NoteL character-NoteL"
-        "character-Note character-Note";
+        "character-NameL character-TypeL character-WeightL character-Fold"
+        "character-Name character-Type character-Weight character-Fold"
+        "character-NoteL character-NoteL character-NoteL character-NoteL"
+        "character-Note character-Note character-Note character-Note";
+}
+.repcontainer[data-groupname="repeating_equipment"]>.repitem .character-Toggle[value="open"]  ~ div.character-NoteL,
+.repcontainer[data-groupname="repeating_equipment"]>.repitem .character-Toggle[value="open"]  ~ div.character-Note {
+    display: grid;
 }
 .character-NameL { grid-area: character-NameL; }
 .character-Name { grid-area: character-Name; }
-.character-WeightL { grid-area: character-WeightL; }
+.character-TypeL { grid-area: character-TypeL; }
+.character-Type { grid-area: character-Type; }
+.character-Weight { grid-area: character-WeightL; }
 .character-Weight { grid-area: character-Weight; }
-.character-NoteL { grid-area: character-NoteL; }
-.character-Note { grid-area: character-Note; }
+.character-NoteL { grid-area: character-NoteL; display: none; }
+.character-Note { grid-area: character-Note; display: none; }
 
 /*Configure the equipment tab buttons*/
 .charsheet .character-Armour,
@@ -1079,11 +1223,6 @@ button.attack-button-two {
 .charsheet .sheet-tabstoggle[value="equipment-Equipment"] ~ div.character-Equipment,
 .charsheet .sheet-tabstoggle[value="equipment-Info"] ~ div.character-Info {
     display: grid;
-}
-
-div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_add"],
-div[class^="sheet-overview"] div[class^="repcontrol"] button[class="btn repcontrol_edit"] {
-    display: none;
 }
 
 /* By deafult, hides all archetypes*/
