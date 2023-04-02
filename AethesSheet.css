@@ -11,12 +11,23 @@ body {
 }
 .charsheet, h1, h2, h3, p {
     font-family: "Caudex";margin: 0;font-weight: normal;
-    color: white;
+    color: rgb(216, 212, 207);
 }
 
-p { font-size: 17px;overflow: hidden; white-space: nowrap;}
-h2 { font-size: 28px; }
-span.repeating-Title { font-size: 28px; }
+p {
+    font-size: 17px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: inherit;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+span.repeating-Title {
+    font-size: 28px;
+}
 
 h3 {
     display: inline-block;
@@ -29,15 +40,16 @@ h3 {
 }
 
 button {
-    background-color: #343434;
+    background-color: rgb(31, 34, 35);
+    border-color: rgb(104, 97, 85);
+    color: rgb(215, 211, 206);
     border-radius: 2px;
     font-size: 14px;
-    color: #fdfdfd;
-    -webkit-text-fill-color: #ffffff;
+    -webkit-text-fill-color: rgb(216, 212, 207);
     -webkit-text-stroke-width: 0.1px;
-    -webkit-text-stroke-color: #000000;
+    -webkit-text-stroke-color: rgb(216, 212, 207);
     -webkit-box-shadow: 0 0 5px #442424;
-    box-shadow: 0 0 5px #442424;
+    box-shadow: 0 0 5px rgb(54, 29, 29);
 }
 
 button:hover {
@@ -49,20 +61,24 @@ button:hover {
 .charsheet .repcontrol_add,
 .charsheet .repcontrol_edit,
 .charsheet .repcontrol_del {
-    background: #343434;
+    background: rgb(31, 34, 35);
     border-radius: 2px;
+    border-color: rgb(104, 97, 85);
     font-size: 14px;
-    color: #fdfdfd;
-    -webkit-text-fill-color: #ffffff;
+    color: rgb(215, 211, 206);
+    -webkit-text-fill-color: rgb(216, 212, 207);
     -webkit-text-stroke-width: 0.1px;
-    -webkit-text-stroke-color: #000000;
-    -webkit-box-shadow: 0 0 5px #442424;
-    box-shadow: 0 0 5px #442424;
+    -webkit-text-stroke-color: rgb(216, 212, 207);
+    -webkit-box-shadow: 0 0 5px rgb(54, 29, 29);
+    box-shadow: 0 0 5px rgb(54, 29, 29);
 }
 
 textarea {
     box-sizing: border-box;
     margin: 0;
+    color: rgb(178, 172, 162);
+    border-color: rgb(109, 101, 89);
+    background-color: rgb(24, 26, 27);
 }
 
 .sheet-overview-Headpiece sheet-block {
@@ -73,19 +89,39 @@ textarea {
     width: 20%;
 }
 
+input, select, .uneditable-input {
+  color: rgb(178, 172, 162);
+  border-color: rgb(109, 101, 89);
+  background-color: rgb(24, 26, 27);
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+  color: rgb(178, 172, 162);
+  background-color: rgb(24, 26, 27);
+  border-color: rgb(109, 101, 89);
+}
+
 input[type="text"], select {
+    color: rgb(178, 172, 162);
+    background-color: rgb(24, 26, 27);
+    border-color: rgb(109, 101, 89);
     min-width: 50px;
     width: 100%;
     margin: 0;
 }
 
+input[type="number"], select {
+    min-width: 4.2em;
+    margin: 0;
+}
+
 input.headpiece-name {
-    color: white;
+    color: rgb(216, 212, 207);
     background-color: transparent;
     border-color: transparent;
     min-width: 1px;
     width: 75%;
-    font-size: 6.5vb;
+    font-size: 40px;
     margin-left: 1%;
     outline: none;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -119,6 +155,11 @@ input.headpiece-name {
 .prompt-take-damage[value="promptTakeDamage"] ~ div.prompt-background {
     display: block;
 }
+
+.info-Appearance input {
+    text-align: center;
+}
+
 
 
 /* By deafult hide attribute mode button*/
@@ -183,7 +224,7 @@ div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcont
     grid-gap: 5px;
     padding: 5px;
     justify-content: center;
-    border: 3px solid white;
+    border: 3px solid #36332c;
 }
 
 /* show the selected tab */
@@ -201,7 +242,7 @@ div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcont
 .charsheet div.sheet-block{
   padding: 5px;
   justify-content: center;
-  border: 3px solid white;
+  border: 3px solid #36332c;
 }
 
 /*Overview*/
@@ -267,7 +308,8 @@ div[class^="stats-Row-Value"] div[class^="repcontrol"] button[class="btn repcont
 .attribute-Row-Charisma { grid-area: attribute-Row-Charisma; display: grid; }
 .attribute-Row {
     display: grid;
-    min-width: 220px;
+    vertical-align: middle;
+    min-width: 240px;
     grid-template-areas:
         "attribute-Row-Name attribute-Row-Value";
     grid-template-columns: 1fr 1fr;
@@ -568,7 +610,8 @@ button.attack-button-two {
 .stats-attribute-Row-Nature { grid-area: stats-attribute-Row-Nature; display: grid; }
 .stats-attribute-Row-Charisma { grid-area: stats-attribute-Row-Charisma; display: grid; }
 .stats-attribute-Row {
-    display: grid; 
+    display: grid;
+    min-width: 250px;
     grid-template-areas:
         "stats-attribute-Row-Name stats-attribute-Row-Value";
     grid-template-columns: 0.8fr 1fr;
@@ -583,7 +626,10 @@ button.attack-button-two {
     grid-area: stats-Stats; 
     grid-template-areas:
         "stats-stats-Row-Title"
+        "stats-stats-Row-EmptyOne"
         "stats-stats-Row-XP"
+        "stats-stats-Row-Level"
+        "stats-stats-Row-EmptyTwo"
         "stats-stats-Row-Health"
         "stats-stats-Row-Vitality"
         "stats-stats-Row-Focus"
@@ -593,11 +639,14 @@ button.attack-button-two {
         "stats-stats-Row-Speed"
         "stats-stats-Row-EquipLoad"
         "stats-stats-Row-Buffer";
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto 1fr;
     grid-template-columns: 1fr;
 }
 .stats-stats-Row-Title { grid-area: stats-stats-Row-Title; display: grid; }
+.stats-stats-Row-EmptyOne { grid-area: stats-stats-Row-EmptyOne; display: grid; }
 .stats-stats-Row-XP { grid-area: stats-stats-Row-XP; display: grid; }
+.stats-stats-Row-Level { grid-area: stats-stats-Row-Level; display: grid; }
+.stats-stats-Row-EmptyTwo { grid-area: stats-stats-Row-EmptyTwo; display: grid; }
 .stats-stats-Row-Health { grid-area: stats-stats-Row-Health; display: grid; }
 .stats-stats-Row-Vitality { grid-area: stats-stats-Row-Vitality; display: grid; }
 .stats-stats-Row-Focus { grid-area: stats-stats-Row-Focus; display: grid; }
@@ -607,7 +656,8 @@ button.attack-button-two {
 .stats-stats-Row-Speed { grid-area: stats-stats-Row-Speed; display: grid; }
 .stats-stats-Row-EquipLoad { grid-area: stats-stats-Row-EquipLoad; display: grid; }
 .stats-stats-Row {
-    display: grid; 
+    display: grid;
+    min-width: 250px;
     grid-template-areas:
         "stats-stats-Row-Name stats-stats-Row-Value";
     grid-template-columns: 0.8fr 1fr;
@@ -706,7 +756,7 @@ button.attack-button-two {
     grid-template-areas:
         "weapons-Row-Title weapons-Row-Fold"
         "weapons-Row-Form weapons-Row-Form";
-    border: 3px solid white;
+    border: 3px solid #36332c;
     margin-bottom: 5px;
 }
 .weapons-Row-Title { grid-area: weapons-Row-Title; }
@@ -772,7 +822,7 @@ button.attack-button-two {
 .weapons-Row-TypeSecondary { grid-area: weapons-Row-TypeSecondary } 
 .weapons-Row-Description { grid-area: weapons-Row-Description } 
 .weapons-Field {
-    border: 1px solid white;
+    border: 1px solid #36332c;
     padding: 2px;
 } 
 .weapons-FieldN {
@@ -782,7 +832,7 @@ button.attack-button-two {
         "weapons-Field-Buffer weapons-Field-Buffer";
     grid-template-columns: 2fr 1fr;
     grid-template-rows: auto 1fr;
-    border: 1px solid white;
+    border: 1px solid #36332c;
     padding: 2px;
 }
 .weapons-FieldT {
@@ -792,7 +842,7 @@ button.attack-button-two {
         "weapons-Field-Buffer weapons-Field-Buffer";
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 1fr;
-    border: 1px solid white;
+    border: 1px solid #36332c;
     padding: 2px;
 }
 
@@ -863,7 +913,7 @@ button.attack-button-two {
         "rune-spells-Field-Buffer";
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
-    border: 1px solid white;
+    border: 1px solid #36332c;
     padding: 2px;
 }
 .rune-spells-FieldH {
@@ -873,7 +923,7 @@ button.attack-button-two {
         "rune-spells-Field-Buffer rune-spells-Field-Buffer";
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 1fr;
-    border: 1px solid white;
+    border: 1px solid #36332c;
     padding: 2px;
 }
 
@@ -1266,7 +1316,7 @@ div[class^="sheet-invocation-Saved"] div[class^="repcontrol"] button[class="btn 
 
 /* INFO */
 .info-field {
-    border: 1px solid white;
+    border: 1px solid rgb(109, 101, 89);
 }
 .info-field > input {
     width: 100%;

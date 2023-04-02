@@ -412,7 +412,7 @@
         </fieldset>
     </div>
     <div class="sheet-overview-Notes sheet-block">
-        <p>Notes:</p><br>
+        <h2>Notes:</h2>
         <textarea name="attr_notes"></textarea>
     </div>
     <div class="sheet-overview-Resources sheet-block">
@@ -617,16 +617,32 @@
             <h2>Stats</h2>
         </div>
 
+        <div class="stats-stats-Row-EmptyOne">
+            <p>&nbsp;</p>
+        </div>
+
         <div class="stats-stats-Row-XP stats-stats-Row">
             <div class="stats-stats-Row-Name">
                 <p> XP: </p>
             </div>
             <div class="stats-stats-Row-Value">
                 <input type="number" value="100" name="attr_xp"/>
-                <text>Level</text>
+            </div>
+        </div>
+
+        <div class="stats-stats-Row-Level stats-stats-Row">
+            <div class="stats-stats-Row-Name">
+                <p> Level </p>
+            </div>
+            <div class="stats-stats-Row-Value">
                 <input type="number" value="1" name="attr_level" readonly/>
             </div>
         </div>
+
+        <div class="stats-stats-Row-EmptyTwo">
+            <p>&nbsp;</p>
+        </div>
+
         <div class="stats-stats-Row-Health stats-stats-Row">
             <div class="stats-stats-Row-Name">
                 <p> Health: </p>
