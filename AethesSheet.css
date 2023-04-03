@@ -1179,14 +1179,19 @@ button.attack-button-two {
   grid-template-areas: 
     "character-Armour-Title character-Armour-Title character-Armour-Title character-Armour-Title"
     "character-Armour-NameL character-Armour-Name character-Armour-Name character-Armour-Name"
+    "character-Armour-TypeL character-Armour-Type character-Armour-TaxL character-Armour-Tax"
+    "character-Armour-EvasionL character-Armour-Evasion character-Armour-EvasionMod ."
     "character-Armour-PhysL character-Armour-Phys character-Armour-SpeedL character-Armour-Speed"
     "character-Armour-MagL character-Armour-Mag character-Armour-WeightL character-Armour-Weight"
-    "character-Armour-EvasionL character-Armour-Evasion character-Armour-EvasionMod ."
     "character-Armour-NoteL character-Armour-NoteL character-Armour-NoteL character-Armour-NoteL"
     "character-Armour-Note character-Armour-Note character-Armour-Note character-Armour-Note"
 }
 .character-Armour-NameL { grid-area: character-Armour-NameL; }
 .character-Armour-Name { grid-area: character-Armour-Name; }
+.character-Armour-TypeL { grid-area: character-Armour-TypeL; }
+.character-Armour-TaxL { grid-area: character-Armour-TaxL; }
+.character-Armour-Tax { grid-area: character-Armour-Tax; }
+.character-Armour-Type { grid-area: character-Armour-Type; }
 .character-Armour-PhysL { grid-area: character-Armour-PhysL; }
 .character-Armour-Phys { grid-area: character-Armour-Phys; }
 .character-Armour-MagL { grid-area: character-Armour-MagL; }

@@ -280,7 +280,7 @@
                         Slashing
                     </div>
                     <div class="prompt-damage-Slashing">
-                        <input type="number" name="attr_take_slashing" value="0"/>
+                        <input type="number" name="attr_take_slashing" value="0" min="0"/>
                     </div>
                     <div class="prompt-damage-PiercingL">
                         Piercing
@@ -292,37 +292,37 @@
                         Bludgeoning
                     </div>
                     <div class="prompt-damage-Bludgeoning">
-                        <input type="number" name="attr_take_bludgeoning" value="0"/>
+                        <input type="number" name="attr_take_bludgeoning" value="0" min="0"/>
                     </div>
                     <div class="prompt-damage-FireL">
                         Fire
                     </div>
                     <div class="prompt-damage-Fire">
-                        <input type="number" name="attr_take_fire" value="0"/>
+                        <input type="number" name="attr_take_fire" value="0" min="0"/>
                     </div>
                     <div class="prompt-damage-FrostL">
                         Frost
                     </div>
                     <div class="prompt-damage-Frost">
-                        <input type="number" name="attr_take_frost" value="0"/>
+                        <input type="number" name="attr_take_frost" value="0" min="0"/>
                     </div>
                     <div class="prompt-damage-ShadowL">
                         Shadow
                     </div>
                     <div class="prompt-damage-Shadow">
-                        <input type="number" name="attr_take_shadow" value="0"/>
+                        <input type="number" name="attr_take_shadow" value="0" min="0"/>
                     </div>
                     <div class="prompt-damage-WaterL">
                         Water
                     </div>
                     <div class="prompt-damage-Water">
-                        <input type="number" name="attr_take_water" value="0"/>
+                        <input type="number" name="attr_take_water" value="0" min="0"/>
                     </div>
                     <div class="prompt-damage-PoisonL">
                         Poison
                     </div>
                     <div class="prompt-damage-Poison">
-                        <input type="number" name="attr_take_poison" value="0"/>
+                        <input type="number" name="attr_take_poison" value="0" min="0"/>
                     </div>
                     <div class="prompt-damage-HP">
                         - <span name="attr_calc_take_damage"></span> HP
@@ -798,7 +798,7 @@
                     <input type="text" name="attr_perk_source"/>
                 </div>
                 <div class="perks-Fold">
-                    <button type="action" name="act_fold">&#x1F6C8;</button>
+                    <button type="action" name="act_fold">&#x24D8;</button>
                 </div>
                 <input type="hidden" class="perks-Toggle" name="attr_row_toggle" value="open" /> 
                 <div class="perks-DescriptionL">
@@ -1387,7 +1387,7 @@
                         <span class="repeating-Title" name="attr_ic_name"></span>
                     </div>
                     <div class="invocation-Saved-Row-Fold">
-                        <button type="action" name="act_fold">&#x1F6E0;</button>
+                        <button type="action" name="act_fold">&#x24D8;</button>
                     </div>
                     <input type="hidden" class="invocation-Saved-Row-Toggle" name="attr_row_toggle" value="open" /> 
                     <div class="invocation-Saved-Block">
@@ -1470,7 +1470,7 @@
                     <input type="text" name="attr_item_type"/>
                 </div>
                 <div class="inventory-Fold">
-                    <button type="action" name="act_fold">&#x1F6C8;</button>
+                    <button type="action" name="act_fold">&#x24D8;</button>
                 </div>
                 <input type="hidden" class="inventory-Toggle" name="attr_row_toggle" value="open" /> 
                 <div class="inventory-DescriptionL">
@@ -1500,6 +1500,36 @@
         <div class="character-Armour-Name">
             <input type="text" name="attr_armour_name"/>
         </div>
+        <div class="character-Armour-TypeL">
+            <p>Type:</p>
+        </div>
+        <div class="character-Armour-Type">
+            <select name="attr_armour_type">
+                <option selected value="cloth">Cloth</option>
+                <option value="light">Light</option>
+                <option value="medium">Medium</option>
+                <option value="heavy">Heavy</option>
+            </select>
+        </div>
+        <div class="character-Armour-EvasionL">
+            <p>Evasion Penalty:</p>
+        </div>
+        <div class="character-Armour-Evasion">
+            <select name="attr_armour_evasion">
+                <option selected value="1">None</option>
+                <option value="0.5">Halved</option>
+                <option value="0">Full</option>
+            </select>
+        </div>
+        <div class="character-Armour-EvasionMod">
+            <input type="number" name="attr_armour_evasion_mod" value="0"/>
+        </div>
+        <div class="character-Armour-TaxL">
+            <p>Spell Tax:</p>
+        </div>
+        <div class="character-Armour-Tax">
+            <input type="number" name="attr_spell_tax" value="0" min="0"/>
+        </div>
         <div class="character-Armour-PhysL">
             <p>Physical Resist:</p>
         </div>
@@ -1523,19 +1553,6 @@
         </div>
         <div class="character-Armour-Weight">
             <input type="number" name="attr_armour_weight" value="0"/>
-        </div>
-        <div class="character-Armour-EvasionL">
-            <p>Evasion Penalty:</p>
-        </div>
-        <div class="character-Armour-Evasion">
-            <select name="attr_armour_evasion">
-                <option selected value="1">None</option>
-                <option value="0.5">Halved</option>
-                <option value="0">Full</option>
-            </select>
-        </div>
-        <div class="character-Armour-EvasionMod">
-            <input type="number" name="attr_armour_evasion_mod" value="0"/>
         </div>
         <div class="character-Armour-NoteL">
             <p>Note:</p>
@@ -1581,7 +1598,7 @@
                         <input type="number" name="attr_eq_weight" value="0"/>
                     </div>
                     <div class="character-Fold">
-                        <button type="action" name="act_fold">&#x1F6C8;</button>
+                        <button type="action" name="act_fold">&#x24D8;</button>
                     </div>
                     <input type="hidden" class="character-Toggle" name="attr_row_toggle" value="open" /> 
                     <div class="character-NoteL">
@@ -1857,7 +1874,7 @@
         getAttrs([`${row}_row_toggle`], (values) => {
             let toggle = {}
             toggle[`${row}_row_toggle`] = (values[`${row}_row_toggle`] == "open") ? "close" : "open";
-            console.log(toggle)
+
             setAttrs(Object.assign(toggle));
         })
     })
@@ -1880,9 +1897,9 @@
             const type = (values[`${attack}_spell`] != 0) ? "{{spell=1}}" : "{{weapon=1}}"
             const category = (values[`${attack}_spell`] != 0) ? `{{category=${scaling}}}` : ((values[`${attack}_ranged`] != 0) ? `{{category=Ranged Attack}}` : `{{category=Melee Attack}}`)
 
-            const critThreshold = 20 - parseInt(values[`${attack}_crit_chance`]) / 5
-            const rollString = `&{template:atk} {{charname=${values.character_name}}} {{title=${values[`${attack}_name`]}}} ${type} ${category} {{r1=[[1d20cs>${critThreshold}+${acc}]]}} {{r2=[[1d20cs>${critThreshold}${(acc>0)?`+${acc}`:""}]]}} {{${values.attackMode}=1}} {{damage=${`~${values.character_name}|${attack}_dmg`}}}`
-
+            const critThreshold = 20 - (parseInt(values[`${attack}_crit_chance`]) - 5) / 5 
+            const rollString = `&{template:atk} {{charname=${values.character_name}}} {{title=${values[`${attack}_name`]}}} ${type} ${category} {{r1=[[1d20cs>${critThreshold}+${acc}]]}} ${(values.attackMode != "normal")?`{{r2=[[1d20cs>${critThreshold}+${acc}]]}}`:""} {{${values.attackMode}=1}} {{damage=${`~${values.character_name}|${attack}_dmg`}}}`
+            console.log(rollString)
             // Send the roll to the parser
             const results = await startRoll(rollString);
 
@@ -1890,14 +1907,17 @@
             damage += (values[`${attack}_dice_secondary`] != "") ? ` {{dmg2flag=1}} {{dmg2=[[${values[`${attack}_dice_secondary`]}]]}} {{dmg2type=${values[`${attack}_type_secondary`]}}}` : ""
 
             const r1 = results.results.r1.dice[0]
-            const r2 = results.results.r2.dice[0]
-            const dice = (values.attackMode == "normal") ? r1 : ((values.attackMode == "advantage") ? Math.max(r1, r2) : Math.min(r1, r2))
+            const dice = r1
+            if (values.attackMode =! "normal") {
+                const r2 = results.results.r2.dice[0]
+                dice = (values.attackMode == "normal") ? r1 : ((values.attackMode == "advantage") ? Math.max(r1, r2) : Math.min(r1, r2))
+            }
 
             let critical = (dice >= critThreshold) ? `{{crit=1}} {{crit1=[[${(hand == "attack-one") ? values[`${attack}_dice_one`] : values[`${attack}_dice_two`]}]]}}` : ""
             critical  += (values[`${attack}_dice_secondary`] != "" && dice >= critThreshold) ? ` {{crit2=[[${values[`${attack}_dice_secondary`]}]]}}` : ""
 
             const damageString = `&{template:dmg} {{damage=1}} {{charname=${values.character_name}}} {{title=${values[`${attack}_name`]}}} ${type} ${category} ${damage} ${critical}`
-
+            console.log(damageString)
             damageRoll = {}
             damageRoll[`${attack}_roll_dmg`] = damageString
 
@@ -1968,9 +1988,11 @@
 
             // for all damage types -> (DamageToTake - phys/mag resistance) / 2(if resistant)
             let calcDamage = damageTypes.reduce((sum, damage) => {
-                let takeDamage = minusToZero(values[`take_${damage}`], parseInt((damage in physicalDamageTypes) ? values.phys_resist_total : values.mag_resist_total))
-                takeDamage = (values.resistances_list.includes(damage)) ? Math.floor(takeDamage / 2) : takeDamage
-                return sum + ((values[`take_${damage}`] > 0 & takeDamage == 0) ? 1 : takeDamage);
+                if (values[`take_${damage}`] == "0") { return sum };
+                let takeDamage = parseInt(values[`take_${damage}`]) - parseInt((physicalDamageTypes.includes(damage)) ? values.phys_resist_total : values.mag_resist_total);
+
+                takeDamage = (values.resistances_list.includes(damage)) ? Math.floor(takeDamage / 2) : takeDamage;
+                return sum + ((values[`take_${damage}`] > 0 & takeDamage <= 0) ? 1 : takeDamage);
             }, 0);
 
             setAttrs({
